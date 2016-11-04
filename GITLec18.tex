@@ -1,0 +1,71 @@
+\sektion{18}{Points in \texorpdfstring{$\PP^n$}{Pn}. Linearization}
+
+The plan is to do one more example about points and then talk about linearization.
+
+We already discussed the case of points on a line. Now we'll talk about $d$ unordered points in $\PP^n$. This is the same as hyperplanes in the dual space. So we can consider the closed set of completely decomposible forms of degree $d$ in $n+1$ variables. That is, $f(x)=f_1(x)\cdots f_d(x)$ where each $f_i$ is of degree 1.
+\begin{proposition}
+ A set $S\subseteq \PP^n$ with $|S|=d$ is stable (resp.~semi-stable) with respect to the action of $SL(n+1)$ if and only if for any linear projective subspace $Z$, we have 
+ \[
+  |S\cap Z|/d < (\dim Z +1)/(n+1)\text{ (resp.~}|S\cap Z|/d \le (\dim Z +1)/(n+1)).
+ \tag{$*$}\]
+\end{proposition}
+\begin{example}
+ For 6 points in $\PP^2$, you have a stable set only if no two points coincide. Otherwise, we get $2/6=1/3$ (taking $Z$ to be a point), so we don't get strict inequality. Moreover, in a stable configuration no 4 points can be colinear because then we get $4/6=2/3$ (here $Z$ is a line).
+ 
+ For semi-stability, no 3 points can coincide and no 5 points can be on a line.
+\end{example}
+\begin{proof}
+ Choosing a coordinate basis, we define $\supp f$ to be those monomials which appear in $f$. $f$ is unstable if for some choice of coordinates and for some $\lambda\in \Lambda^+$, we get $\<\lambda,a\> >0$ for all $a\in \supp f$. $f$ is stable (semi-stable) if for any choice of coordinates and any $\lambda\in \Lambda^+$, there is some $a\in \supp f$ such that $\<\lambda, a\> < 0$ ($\<\lambda,a\> \le 0$).
+ 
+ We define a partial order on monomials, given by $a\le b$ if $\<\lambda, a\>\le \<\lambda,b\>$ for all $\lambda\in\Lambda^+$.
+ \begin{claim}
+  If $f$ is completely reducible, then $\supp f$ has a smallest element with respect to this partial order.
+ \end{claim}
+ \begin{proof}
+  We have $f(x)=f_1(x)\cdots f_d(x)$, with $f_i=\sum_j a^i_j x_j$. Let $x_{j_i}$ be the smallest element in $\supp f_i$, then the product of these is the smallest element in $\supp f$.
+  \renewcommand{\qedsymbol}{$\Box_{\text{Claim}}$}
+ \end{proof}
+ Now we pick a set of fundamental weights of $\Lambda^+$ (the terminology comes from representation theory). Let $\om_i=(n+1-i,\dots, n+1-i,-i,\dots, -i)$ (where there are $i$ copies of $n+1-i$ and $n+1-i$ copies of $-i$). The $\om_i$ generate $\Lambda^+$ in the sense that any $\lambda\in\Lambda^+$ is a positive linear combination of the $\om_i$. It is clear that it is enough to check the stability (or semi-stability) condition ($\<\lambda,a\><0$ or $\<\lambda,a\>\le 0$) on the fundamental weights.
+ 
+ Suppose there is a $Z$ such that $(*)$ fails. $Z$ is given by the equation $x_{p+1}=\cdots = x_n=0$ in some coordinate system ($\dim Z=p+1$). Let $k=|S\cap Z|$. If $a\in \supp f$, then $a_0+\cdots +a_p \ge k$ and $a_{p+1}+\cdots + a_n \le d-k$. We compute
+ \[
+  \<\om_{p+1},a\> \ge (n-p)k - (d-k)(p+1) = (n+1)k-d(p+1)>0
+ \]
+ where $\supp f \subseteq \Delta_d = \{(a_0,\dots, a_n)|\sum a_i=d\}$. So $S$ is unstable.
+ 
+ Suppose $(*)$ holds for all $Z$. We may assume $Z$ is cut out by $x_{p+1}=\cdots =x_n=0$. Let $k=|S\cap Z|$. We have $k/d \le (\dim Z+1)/(n+1)$. Then we'd like to show that $\min_{a\in \supp f}\{\<\om_{p+1},a\>\}\le 0$. I can find a point $a\in \supp f$ such that $a_0+\cdots +a_p=k$ and $a_{p+1}+\cdots +a_n=d-k$. This check is for all $p$ \anton{}, so the point is semi-stable (or stable)
+\end{proof}
+
+The quotient comes from the embedding $X\hookrightarrow \PP(V)$, where $G$ acts linearly on $V$. One question is why we can do this in all cases. The other question is how the quotient depends on the embedding.
+
+Recall that if $X$ is affine, then we proved (very easily) that there is a closed immersion $X\hookrightarrow V$ and a linear action on $V$ such that the embedding is equivariant. Now we drop the assumption that $X$ is an affine scheme.
+
+Suppose $X$ is an algebraic variety. To embed it into projective space, we start with a line bundle $L$. Suppose $W\subseteq \Ga(X,L)$ is a linear subspace which is base-point free (i.e.~there is no $x\in X$ such that all $s\in W$ vanish at $x$). Then we get an induced map $X\to \PP(W^*)$, given by sending $x$ to the hyperplane in $W$ of sections which are zero at $x$. If $X$ is a projective variety, then you usually take $W=\Ga(X,L)$. If the map is a closed embedding, then $L$ is called \emph{very ample}.
+
+Let $\pic X=\{$line bundles on $X\}/\cong$, with the group structure given by $\otimes$ and $L^{-1}=L^*$. A line bundle is sometimes also called an \emph{invertible sheaf}.
+
+Suppose $\sigma\colon G\times X\to X$ is an action. A \emph{linearization} of $L$ is an action $\bbar \sigma\colon G\times L\to L$ so that the following square commutes and the action is linear on fibers.
+\[\xymatrix{
+ G\times L \ar[d]_{\id\times \pi} \ar[r]^-{\bar\sigma} & L\ar[d]^\pi\\
+ G\times X\ar[r]^-\sigma & X
+}\]
+Given a linearization, you can twist it by a character of the group. Suppose $\L$ is the sheaf of sections of $L$. $G$ acts linearly on $\L$ (a sheaf of $\O_X$-modules) and it acts on $\O_X$. We must have $g^* f(x) = f(gx)$ and $g\cdot g s = g^*(f) g\cdot s$.
+
+\begin{example}
+ $PGL(n+1)$ acts on $\PP^n$, but the line bundle $\L=\O(1)$ is not linearizable. The sections of $\O(1)$ would have to be an $(n+1)$-dimensional representation. If we had the group $SL(n+1)$, we could act on the representation. Another thing we could do it take a big tensor power of the sheaf. The tangent bundle has an action of $PGL(n+1)$. If I take the top exterior power of the tangent bundle, I have $\bigwedge^\text{top} T(\PP^n) \cong \O(n+1)$.
+\end{example}
+We define $\pic^G X$ to be the group of line bundles with $G$-linearization (a vector bundle with $G$-linearization is sometimes called a $G$-bundle). We have a homomorphism $\alpha\colon \pic^G X\to \pic X$. The kernel tells us how many linearizations there are on a given line bundle.
+
+To compute the kernel of $\alpha$, we just need to find all linearizations on $\O_X$. We have the standard linearization. Any other action must be given by $g\cdot f(x)= \Phi(g,x)g^*f(x)$ where $\Phi(g,x)\in \O(G\times X)^\times$. We must have $\Phi(e,x)=1$. We also get the condition
+\[
+ \Phi(gh,x)f(ghx)=(gh)\cdot f(x)=h\cdot (g\cdot f)(x)=\Phi(h,x)g\cdot f(hx)=\Phi(h,x)\Phi(g,hx)f(ghx)
+\]
+\anton{is the action of $G$ on $\Ga(X,\O_X)$ a left or a right action? I think it's a left action, in which case we should have $g^* f(x)=f(g^{-1}x)$}which tells us that
+\[
+ \Phi(gh,x)=\Phi(h,x)\Phi(g,hx).
+\]
+Moreover, two functions $\Phi$ and $\Phi'$ give isomorphic linearizations if there is some $\phi\in \O(X)^\times$ such that
+\[
+ \phi(x)\Phi(g,x)=\Phi'(g,x)\phi(gx).
+\]
+So $\Phi(g,x)=\frac{\phi(gx)}{\phi(x)}\Phi'(g,x)$. We define $Z^1(G,\O(X)^\times) = \{\Phi\in \O(G\times X)^\times|\Phi$ satisfies the cocycle condition$\}$ and $B^1(G,\O(X)^\times)=\{\Phi| \Phi(g,x)=\frac{\phi(gx)}{\phi(x)}$ for some $\phi\in \O(X)^\times\}$. Then $\ker \alpha$ is given by $H^1=Z^1/B^1$.

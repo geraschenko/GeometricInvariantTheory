@@ -1,0 +1,89 @@
+\sektion{11}{Stability in the affine case}
+
+There is some confusion of terminology. Depending on which books you read, ``stable points'' means slightly different things.
+
+Suppose $G$ is an affine algebraic groups that acts on an affine variety $X$. We know that for a point $x\in X$, the orbit $G\cdot x$ is locally closed. The stabilizer $G_x$ is a closed subgroup, and we have
+\[
+ \dim G_x + \dim G\cdot x = \dim G.
+\]
+We can define a function $d(x)=\dim G_x$. We say that $x$ is \emph{regular} if $d(y)$ is constant in an open neighborhood of $x$. This definition works perfectly well for any scheme.
+
+It's clear that $X_{\ge d}=\{x\in X|d(x)\ge d\}$ is a closed set \anton{we're applying some kind of semi-continuity result here. If $G$ is flat, then the action map $G\times X\to X$ is flat, so $G\times X\to X\times X$ is flat, so by semi-continuity, the dimensions of the fibers is upper semi-continuous. The fibers along the diagonal are exactly the stabilizers of points}. Therefore, the set of all regular points, $X^\reg$, is open. It is also clear that $X^\reg=X^\reg_0\sqcup X_1^\reg\sqcup\cdots \sqcup X^\reg_k$, where $X^\reg_i=\{x\in X^\reg|d(x)=i\}$. If $X$ is irreducible, then $X^\reg=\{x|\dim G_x$ is minimal$\}$, which is the union of the largest-dimensional orbits.
+
+\begin{proposition}
+ Suppose $G$ is affine and $X$ is irreducible with $X=X^\reg$. Then the action of $G$ is closed.
+\end{proposition}
+\begin{proof}
+ Consider $\phi\colon X\to Y=\specm k[X]^G$. The fibers $\phi^{-1}(y)$ are closure equivalence classes and contain a unique closed orbit. The closed orbit has the minimum possible dimension. But each orbit has the same dimension, so each closure equivalence class is just one orbit.
+ 
+ \anton{Alternative: if $\overline{G\cdot x}\neq G\cdot x$, then $\overline{G\cdot x}$ contains $G\cdot y$ of smaller dimension. You don't need $X$ irreducible or $G$ affine.}
+\end{proof}
+\begin{definition}
+ $x\in X$ is \emph{stable} if $G\cdot x$ is closed and $x$ is regular. $x\in X$ is \emph{properly stable} if it is stable and $G_x$ is finite.\footnote{Sometimes, when people say ``stable,'' they mean properly stable.}
+\end{definition}
+\begin{remark}
+ Alternative definition: $x\in X$ is stable if $G\cdot x$ is closed and not contained in the closure of any other orbit. \anton{If $x$ is in the closure of another orbit, it's clearly not stable. On the other hand, if it's not stable, then any open neighborhood intersects an orbit of higher dimension (by that same semi-continuity result).} \anton{you need to use reductive somewhere; otherwise, we have the example of the $\GG_a$ action $t\cdot (x,y)=(x,tx+y)$.}
+\end{remark}
+
+Suppose $G$ is reductive, and consider $\phi\colon X\to Y=\specm k[X]^G$. Let $X^\irr=X\setminus X^\reg$, and let $Z=\phi(X^\irr)$. \anton{$Z$ is closed because the topology on $X\quot G$ is induced by the topology on $X$}
+\begin{lemma}
+ The stable points are $X^s=X\setminus \phi^{-1}(Z)$.
+\end{lemma}
+\begin{proof}
+ Suppose $x\not\in \phi^{-1}(Z)$. Then $G\cdot x$ is in some fiber $\phi^{-1}(y)$ for some $y\in Y$. If it is not closed, then there is a smaller-dimensional orbit $G\cdot z$ in its closure equivalence class (so $z$ is not regular). Then $\phi(x)\in \phi(Z)$.
+ 
+ On the other hand, let $x\in \phi^{-1}(Z)$. Suppose $x\in \phi^{-1}(z)$, so its closure equivalence class contains a non-regular point (by definition!). Either $x$ is not regular, or it's orbit is not closed.
+\end{proof}
+
+\begin{example}
+ $k^\times$ acts on $\AA^2$ by $t\cdot (x,y)=(tx,t^{-1}y)$. Then the only invariant is $xy$. $(A^2)^\reg=\AA^2\setminus \{(0,0)\}$, but $(\AA^2)^s$ is the complement of the axes. Indeed, every orbit except the axes is closed and regular. So $(\AA^2)^s=\{(x,y)|xy\neq 0\}$.
+\end{example}
+
+Later on, we'll study stable points for non-affine quotients as well.
+
+For any $f\in k[X]$, let $X_f=\{x\in X|f(x)\neq 0\}$.
+\begin{proposition}
+ $x\in X$ is stable if and only if there exists an invariant function $f\in k[X]^G$ such that $x\in X_f$ and the action of $G$ on $X_f$ is closed.
+\end{proposition}
+\begin{proof}
+ Let $I_Z\subseteq k[X]^G$ be the ideal of functions vanishing on $Z\subseteq X\quot G$. Since the fibers of $\phi$ are orbit-closure equivalence classes, it is not hard to check that for an invariant function $f$, the action of $G$ on $X_f$ is closed if and only if $f\in I_Z$ \anton{if the action on $X_f$ is closed, how do you get that $f\in I_Z$?}. Given $x\in X^s$, we have that $\phi(x)\not\in Z$ by the Lemma. So there is some invariant function $f\in I_Z$ that doesn't vanish on $\phi(x)$. Then $X_f$ is a neighborhood of $x$ on which the action is closed.
+\end{proof}
+The point is that the notion of an affine quotient only makes sense if you have stable points. Otherwise, you may as well throw out the notion. For example, if $k^\times$ acts on $\AA^n$ by homothety, then there are no stable points, and the quotient is correspondingly bad.
+
+\begin{definition}
+ A quotient $X\to X/G$ is a \emph{geometric quotient} if the fibers are $G$-orbits.
+\end{definition}
+
+So consider the restriction $\phi\colon X^s\to X^s\quot G\subseteq X\quot G$. This will be a geometric quotient (meaning that the fibers are orbits). If $X^s$ is non-empty, then it is an open set for which there is a good quotient.
+
+This leads to another definition.
+\begin{definition}
+ $x\in X$ is \emph{pre-stable} if it has a $G$-invariant affine open neighborhood $U$ such that the action of $G$ on $U$ is closed.
+\end{definition}
+Note that in the example of $k^\times$ acting on $\AA^n$ by homothety, everything except the origin is pre-stable. By the Proposition, any stable point is prestable (take $U=X_f$).
+
+So we can take the geometric quotients $U_x\quot G$ and glue these quotients together to get the \emph{prestable quotient} $X^\pre\quot G$. This is a geometric quotient (in the sense that the fibers are orbits) \anton{in order for the gluing construction to make sense, we need to prove that for a geometric quotient $\phi\colon U\to U\quot G$ and an invariant open subset $W\subseteq U$, $\phi(W)\cong W\quot G$}\anton{Actually, the property of a map being an affine quotient is stable under arbitrary base change since $(R\otimes_{R^G}S)^G\cong S$}
+\begin{example}
+ Take $k^\times$ acting on $\AA^2$ by homothety. The prestable points are $\AA^2\setminus \{0\}$. We have the open cover $U_1=\{x\neq 0\}$ and $U_2=\{y\neq 0\}$. Then $U_1/G=\specm k[y/x]$ and $U_2/G=\specm k[x/y]$.
+\end{example}
+\begin{example}
+ Let $k^\times$ act on $\AA^2$ by $t\cdot (x,y)=(tx,t^{-1}y)$. $(\AA^2)^\pre=\AA^2\setminus \{0\}$. Take the same cover $U_1$ and $U_2$. Then $U_1/G=\specm k[yx]$ and $U_2/G=\specm[yx]$. When we glue them together, we get the non-separated line! The two origins correspond to the two non-closed orbits.
+\end{example}
+\begin{proposition}
+ Let $X$ be affine and irreducible, and let $G$ be reductive. Assume that $X^s\neq \varnothing$. Let $R=k[X]$ and $K=K(X)=\mathrm{Frac}(R)$. Then $K^G=\mathrm{Frac}(R^G)$.
+\end{proposition}
+\anton{We showed something similar for a finite group before.} This proposition somehow tells you that if you have stable points, then the affine quotient is pretty good.
+\begin{proof}
+ Suppose $h/f\in K^G$ is an irreducible fraction (no non-units divide both $h$ and $f$) \anton{not clear you can get such a thing}. [[Then we want to show that $f\in R^G$.]] We want to show that $h/f=b/a$ for some $b,a\in R^G$.
+ \[\xymatrix{
+  R^G \ar@{^(->}[d] \ar@{^(->}[r] & R^G[h/f] \ar@{^(->}[d]\\
+  R\ar@{^(->}[r] & R_f
+ }\qquad
+ \xymatrix@C+1pc{
+  X\ar[d]_\phi & X_f \ar@{_(->}[l]\ar[d]\\
+  Y & Y' \ar[l]_\psi^{\text{dominant}}
+ }\]
+ where $Y'=\specm R^G[h/f]$. If $y\in Y^s=\phi(X^s)$, then $\psi^{-1}(y)$ is just one point. This tells me that $h/f$ is algebraic over $R^G$, for otherwise, the dimension of $Y'$ would be bigger than the dimension of $Y$. Suppose it satisfies some polynomial of degree $n$. Then the preimage of a generic point would be $n$ points. But you only get one point on the stable locus, so the polynomial is of degree 1, so we have $a\frac hf=b$. \anton{so we didn't need that irreducible fraction business after all. But we have to note that in general, the closure of an orbit is a union with smaller-dimensional orbits.}
+\end{proof}
+
+Next time, we'll do some examples, like the moduli space of smooth surfaces. Then we'll do the proj quotient.

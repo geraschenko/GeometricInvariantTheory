@@ -1,0 +1,66 @@
+\sektion{37}{Consequences of the slice theorem}
+
+There will be class Monday and Wednesday of next week.
+
+The proof from last time was from a paper of Knope.
+
+We have
+\[\xymatrix{
+ Y\ar[r]^\phi\ar[d] & X\ar[d]\\
+ Y\quot G \ar[r]_{\phi_G} & X\quot G
+}\]
+For $y\in Y$ if $\phi$ is \'etale, then it will be \'etale i a neighborhood. We get that $\phi_G$ is \'etale in a neighborhood $V$. Let $D$ be the set of points where $\phi$ is not \'etale. We can separate it by some invariant (since $y$ is a point with closed orbit). There exists $f\in k[Y]^G$ such that $Y_f\supseteq Gy$, and on $Y_f$, $\phi$ is \'etale.
+
+Since we know $\phi_G$ is \'etale, I know orbit closure equivalence classes go to orbit closure equivalence classes, and I want to prove that $\phi$ restricts to isomorphisms on the fibers. On each orbit, it could be a covering map. We know it's an isomorphism on the orbit $Gy$, and we want to conclude that it is an isomorphism on all orbits. If $\phi$ were a finite map, it would be clear \anton{}.
+
+If you have $\phi\colon Y\to X$ a $G$-equivariant map of normal varieties, sending closed orbits to closed orbits, with the preimage of each point finite, then there is $Z$ and a factorization $Y\hookrightarrow Z$ (open immersion) and $Z\to X$ finite. If in addition $Y\quot G\to X\quot G$ is finite, $Z=Y$. So by taking a smaller neighborhood, we can make the downstairs map finite, making the upper map finite.
+
+\bigskip
+
+We always assume $G$ is a reductive group acting on an affine variety $X$. Let $p\colon X\to X\quot G$. A subset $U$ of $X$ is saturated if $U=p^{-1}(p(U))$.
+
+\begin{proposition}
+ If the orbit of $x\in X$ is closed, then there is a $p$-saturated neighborhood $U$ of $x$ such that for any $y\in U$, $G_y$ is conjugate to some subgroup of $G_x$.
+\end{proposition}
+\begin{proof}
+ Any point can be moved by $G$ to $(e,s)=z\in G*_{G_x}S$. Then $G_z\subseteq G_x$.
+\end{proof}
+\begin{example}
+ Let $SL(2)$ act on binary cubic forms $V_3$. A generic closed orbit has a stabilizer (of order 3), but $x^2y\in V_3$ has no stabilizer. So you really need the orbit of the point to be closed for the proposition to hold.
+\end{example}
+\begin{proposition}
+ Suppose $x\in X$ as before ($Gx$ closed) and suppose $x$ is a smooth point. Then for some \'etale slice $S$ there exists an excellent $G_x$-equivariant morphism $\psi\colon S\to T_xS$ (which can be identified with the normal bundle to the $G$-orbit).
+\end{proposition}
+\begin{proof}
+ To construct the slice, we started with $X\subseteq V=T_x(Gx)\oplus N$, so I get $S\hookrightarrow N\to T_xS$, the later map being the $G_x$-invariant projection. This map satisfies the conditions of the Fundamental Lemma, so we can apply it to get the proposition.
+\end{proof}
+
+As a consequence, over $\CC$, we have analytic slices.
+\begin{theorem}
+ Suppose $X$ is a complex affine variety and all as before, with $x$ a smooth point with closed orbit. Then there exists a $G$-invariant analytic neighborhood of $Gx$ which is isomorphic to some $G$-invariant analytic neighborhood of the zero section of the normal bundle to $Gx$.
+\end{theorem}
+
+The most interesting application is that you can describe the fibers of $p\colon X\to X\quot G$. Each fiber has a unique closed orbit $Gx$. We can locally identify $X\quot G$ and $S\quot G_x$, so we get an isomorphism $p^{-1}(p(Gx))\cong G*_{G_x}p^{-1}_{S/G_x}(p_{S/G_x}(x))$ by carteseanness of the square in Luna's slice theorem.
+
+\renewcommand{\n}{\mathfrak{n}}
+
+If $x$ is non-singular, I have $T_x(Gx)\oplus N_x=T_xX$, where $N_x$ is a representation of $G_x$. Let $\n_x$ be the nil cone in $N_x$, the closure equivalence class of $0$. Then $p^{-1}(p(Gx))\cong G*_{G_x}\n_x$.
+
+\begin{example}
+ For a Lie algebra, the nil cone is indeed the cone of all nilpotent elements. The closed orbits are the orbits of semi-simple elements. Let $\g=\gl(n)$ and $G=GL(n)$. Since $Gx$ is closed, $x$ is semisimple, so in some basis it is diagonal. Say the eigenvalues are $\lambda_i$ with multiplicity $m_i$. Then $G_x = GL(m_1)\times\cdots\times GL(m_k)$. What is $N_x$? $T_x(Gx)$ is the space of matrices with zeros in those blocks, so $N_x=\gl(m_1)\oplus\cdots \oplus \gl(m_k)$. So the fiber $p^{-1}(p(x))=\{x+n_1+\cdots +n_k|n_i$ nilpotent matrix in the $i$-th block$\}$. If you think about this, this is a fancy way to prove the Jordan normal form theorem.
+\end{example}
+
+If $V$ is a linear representation of a reductive group $G$ and $p\colon V\to V\quot G$, with $v\in V$, then $v=s+n$, where $s$ has closed $G$-orbit in $V$ and $n$ lies in the nil cone $G_s$-orbit in $V$.
+
+Consider the case $X\quot G$ is a single point, so $k[X]^G=k$. Then $X$ has a unique closed orbit $Gx$. So there exists an affine $G_x$ variety $Y$ such that 
+\begin{itemize}
+ \item[(1)] $k[Y]^{G_x}=k$, with the closed orbit of $Y$ a fixed point.
+ \item[(2)] $X\xrightarrow\sim G*_{G_x}Y$.
+\end{itemize}
+Suppose $x$ is also a non-singular point, then $Y$ is a linear representation of $G_x$ (since the nil cone is the whole space). \anton{!}
+
+\begin{corollary}
+ Suppose $X$ smooth with $k[X]^G=k$, and the closed orbit is a fixed point. Then $X\cong V$ with a linear action.
+\end{corollary}
+
+Problem: Suppose you have the action of a reductive group on $\AA^n$. Is this action linear? In general, no! But if $k[\AA^n]^G=k$ and the closed orbit is a fixed point, then it's true.

@@ -1,0 +1,56 @@
+\sektion{32}{The moment map for toric varieties}
+
+Bott-Morse theory reference for the fact we didn't prove last time. Non-degenerate critical manifold (Annals of Mathematics 60 1954)
+
+We have a K\"ahler manifold $M$ (has compatible symplectic form $\om$ and Riemannian form $g$). Let $T$ be a complex torus acting on $M$ so that the unique maximal compact subgroup $K$ preserves the K\"aher structure. Suppose we have a moment map $\mu\colon M\to \k^*$.
+
+Let $Y\subseteq M$ be a $T$-orbit, and let $\overline Y$ be its closure. Now consider $\mu\colon \overline Y\to \k^*$. If the action is algebraic and $M$ is a smooth algebraic variety, $\overline Y$ may still be a singular variety.
+
+We can write $T=H\cdot K$, where $K\cong (S^1)^n$ ($n=\dim_\CC T$) and $H\cong (\RR_{>0})^n$. We get a corresponding decomposition of the Lie algebra $\t=\k\oplus \h$. If we regard $\t$ as a complex space, $\k=\sqrt{-1} \h$, so we may identify the two: $\h\cong \k$.
+
+Without loss of generality, we may assume $T$ acts with finite stabilizer on $Y$, because we can quotient by the connected component of the identity of the stabilizer (which is a torus, so the quotient is a torus). Then the stabilizer $T_y$ is a finite group, so it must be in $K$. \anton{because $K$ is the maximum compact subgroup of $T$, not just a maximal compact subgroup.}
+
+More or less by definition of the moment map, $\<d\mu_x(v),a\>=\om_x(v,L_a(x))$, where $x\in M$, $v\in T_xM$ and $x\in\k$. We have $\om_x(v,L_a(x))=g_x(Jv,L_a(x))$, where $J$ is the complex structure on $M$. Using the identification of $\h$ with $\k$, we have the relation $\<d\mu_x(v),h\>=g_x(v,L_h)$, where $h\in \h$ (regarded as being in $\k$ by $\sqrt{-1}$).
+
+Consider the function $\phi_h(x)=\<\mu(x),h\>$. On the other hand, I can construct the flow $\exp(hs)x$, where $x\in M$ and $s$ is a parameter. This will be the gradient flow of $\phi_h$. This is because
+\[
+ \der{}{s}\<\mu(\exp(hs)x,h\>\biggr|_{s=0} = g_x(L_h,L_h).
+\]
+This will bring you to a (local) maximum of $\phi$. Now let $y\in Y$. Define $y^h=\lim_{s\to \infty}\exp(hs)y$. This limit exists because we are on a projective variety, and this point is a local maximum of the functions $\phi_h$. Q: it might happen that you flow to some critical point which is not a maximum. A: something about being able to approach things using 1-parameter subgroups. For now, let's just say it's a critical point. I think it won't matter for the proof.
+
+If $t\in T$, then $(ty)^h=t\cdot y^h$. If $h$ is chosen generically, then $\sqrt{-1}h$ will generate all of $K$. Then $y^h$ must be a fixed point of $K$, $h$ must be in $Stab_\h(y^h)$, and $\phi_h$ must be maximal. In this situation $y^h$ is independent of $y$ because we are working on the closure of a single torus orbit (you can flow to any point from the big $T$-orbit), so $y^h$ must be a maximum of $\phi_h$. $\{y^h|y\in Y\}$ is a single $T$-orbit.
+
+$\<\mu(x),h\>=\phi_h(x)$, when $h$ varies, this has maxima at finitely many points. Conider $\<a,h\>$, a linear functional associated to some $a\in \h$. The maximum (on $\mu(\overline Y)$) of this function is attained on $\mu(\{$fixed points of $T$ in $\overline Y\})$. There are finitely many points $\mu(Z_i\cap \overline Y)$ (the $Z_i$ are connected components of the critical locus of $\mu$). $\mu(\overline Y)$ lies in the convex hull $P$ of the points $c_i=\mu(Z_i\cap \overline Y)$.
+
+Now pick $y\in Y$. Consider the composition $\nu\colon \h\xrightarrow{h\mapsto (\exp h)y} H\cdot y\xrightarrow\mu \h^*\cong\h\cong \RR^n$ (with the standard inner product). Then $d\nu_y=d\mu_y$. The first map is a diffeomorphism. $\mu(H\cdot y)=\mu(T\cdot y)$ because the moment map is $K$-equivariant. $d\nu$ is therefore invertible, and $\nu$ is a diffeomorphism onto its image. The pre-image of every point is just one point. If there were two points, there's a 1-parameter subgroup that joins them, and $\phi_h$ increases along 1-parameter subgroups.
+
+\begin{claim}
+ $\mu(Y)=P\setminus \partial P$.
+\end{claim}
+We may assume that $\mu(y)=0$ by shifting if neccesary. We take $h\in \h$ such that $\|h\|=1$. then $(\mu((\exp hs)s),h)$ is an increasing function (it's the restriction of $\phi_h$ to a Hamiltonian flow), and the limit as $s\to\infty$ will be $\mu(y^h)\in \partial P$.
+
+Let $r=dist(0,\partial P)$. Then $\|y^h\|\ge r$. By Cauchy-Schwartz, $\|\mu((\exp hs)y)\|$ is big. So for some $s=s_h$, we have $\|\mu((\exp hs)y)\|=r/2$. So we get a star-shaped neighborhood of the origin $0\in U\subseteq \h$ such that $\mu(\partial U)$ is the sphere of radius $r/2$. So $\im(\nu)$ contains a ball of radius $r/2$ with center $\mu(y)$. Now I can move the image around, so this is true for any point inside of $P$, so the image is the whole interior. You pick a point in the interior, look at the distance to the boundary, and you can show that the ball of half the radius is in the image.
+
+We have that $\mu^{-1}(\mu(y))=Ky$ is a single $K$-orbit because we have a diffeomorphism and $Y=H\cdot Ky$. If $\alpha\in \partial P$, we have that $\mu^{-1}(\alpha)$ is connected, and therefore a single $K$-orbit. This tells us that the map $\overline Y/K\to P$ is a homeomorphism of topological spaces.
+\[\xymatrix{
+ \overline Y\ar[d]\ar[dr]^\mu\\
+ \overline Y/K\ar[r] & P
+}\]
+We need a bijection between $T$-orbits on $\overline Y$ and faces of $P$. If $S_h\subseteq P$ is a face, let $h\in \h$ be such that the maximum of $(h,\zeta)$ (as $\zeta$ runs over $P$) is reached on $S$, I claim $S=\{\mu(y^h)|y\in Y\}$. You might think there are several $T$-orbits going to the same face, but then the fibers of boundary points would have multiple $K$-orbits.
+
+Now let's check that the dimensions agree. Given $Tz\in \overline Y$, we can repeat all the arguments inductively. But for the big orbit, we know that the dimensions agree.
+
+We see also that the polytope is dual to the fan, exactly because $S_h=\{\mu(y^h)|y\in Y\}$. The dual fan to $\mu(\overline Y)$ is $\Sigma$, where $\sigma_S=\{h|\max_{\zeta\in P}(h,\zeta)$ is attained at the face $S\}$.
+
+\begin{example}
+ Consider the grassmannian $Gr(4,2)$ of 2-dimensional subspaces of $\CC^4$. Let $T$ be the maximal torus in $SL(4)$ (which is 3-dimensional). Consider the grassmannian as $2\times 4$ matrices $(z_{ij})$ of full rank modulo the action of $GL(2)$. We have pl\"uker coordinates $p^{ij}=\det\matx{z_{1i}& z_{1j}\\ z_{2i}&z_{2j}}$. The equation for $Gr(4,2)$ in $\PP^5$ is $p^{12}p^{34}-p^{13}p^{24}+p^{14}p^{23}=0$. We get the moment map
+ \[
+  \mu((z_{ij})) = \frac{\sum |p^{ij}|^2 (\e_i+\e_j)}{\sum |p^{ij}|^2}
+ \]
+ For the standard $\e_1,\dots, \e_4\in \RR^4$. The fixed point of the torus action correspond to choosing two of the columns to be zero. The image of the moment map is an octahedron \anton{once you project out one dimension, which corresponds to quotienting the $4$-dimensional torus by the 1-dimensional torus that acts trivially ... the image of the moment map lies in the plane $x+y+z+w=3$.}, with the vertices corresponding to opposite pl\"ucker coordinates.
+ 
+ Since you know that the orbits are faces and the vertices are fixed points, the stable $T$-orbits are the ones which correspond to the whole octahedron. The semi-stable orbits are the ones that correspond to either a pyramid or a square slice \anton{how does a pyramid correspond to an orbit? It's not a face.} \anton{We're applying the Hilbert-Mumford criterion \dots, what's the relationship between possible supports of points and the image of the moment map?}. In principle, it could happen that you get the origin on a single edge, but that never happens, because such an edge would correspond to two of the three terms in the relation being zero, and this cannot happen without the third also being zero. Unstable orbits correspond to triangular faces, edges, and vertices.
+ 
+ We will see that this is equivalent to the question of 4-points in $\PP^1$.
+\end{example}
+

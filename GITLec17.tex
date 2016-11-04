@@ -1,0 +1,60 @@
+\sektion{17}{Stability of Hypersurfaces}
+
+Even though we can't find invariants, we can now tell which hypersurfaces are stable with the numerical criterion.
+
+Recall that we have $\VV_{n,d}=\sym^d(k^{n+1})$, the space of forms of degree $d$ in $n+1$ variables. We have an action of $SL(n+1)$ on $\PP(\VV_{n,d})=\H_{n,d}$, the space of hypersurfaces of degree $d$ in $\PP^n$. If we choose homogeneous coordinates $(x_0,\dots, x_n)$, then any $f$ is some degree $d$ form in the $x_i$. We can define $\supp(f)=\{(i_0,\dots,i_n)\in \ZZ^{n+1}_{\ge 0}|a_{i_0,\dots,i_n}\neq 0\}$, the \emph{Newton polytope} of $f$.
+
+In this case, the support is a subset of $\Delta_d=\{a=(a_0,\dots, a_n)\in \ZZ^{n+1}_{\ge 0}|\sum a_i=d\}$. 
+
+We've shown that $f$ is unstable if and only if for some choice of coordinates, the convex hull $C(\supp(f))$ does not contain zero. However, it get's more and more complicated to draw pictures, so another condition is desirable. Let $T=\{(t_0,\dots, t_n)|t_0\cdots t_n=1\}$ be the torus of $SL(n+1)$. We have the set of 1-parameter subgroups $\Lambda=\{\lambda=(\lambda_0,\dots, \lambda_n)\in\ZZ^{n+1}|\sum \lambda_i=0\}$. Then $f$ is unstable if and only if for some choice of coordinates, there exists $\lambda\in \Lambda$ such that $\<\lambda,a\>>0$ for any $a\in \supp(f)$. Similarly, $f$ is semi-stable if and only if for any choice of coordinates and for any $\lambda\in \Lambda$, there exists $a\in \supp(f)$ such that $\<\lambda,a\> \le 0$. $f$ is stable if and only if for any choice of coordinates and for any $\lambda\in \Lambda$, there exists $a\in \supp(f)$ such that $\<\lambda,a\> < 0$. \anton{stability is the same as proper stability here}
+
+The main idea is that stability is a geometric property. Everything is described by the badness of the singularity on your hypersurface. We'll consider the case of cubic surfaces. 
+
+For a projective hypersurface cut out by $f$, let $P$ be a point (in affine coordinates $x_1,\dots, x_n$). We say that $P$ is singular if $f(P)=0$ and all the first derivatives of $f$ vanish at $P$. Then we can write $f=p(x_1,\dots, x_n)+\cdots$, where $p$ is a quadratic form.
+\begin{definition}
+ $P$ is an \emph{ordinary double point} if $p$ is non-degenerate quadratic form. Multiplicity $k$ means that all the (up to) $k$-th partial derivatives of $f$ vanish at $P$.
+\end{definition}
+In the case of a cubic surface with homogeneous coordinates $x,y,z,w$, let's assume $(0,0,0,1)$ is a singular point. Then we have
+\[
+ f(x,y,z,w)=wp(x,y,z)+q(x,y,z)
+\]
+where $p$ is quadratic and $q$ is cubic. If we have a double point, then we could have $rk(p)=3$ (ordinary double point), $rk(p)=2$ (we have $f=wxy+q(x,y,z)$, so $p$ looks like the intersection of two planes; the line $x=y=0$ is called the \emph{axis} of the singularity), or $rk(p)=1$ (we have $f=wx^2+q(x,y,z)$), or $rk(p)=0$ (triple point, in which case $f$ is independent of $w$, so you just have a product of a line and an elliptic curve)
+\begin{theorem}
+ A cubic surface $X$ in $\PP^3$ is stable if and only if $X$ has only finitely many singularities, all of which are ordinary double points. $X$ is semi-stable if and only if it has finitely many singularities, all of which are either ordinary double points or rank 2 double points with axis not contained in $X$.\anton{like $wxy+z^3$}
+\end{theorem}
+\begin{proof}
+ In this case, our $\Delta_3$ is a tetrahedron, like this \anton{picture with vertices $x^3,y^3,z^3,w^3$, two more on each edge and one more on each face}. We have already changed coordinates so that we get no $w^3$ or $w^2$ terms. If a surface has a double point of rank $2k<3$, then it is clearly unstable because you only have one element of the support at "height 1" \anton{height being the number of $w$ terms}.
+ 
+ If $X$ has a double point of rank $2$ and is semi-stable, then $z^3$ must be in the support of the form, so we get that the axis cannot be in $X$.
+ 
+ For the other direction, we draw the picture. Let $\Lambda^+=\{(\lambda_0\ge \lambda_1\ge\cdots \ge \lambda_n)\}$, which we can always get to by permuting the coordinates. This $\Lambda^+$ is a convex cone in the lattice. We introduce a partial order on $\Delta_d$ by setting $a\le b$ if $\<\lambda,a\>\le \<\lambda,b\>$ for any $\lambda\in \Lambda^+$. \anton{incomplete picture}
+ \[\xymatrix@!0{
+  & & & x^3\ar@{-}[d]\\
+  & & & x^2y \ar@{-}[dl]\ar@{-}[dr]\\
+  & & xy^2\ar@{-}[dl]\ar@{-}[dr] & & x^2z \ar@{-}[dl]\ar@{-}[dr]\\
+  & y^3 \ar@{-}[dr] & & xyz \ar@{-}[dl]\ar@{-}[dr]\ar@{-}[dlll] & & x^2w\ar@{-}[dl]\\
+  xz^2\ar@{-}[drrrr]\ar@{-}[dr] & & y^2z\ar@{-}[dl]\ar@{-}[dr] & & xyw \ar@{-}[d]\\
+  & yz^2\ar@{-}[dl]\ar@{-}[drr] & & y^2w\ar@{-}[d] & xzw\\
+  z^3\ar@{-}[dr] & & yzw\ar@{-}[dl]\ar@{-}[dr] & xw^2\\
+  & z^2w & & yw^2\\
+  & & & zw^2\\
+  & & & w^3
+ }\]
+ Suppose $X$ is not stable, then we will try to find a point which is not an ordinary double point. Since $X$ is unstable, there is some choice of coordinates and some $\lambda$ such that $\<\lambda,a\> <0$ for all $a\in \supp (f)$. We may reorder coordinates so that $\lambda\in \Lambda^+$. Since $\lambda_0+\cdots+\lambda_3=0$, we get that the monomials $w^3,zw^2,yw^2,z^2w,yzw$ do not appear in the support of $f$.
+ 
+ First case: Suppose $z^3\in \supp f$. Then $xyw$ is not in the support because $z+x+y+w=0$ \anton{}. Then everything below this point is also not in the support. Then the only place $w$ can appear is in $x^2w$, so I get that $(0,0,0,1)$ is a double point of rank 1.
+ 
+ Next case: suppose $xzw\in \supp f$, then $y^3\not\in\supp f$, so nothing below it is in the support, so everything is divisible by $x$, so the surface is reducible, so it has many singular points.
+ 
+ Final case: suppose $z^3,xzw\not\in\supp f$, then nothing below them is in the support either. Then $w$ appears in three places, but there is no term with a $z$, so $(0,0,0,1)$ is a double point of rank 2.
+ 
+ Now suppose $X$ is semi-stable. It might happen that $\<\lambda,a\>\ge 0$ for all $a\in \supp f$, so we have to consider some more cases. Now $\lambda$ could be zero on both $xzw$ and $y^3$ for example. These cases are boundary cases. We only need to consider the cases where $\lambda_1=0$ or $\lambda_2=0$. It's a little bit more work, and there is one tricky point that I haven't quite figured out.
+ 
+ Suppose $\lambda_1>0$ and $\lambda_2=0$. Then $xzw\not\in \supp f$. In this case, we remove $xzw$ and everything below it, which leaves me with a rank 2 singularity at $(0,0,0,1)$.
+ 
+ Another case: $\lambda_1=\lambda_2=0$. Then $xw^2,y^2w\not\in\supp f$. Again, once I remove these two points and the things below them, I'm left with a singularity of the form \anton{} which is again a double point of rank 2
+ 
+ Finally, there is a special case: $\lambda=(2,0,-1,-1)$. In this case, you remove $xw^2$, and the maximal support gives you $f$ of the form $ay^3+xp(x,y,z,w)$. In this case, there is a singularity which is not an ordinary double point. Take $x=y=0$. On this line, I have a solution to $p(0,0,z,w)=0$. There are two solutions, which give you singular points with sub-maximal rank.
+\end{proof}
+
+

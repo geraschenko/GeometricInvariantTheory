@@ -1,0 +1,113 @@
+\sektion{1}{Invariants and Quotients}
+
+Let $\bar k=k$ be an algebraically closed field.
+
+\begin{definition}
+ An \emph{(affine) algebraic group} $G$ over $k$ is a group object in the category of affine varieties over $k$. i.e.~an affine variety $G$, together with morphisms of varieties $\mu\colon G\times G\to G$ (multiplication), $i\colon G\to G$ (inverse), and $e\colon \spec k\to G$ (identity) satisfying the usual relations.
+\end{definition}
+
+\begin{example}
+ The additive group $\GG_a=(k,+)$, the multiplicative group $\GG_m=(k^\times,\times)$, and the general linear group $GL(n)=\{X\in \mat_{n\times n}(k)| X$ invertible$\}$ are examples of algebraic groups.
+\end{example}
+
+Let $X=\specm(k[x_1,\dots,x_n]/I_X)$ be a affine variety (i.e.~$X$ is the set of zeros in $k^n$ of some ideal $I_X\subseteq k[x_1,\dots, x_n]$). The \emph{coordinate ring} of $X$ is $k[X] = k[x_1,\dots,x_n]/I_X$. We will usually suppose that $k[X]$ is reduced. Suppose we have an action of an algebraic group $G$ on $X$. We'd like to construct and study the quotient $X/G$. We can take the topological space quotient $X/_\text{top}G$, but in general, this quotient will not be an algebraic variety. The question is how to make a quotient which is a variety.
+
+\subsektion{Invariants}
+One approach is to consider the natural action of $G$ on the ring $R=k[X]$. A regular function on $X/G$ should correspond to a regular function on $X$ which is constant on $G$-orbits. So one candidate for $X/G$ is $\specm R^G$, where $R^G=\{f\in R|f(gx)=f(x)\}$. Note that we get a map $\psi\colon X/_\text{top}G\to \specm R^G$ by sending a $G$-orbit $G x$ to the maximal ideal $\{f\in R^G|f(G x)=0\}\subseteq R^G$.
+
+A number of questions arise naturally.
+\begin{enumerate}
+ \item Is $R^G$ finitely generated?
+\end{enumerate}
+Hilbert proved that the answer to the first question is \emph{yes} in case where $G=GL(n)$ and $\mathrm{char}(k)=0$. More generally, the answer is \emph{yes} for reductive groups (Corollary \ref{lec3Cor:Hilbert}), but \emph{no} for arbitrary groups (there is a famous example due to Nagata \anton{ref}).
+
+\begin{enumerate}[resume]
+ \item Is the map $\psi$ is an isomorphism of topological spaces? Do points of $\specm R$ parameterize $G$-orbits?
+\end{enumerate}
+In general, the answer to this question is \emph{no}.
+\begin{example}\label{lec1:A^n/G_m}
+ Let $X=\AA^n=k^n$ and $G=\GG_m=k^\times$ acting on $X$ by homothety: $t\cdot (x_1,\dots, x_n)=(tx_1,\dots, tx_n)$. Then $R=k[X]=k[x_1,\dots, x_n]$, with the action $t\cdot x_i=tx_i$. The only invariant polynomials are the ones where no $x_i$ appears, the constants, so $R^G=k$ and $\specm R^G$ is a single point. But there is a $G$-orbit for each direction (and one orbit containing just the origin).
+\end{example}
+More generally, if $G x$ is a non-closed orbit, then any invariant regular function must have the same value on the closure $\bbar{Gx}$ as it has on the orbit $Gx$. Thus, if $Gx$
+and $Gy$ are two orbits whose \emph{closures} intersect, there is no invariant regular function that separates them, so they have the same image in $\specm R^G$. So if $\psi$ is to be an isomorphism, all orbits of the action must be closed.
+
+\subsektion{Proj quotients}
+
+Instead of looking at the ring of regular functions, we can consider field of rational functions $K=\mathrm{Frac}(R)$. A rational function on $X/G$ should be a rational function on $X$ which is constant on $G$-orbits, so the rational functions on $X/G$ should be $K^G=\{f\in K|f(gx)=f(x)\}$. This picks out a birational class that $X/G$ should belong to.
+
+\begin{example}[\ref{lec1:A^n/G_m} continued]
+ In Example \ref{lec1:A^n/G_m}, we get $K^G=\{f(x)/g(x)|f,g\in R$ homogeneous with $\deg(f)=\deg(g)\}$. We can ``cover'' $X$ with $D(x_i)=\{f(x)/x_i^m|\deg(f)=m\}$ (this misses the origin, so it isn't actually a cover). For these open sets, we can form nice quotient varieties by taking max-spectra of the rings of invariants. Then we can glue the quotients together to get $\PP^{n-1}$.
+\end{example}
+It turns out that this construction generalizes to something called a \emph{GIT quotient} or a \emph{proj quotient}. In our example, the GIT quotient accounts for every orbit except the origin.
+
+Continuing our list of questions,
+\begin{enumerate}[resume]
+ \item Is $K^G$ the field of fractions of $R^G$?
+\end{enumerate}
+Our example shows us that the answer is \emph{no} in general. But in many cases, the answer is \emph{yes}. In particular, the answer is \emph{yes} if $X$ has at least one \emph{stable orbit}\anton{ref eventually}.
+
+\begin{definition}
+ We say that the action of $G$ on $X$ is \emph{closed} if the orbit of any point is closed.
+\end{definition}
+\begin{example}
+ If $G$ is finite, then the action is always closed.
+\end{example}
+\begin{example}
+ $(x,y)\mapsto (x+t,y)$ is a closed action of $\GG_a$ on $\AA^2$.
+\end{example}
+\begin{example}\label{lec1Eg:removebad}
+ For some action of a group $G$ on a variety $X$, you can remove all the $G$-orbits which are in the closures of other $G$-orbits. Then the action of $G$ on the remaining space is closed.
+\end{example}
+\begin{example}[Example of \ref{lec1Eg:removebad}]\label{lec1Eg:conjugation}
+ Let $X=\mat_{n\times n}(k)$ with $G=GL(n)$ acting by $g\cdot A=gAg^{-1}$ for $g\in G$ and $A\in X$. Then $R=k[x_{11},\dots, x_{nn}]$.  The coefficents of the characteristic polynomial $\det(tI_n-A)=t^n - \sigma_1 t^{n-1}+\cdots \pm \sigma_n$ are invariant regular functions. For example $\sigma_1$ is trace of $A$ and $\sigma_n$ is the determinant of $A$. I claim that $R^G=k[\sigma_1,\dots, \sigma_n]$.
+  
+ The $G$-orbits correspond to possible Jordan forms. Notice that if you conjugate a Jordan block by a diagonal matrix, you can change the $1$s on the first superdiagonal to any other non-zero entries. Any polynomial function that vanishes on all these matrices must also vanish on the matrix where the entries on the superdiagonal are zero. This shows that the orbit corresponding to a non-trivial Jordan block contains the corresponding diagonal matrix in its closure. \anton{Charley tells me that more generally, reductive groups have the (characterizing?) property that when they act on an affine scheme, every orbit has a unique closed orbit in its closure. Find ref (in \cite{git}?)}
+ 
+ Therefore, any invariant function is completely determined by its values on diagonalizable matrices. So on a given matrix, its values are completely determined by the set of eigenvalues (with multiplicity). Any such function must be an algebraic combination of the elementary symmetric functions on the eigenvalues, which are exactly the $\sigma_i$, so the $\sigma_i$ generate $R^G$. By the way, the $\sigma_i$ are also algebraically independent \cite[Theorem 7.4.4]{stanley2}.
+ 
+ Note that in this case, the answer to question 3 is \emph{yes}.
+\end{example}
+
+\subsektion{Relationship to Moduli Spaces} 
+
+Moduli spaces (i.e.~parameter spaces for some class of object) can often be constructed as quotients by some group action.
+
+Consider the following problem: llassify degree 2 curves in $\AA^2$ up to th action of the Euclidean group $G=SO(2)\rtimes G_0$ (generated by rotations and translations).
+
+A degree 2 curve is given by an equation $ax^2+2bxy+cy^2 + 2dx + 2ey +f=0$. This can be represented by a symmetric matrix $v$ by noting that
+\[
+ ax^2+2bxy+cy^2 + 2dx + 2ey +f=\Matx{x&y&1}\overbrace{\Matx{a&b&d\\ b&c&e\\ d&e&f}}^v\Matx{x\\ y\\ 1}
+\]
+in which case $G$ may be represented as the group of matrices of the form $\Matx{p&q&l\\-q&p&m\\ 0&0&1}$ where $p^2+q^2=1$, and the action is given by $v\mapsto g^tvg$. The reader can easily check that this action corresponds to the change of coordinates obtained by applying the rotation matrix $\matx{p&q\\ -q&p}$ and then translating by $(l,m)$: $\matx{x\\ y}\mapsto \matx{p&q\\ -q&p}\matx{x\\ y} + \matx{l\\ m}$. 
+
+The ring of regular functions on the quotient should be $R^G=k[a,b,\dots, f]^G$? Since the original space is 6-dimensional and the group is 3-dimensional, we hope to find at least $6-3=3$ invariants to generate $R^G$.
+
+Since the determinant of any element of $G$ is $1$, the determinant $D$ of $v$ is an invariant regular function. The ``translation part'' of $G$ (where $p=1$ and $q=0$) doesn't change $a$, $b$, or $c$, and the ``rotation part'' doesn't change trace or determinant of $\matx{a&b\\ b&c}$, so $E=\det\matx{a&b\\ b&c}=ac-b^2$ and $T=\mathrm{tr}\matx{a&b\\ b&c}=a+c$ are two more invariants.
+\begin{proposition}
+ $R^G=k[D,E,T]$.
+\end{proposition}
+Incidently, it's also true that $D$, $E$, and $T$ are algebraically independent.
+\begin{proof}
+ By an argument similar to the one given in Example \ref{lec1Eg:conjugation}, $k[a,b,c]^{SO(2)}\cong k[E,T]$ \anton{I haven't checked this yet}. On the other hand, $a,b,c$ are invariant with respect to the action of $G_0$. So it suffices to prove that $k[a,b,c,d,e,f]^{G_0}=k[a,b,c,D]$. We have that
+ \[
+  k[a,b,c,d,e,f]^{G_0}\subseteq k[a,b,c,d,e,f,1/E]^{G_0}
+ \]
+ We will try to find the $G_0$-invariants of the larger ring and then intersect with the smaller ring to get the invariants of the smaller ring. Using the equation $D=fE+2bde-cd^2-ae^2$, we may replace the generator $f$ by $D$. Now suppose we have a $G_0$-invariant function $h$. It must satisfy the relation
+ \[
+  h(a,b,c,d,e,D,1/E) = h(a,b,c,d+al+bm,e+bl+cm,D,1/E)
+ \]
+ For all values of $a$, $b$, $c$, $d$, $e$, $D$, $l$, and $m$ (for which $ac-b^2\neq 0$). Choosing $a$, $b$, and $c$ to be distinct non-zero values, we can choose values for $l$ and $m$ to replace $d$ and $e$ by an arbitrary pair of values. So on the dense open subset where $a$, $b$, and $c$ are distinct non-zero values, $h$ must be a polynomial that is independent of $d$ and $e$. But this implies that $h$ must globally be independent of $d$ and $e$. 
+
+ So we have shown that $k[a,b,c,d,e,f,1/E]^{G_0}=k[a,b,c,D,1/E]$. The intersection of this ring with $k[a,b,c,d,e,f]$ is $k[a,b,c,D]$, so $k[a,b,c,d,e,f]^{G_0}=k[a,b,c,D]$, as desired.
+\end{proof}
+But two equations that differ by a scalar give the same curve, so we haven't yet found the moduli space of degree 2 curves. Now we consider the bigger group $\tilde G$ generated by $G$ and $k^\times$ (acting by scalar matrix). Now we want to compute the ring of invariants $R^{\tilde G} = k[D,E,T]^{k^\times}$. $D$, $E$, and $T$ are all homogeneous, but they are not at all invariant. The action by $k^\times$ is given by $D\mapsto r^3D$, $E\mapsto r^2E$, and $T\mapsto rT$. So $R^{\tilde G}=k$. This is not a good quotient, so we try removing some stuff.
+
+Let's restrict to the curves for which $D\neq 0$ (so the corresponding quadratic is non-degenerate). Now let's find $k[D^{\pm 1},E,T]^{k^\times}$. Now we have invariants $A=E^3/D^2$, $B=T^3/D$, $C=ET/D$.
+\begin{exercise}
+ Show that $A,B,C$ generate the ring of invariants.
+\end{exercise}
+But they are not algebraically independent since $AB=C^3$. I claim that this is the only relation. So the geometric quotient, the moduli space of (non-degenerate) degree 2 curves in $\AA^2$, is the singular surface $\specm(k[A,B,C]/(AB-C^3)$.
+ 
+\underline{Classical binary invariants.} Consider $SL(2,\CC)$. The finite-dimensional irreducible representations $V_d$ are given by non-negative integers. You can think of $V_d$ as $\{f(x,y)|\deg f=d\}$. with the obvious action of $SL(2,\CC)$: $\matx{a&b\\ c&d}\cdot f(x,y) = f(ax+by,cx+dy)$.
+
+

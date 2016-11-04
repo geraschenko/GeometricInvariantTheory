@@ -1,0 +1,72 @@
+\sektion{15}{The Hilbert-Mumford numerical criterion}
+
+\begin{remark}
+ The quotient we construct \emph{depends} on the embedding $X\to \PP(V)$ because the notion of stability depends on the embedding.
+\end{remark}
+
+\begin{proposition}
+ Let $T$ be a torus of dimension $n$ acting on $\AA^N$, with the stabilizer of a generic point being finite. Let the action be given by $t\cdot (x_1,\dots, x_N)=(\chi_1(t)x_1,\dots, \chi_N(t)x_N)$. We regard the $\chi_i$ as vectors in $T^\vee\cong \ZZ^n\subseteq \QQ^n\subseteq \RR^n$. We defined $\supp(x)=\{\chi_i|x_i\neq 0\}=\{\chi_1,\dots, \chi_k\}$
+ 
+ $x$ is semi-stable if $0\in C(\supp(x))$ and it is stable if $0$ is an interior point.
+\end{proposition}
+\begin{proof}
+ Suppose $0\not\in C(\chi_1,\dots, \chi_k)$, then there exists a $\lambda\in (\RR^N)^*$ such that $\<\lambda,\chi_i\>>0$ for $1\le i\le k$. In fact, since there are finitely many $\chi_i$, we may assume $\lambda\in (\QQ^N)^*$, so after rescaling, we may assume $\lambda\in (\ZZ^N)^*=(T^\vee)^*$. So $\lambda$ defines a 1-parameter subgroup $\lambda\colon k^\times\to T$.
+ 
+ Now we consider $\lim_{t\to 0} \lambda(t)x$. By the condition that $\lambda$ is positive on the $\chi_i$, we have that $\lambda(t)x=(t^{a_1}x_1,\dots, t^{a_N}x_N)$ for strictly positive $a_i$ \anton{at least for those $i$ for which $x_i\neq 0$}. So the limit is zero, so $0\in \bbar{T\cdot x}$, so $x$ is unstable.
+ 
+ If $0\in C(\chi_1,\dots, \chi_k)$, then we can choose $a_1,\dots, a_k\in \RR_{\ge 0}$ not all zero such that $\sum a_i \chi_i=0$. Consider the exact sequence
+ \[\xymatrix@R=0pc @C=1pc{
+  0\ar[r]& K\ar[r]& \QQ^k\ar[r]& T^\vee\otimes\QQ\\
+  & & (a_1,\dots, a_k)\ar@{|->}[r] & \sum a_i\chi_i
+ }\]
+ Since $\RR$ is flat over $\QQ$, we get an exact sequence
+ \[
+  0\to K\otimes \RR\to \RR^k\to T^\vee\otimes \RR.
+ \]
+ By assumption, we have an element of $K\otimes \RR$ for which all the $a_i$ are non-negative and not all zero. Since $K$ is dense in $K\otimes \RR$, we can find \emph{rational} non-negative $a_i$ (not all zero) such that $\sum a_i\chi_i=0$. After scaling, we may assume they are integers. Then the function $f(x)=x_1^{a_1}\cdots x_k^{a_k}$ is $T$-invariant and non-zero at $x$ (by the definition of $\supp(x)$). So $x$ is semi-stable.
+ 
+ Note that the dimension of the span of $\{\chi_1,\dots, \chi_k\}$ is $n$ if and only if the stabilizer of $x$ is finite. This is because a 1-parameter subgroup $\lambda$ is in the stabilizer of $x$ if and only if $\{\chi_1,\dots, \chi_k\}\subseteq \lambda^\perp$, and a subgroup of the torus is finite if and only if it contains no non-trivial 1-parameter subgroups.
+ 
+ If $0$ is in the interior of $C(\chi_1,\dots, \chi_n)$, then the dimension of the span of the $\chi_i$ must be $n$; otherwise, $C(\chi_1,\dots, \chi_k)$ would have no interior. So the stabilizer of $x$ must be finite. We can choose the $a_i$ to be \emph{strictly} positive integers. Then $V_f=\{x|$all $x_i\neq 0\}$. Then every point in $V_f$ has the same support as $x$, so every point in $V_f$ has finite stabilizer, so all points are regular, so the action is closed on $V_f$.
+\end{proof}
+This result allows you to draw pictures to find out which points are stable and which are not.
+
+We have the following corollary, which says that stability can be checked on 1-parameter subgroups. If $x$ is unstable, then we may find the 1-parameter subgroup $\lambda\colon k^\times\to G$ which demonstrates instability. On the other hand, in the other cases (when $x$ is (semi)-stable) I can't find such a 1-parameter subgroup.
+\begin{corollary}
+ In the case $G=T$, proper stability can be checked on 1-parameter subgroups.
+\end{corollary}
+\begin{theorem}[Hilbert-Mumford numerical criterion]
+ If $G$ is reductive, then 
+ \begin{enumerate}
+  \item $x$ is semi-stable if and only if it is semi-stable for any 1-parameter subgroup, and
+  \item $x$ is properly stable if and only if it is properly stable for any 1-parameter subgroup.
+ \end{enumerate}
+\end{theorem}
+Semi-stable for a 1-parameter subgroup means that 0 is not in the closure. Stable means that the orbit is closed and the stabilizer is finite.
+
+For any reductive group, you get a maximal torus. All maximal tori are conjugate, and any 1-parameter subgroup lies in a maximal torus. Checking stability for all 1-parameter subgroups is annoying, but checking it for maximal tori is easier.
+
+I used \cite{git}, and there is one statement that isn't completely clear to me. Other people do it differently.
+\begin{lemma}
+ For $x\in V$, suppose $y\in \bbar{G\cdot x}\setminus G\cdot x$. Let $O=k[\![t]\!]$ and $K=k(\!(t)\!)$, with $\m=(t)\subseteq O$. Then there exists $\ga\in G(K)$ such that $\ga\cdot x\in O\otimes V$ and $\ga\cdot x\equiv y$ modulo $\m$.
+\end{lemma}
+$\ga(t)\in G$ is a laurent series. When I apply it to $x$, I get a formal power series $\ga(t)\cdot x\in k[\![t]\!]V$, and $\lim_{t\to 0} \ga(t)x=y$.
+\begin{proof}
+ Let $Z=\bbar{G\cdot x}$. Consider $\phi\colon G\to Z$ given by $g\mapsto g\cdot x$. This is a dominant open immersion (recall that the orbit is open in its closure \anton{ref}). I claim that there is a curve $C\subseteq Z$ such that $y\in C$ and $C\cap G\cdot x\neq\varnothing$ \anton{this is like checking valuative criteria on an open set}. Suppose $Z\setminus G\cdot x\subseteq \{h(x)=0\}$. If $\dim \m_y/\m_y^2 >1$, then there is an $f\in \m_y$ such that $f\not\equiv h$ modulo $\m_y^2$. Take $\{f(x)=0\}$. Keep decreasing the dimension to get a curve.
+ 
+ We may take some curve $C_1$ whose image is in $C$, so we have
+ \[\xymatrix{
+  \llap{$s\in\;$}\bbar C_1 \ar[d]_{\phi} & C_1\ar[l]\ar@{^(->}[r]\ar[d]_{\phi|_{C_1}} & G\ar[d]^\phi\\
+  \llap{$y\in\;$}\bbar C & C\ar[l]\ar@{^(->}[r] & Z
+ }\]
+ The map $\phi|_{C_1}$ is not surjective, but it is dominant. We can take the projective completions of the affine curves $C$ and $C_1$ and extend the map. Let $s\in \bbar C_1$ be a point that maps to $y$. We may assume $\bbar C_1$ is non-singular at $s$ by taking normalization if needed. Let $U$ be an open neighborhood of $s$. We have $\ga\colon U\setminus s\to G\xrightarrow{\phi}C$. $\ga$ has a pole at $s$. $\phi(\ga(U))\subseteq C$, $\phi(s)=y$. \anton{once you go from $G$ to $C$, the pole goes away}
+
+ Let $O_s$ be the local ring of $s\in \bbar C_1$, and $K_s$ the field of fractions. We've constructed $\ga\in G(K_s)$ and the condition at the end of the previous paragraph means that $\ga\cdot x\in O_s\otimes_k V$ and $\ga\cdot x\equiv y$ modulo $\m_s$.
+ 
+ Now we just complete with respect to the maximal ideal and since $s$ was a smooth point, you get $k[\![t]\!]$.
+\end{proof}
+The next result I'll only prove for $SL(n)$, because it involves some structure theory of semi-simple groups.
+\begin{theorem}[Iwahori]
+ Let $G$ be a reductive algebraic group. Then each double coset in $G(O)\backslash G(K)/G(O)$ contains a (unique!\anton{probably}) 1-parameter subgroup $\lambda(t)$.
+\end{theorem}
+Consider the case of $SL(n)$. Start with a matrix $X=(x_{ij})\in G(K)$, so each $x_{ij}$ is a Laurent series. We have a valuation (the smallest power of $t$ that appears; the order of the zero/pole). Choose $v(x_{ij})$ minimal. By multiplying on the left and right by permutation matrices, we may assume $(i,j)=(1,1)$, so $v(x_{11})$ is minimal. Multiplying $X$ on the left by some matrix, we can do Gaussian elimantion (we can divide because we chose $v(x_{11})$ minimal) to get the first column to be all zeros below $x_{11}$. Similarly, we can get all zeros to the right of $x_{11}$. Now repeat on the smaller matrix until we get a diagonal matrix by induction. So we may assume we have the matrix $diag(z_{11},\dots, z_{nn})$. Since we are in $SL(n)$, the product of the $z_{ii}$ is 1. Each $z_{ii}$ is of the form $t^{a_i}\cdot f_i$ where the $f_i\in k[\![t]\!]=O$ are invertible. So we have $\sum a_i=0$ and $\prod f_i=1$. So we multiply our matrix on the left by $diag(f_1^{-1},\dots, f_n^{-1})$ to get our 1-parameter subgroup.

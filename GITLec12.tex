@@ -1,0 +1,153 @@
+\sektion{12}{Degree \texorpdfstring{$d$}{d} Hypersurfaces in \texorpdfstring{$\PP^n$}{Pn}}
+
+Consider the space of homogeneous degree $d$ polynomials in $k[x_0,\dots, x_n]$, $\VV_{n,d}=\{f(x_0,\dots, x_n)=\sum_{i_0+\cdots+i_n=d} a_{i_0,\dots, i_n}x_0^{i_0}\cdots x_n^{a_n}\}$. Then the space of degree $d$ hypersurfaces in $\PP^d$ is $\H_{n,d}=\PP(\VV_{n,d})$. Ultimately, we'll want to understand these surfaces up to isomorphism (or projective equivalence), so we'll be interested in the quotient $\VV_{n,d}^\times/GL(n+1)=\H_{n,d}/GL(n+1)$.
+
+First of all, consider the degree $d$ polynomials corresponding to \emph{smooth} hypersurfaces $\VV_{n,d}^{sm}=\{f|\pder{f}{x_0}=\cdots =\pder{f}{x_n}=0$ has only the trivial solution$\}$, and the projectivization $\H_{n,d}^{sm}$, the space of smooth hypersurfaces of degree $d$. Let $\H_{n,d}^{sing}$ be the complementary space, corresponding to $\VV_{n,d}^{sing}$. \anton{it should be clear that $\VV^{sing}_{n,d}\subseteq \VV_{n,d}$ and $\H_{n,d}^{sing}\subseteq \H_{n,d}$ are closed immersions, but I don't see a good way to show it.}
+
+\begin{lemma}
+ $\H_{n,d}^{sing}$ is a hypersurface in $\PP(\VV_{n,d})$.
+\end{lemma}
+\begin{proof}
+ Consider $M=\{(x,h)|x\in \PP^n, h\in \H_{n,d}, h$ singular at $x\}$. Then we have
+ \[\xymatrix{
+  & M\ar[dl]_{\pi_1}\ar[dr]^{\pi_2}\\
+  \PP^n & & \H_{n,d}^{sing}
+ }\]
+ We get $\dim \pi_1^{-1}(x)\ge \dim \H_{n,d} - (n+1)$ because saying that the hypersurface cut out by $f$ is singular at $x$ amounts to imposing the $n+1$ conditions $\pder{f}{x_0}=\cdots=\pder{f}{x_n}=0$ (it follows that $f(x)=0$). Since all the points of $\PP^n$ are identical, we have that $\pi_1$ is locally a product, so we get 
+ \[
+  \dim M= \dim \PP^n+\dim \pi^{-1}(x)\ge \dim \H_{n,d} -1.
+ \]
+ \anton{moreover, this inequality holds for every component of $M$ since the "$(n+1)$ conditions" argument works locally} A generic singular surface will have a zero-dimensional (so finite) singular locus \anton{how to see this easily?}, so there is an open subset of $\H_{n,d}^{sing}$ over which $\pi_2$ is finite. It follows that
+ \[
+  \dim \H_{n,d}^{sing} \ge \dim \H_{n,d}-1.
+ \]
+ But since $\H_{n,d}^{sing}$ is a closed subscheme and there exist non-singular surfaces, we get that $\dim \H_{n,d}^{sing}= \dim \H_{n,d}-1$.
+\end{proof}
+So we have some homogeneous polynomial on $\VV_{n,d}$, called the \emph{discriminant}, $D$, which vanishes exactly on those degree $d$ forms $f$ that give singular surfaces. \anton{make this a definition}
+
+Since the action of $GL(n+1)$ on $\VV_{n,d}$ doesn't change whether or not a form corresponds to a singular surface (and it respects the degree), the action of $GL(n+1)$ must act on $D$ by a scalar. That is, $D$ is a semi-invariant of the group $GL(n+1)$. Since the only characters of $GL(n+1)$ are powers of the determinant \anton{good way to see this?}, $D$ is an invariant of $SL(n+1)$.
+
+We have a finite-to-one (where finite is $\deg D$) projection $\{f\in \VV_{n,d}|D(f)=1\}\to \H_{n,d}^{sm}$,\footnote{This is finite because all the coefficents can be multiplied by any $\deg(D)$-th root of unity to give another form corresponding to the same surface with $D=1$} equivariant with respect to the action of $SL(n+1)$.
+\begin{remark}
+ In the case $d=2$, we know what $\H_{n,d}/SL(n+1)$ is: quadratic forms are determined by their rank, so the quotient space is discrete.
+\end{remark}
+
+\begin{lemma}
+ If $d>2$, then the stabilizer of any $h\in \H_{n,d}^{sm}$ in $SL(n+1)$ is finite.
+\end{lemma}
+\begin{proof}
+ By considering the finite-to-one cover\anton{make this better}, it is enough to show that the stabilizer of any degree $d$ form $f$ (with $D(f)=1$) in $GL(n+1)$ (and so $SL(n+1)$) is finite. Since we are in characteristic 0, this is equivalent to computing the stabilizer in the Lie algebra \anton{exactly what result are we using here?}. We have $\g=\gl(n+1)$. We have the action given by $(a_{ij})\mapsto \sum a_{ij} x_i\pder{}{x_j}$. We want to show that $Stab_\g(f)=0$, so we must show that there is no non-zero $(a_{ij})$ such that $\sum a_{ij}x_i \pder{f}{x_j}=0$. We may rewrite the equation as
+ \[
+  \ell_0\pder{f}{x_0}+\cdots +\ell_n\pder{f}{x_n}=0
+ \]
+ for some linear forms $\ell_i$. Assume that such linear forms exist, with some of the $\ell_i$ non-zero (assume $\ell_0\neq 0$).
+ 
+ I claim that $\pder{f}{x_0}$ is not a zero divisor on $C=\spec \bigl(k[x_0,\dots, x_n]/(\pder{f}{x_1},\dots, \pder{f}{x_n})\bigr)$. It is clear that the dimension of all components of $C$ is at least one. If $\pder{f}{x_0}$ were a zero-divisor on $C$, then $V_C(\pder{f}{x_0})=\spec\bigl(k[x_0,\dots, x_n]/(\pder{f}{x_1},\dots, \pder{f}{x_n})\bigr)$ would be at least $1$-dimensional. But this is exactly the affine cone on the singular locus of the surface corresponding to $f$. Since the surface was assumed to be non-singular, the affine cone must consist of just the origin.
+ 
+ Thus, we must have $\ell_0\in (\pder{f}{x_1},\dots, \pder{f}{x_n})$, which is impossible since $\deg f>2$.
+\end{proof}
+We've actually proved
+\begin{proposition}
+ Every $h\in \H_{n,d}^{sm}$ is properly stable with respect to the action of $SL(n+1)$.
+\end{proposition}
+So we can consider the geometric affine quotient $\H_{n,d}^{sm}/SL(n+1)$. The point is how to find the invariants, which is not easy at all.
+
+First, let's consider the case $n=1$. The problem of finding all the invariants is still unsolved (the first person who worked on this was Cayley?). \anton{I think this was done recently by Ben Howard, John Millson, Andrew Snowden, and Ravi Vakil}
+
+\subsektion{Classical binary invariants (the case \texorpdfstring{$n=1$}{n=1})}
+
+We're looking for $SL(n+1)$-invariants in $\VV_{n,d}$. We have the action on the $d$-th symmetric power of the standard representation, and we're looking for invariants. If $n=1$, we have $V_d=\VV_{1,d}$. Geometrically, this is $d$ points on $\PP^1$. Smoothness means that no two points coincide. In this case, we can explicitly write the discriminant.
+
+First of all, $V_d=\{\xi_0 x^d+d\xi_1 x^{d-1}y+\binom d2 \xi_2x^{d-2}y^2+\cdots +\xi_d y^d\}$. The action is given by $f(x,y)\mapsto f(ax+by,cx+dy)$, where $ad-bc=1$. If you have two polynomials, you can measure if they have a common zero (this is called the resultant)\anton{look stuff up about the resultant}. Consider
+\[
+ Res\Bigl(\pder fx \bigr|_{y=1}, \pder fy\bigr|_{y=1} \Bigr).
+\]
+This is a polynomial of degree $2d-2$ and it is clearly an invariant. \anton{I don't see why you can specialize to $y=1$ ... you might have many points come together at infinity}
+
+For example, if $d=2$, then $D(\xi)=\bigl|\matx{\xi_0& \xi_1\\ \xi_1& \xi_2}\bigr|$. For $d=3$, we have
+\[
+ D(\xi) = \left|
+ \begin{matrix}
+  \xi_0& 2\xi_1&\xi_2& 0\\
+  0& \xi_0& 2\xi_1 & \xi_2\\
+  \xi_1 & 2\xi_2 & \xi_3 & 0\\
+  0& \xi_1& 2\xi_2 & \xi_3
+ \end{matrix}\right|
+\]
+
+Next we calculate $P_V(t)=\sum_{k\ge 0} \dim \sym^k(V)^G t^k$.
+ 
+\anton{resume editing here}
+
+$V_d$ are all the irreducible representations of $SL(2)\ni \Bigl\{\matx{q&0\\ 0&q^{-1}}\Bigr\}=\GG_m$. Let $g_q=\matx{q&0\\ 0&q^{-1}}$ acting on $V$. For $d\ge 0$, we define the \emph{character} of $V$ is $\ch V=\tr_V\matx{q&0\\ 0&q^{-1}}=\sum_{m\in\ZZ} a_m q^m\in \CC[q,q^{-1}]$. Characters behave very well with tensor products and direct sums. For any representation, we have $\ch V=\sum c_d \ch V_d$, and $\ch V_d=q^d+q^{d-2}+\cdots q^{-d}$. Suppose $\ch V=\sum b_m q^m$. Then $\dim V^G=Res_0(q-q^{-1})\cdot \ch V$. You check this by \anton{}
+
+In fact, we have the following formula.
+\[
+ \sum \ch \sym^k(V) t^k = \frac{1}{(1-t\det_V(q-q^{-1}))}
+\]
+You get this by looking at eigenvalues of this matrix and you get what you want.
+
+Therefore, we get
+\[
+ P_V(t)=\sum \dim(\sym^k V)^G t^k = -Res_0(q-q^{-1}) \frac{1}{1-t\det\matx{q&0\\ 0&q^{-1}}}.
+\]
+This is a Moilen formula for $G$. The proof is exactly the same as for the Moilen formula.
+
+\begin{remark}
+ If $K$ is a compact topological group (maximal compact group in $G$), like $SU(2)\subseteq SL(2,\CC)$, then we get
+ \[
+  P_V(t) = \int_K \frac{1}{1-t\det g}\, dg
+ \]
+ where $dg$ is the invariant volume form on $K$ such that $\int_K dg=1$. Every element of $SU(2)$ is diagonalizable, so it is conjugate to $\matx{e^{i\theta}&0\\ 0& e^{-i\theta}}$. But the formula is constant on conjugacy classes. If you think of $SU(2)$ as $S^3$, then the conjugacy classes are $S^2$s. If you do the calculation, you can reduce the integral to
+ \[
+  \frac{1}{\pi} \int_0^{2\pi} \frac{\sin^2\theta}{1-t\det\matx{e^{i\theta}&0\\ 0&e^{-i\theta}}}\,d\theta
+ \]
+ where $q=e^{i\theta}$. You can reduce this to the contour integral
+ \[
+  -\frac{1}{2\pi i}\oint \frac{q-q^{-1}}{1-t\det\matx{q&0\\ 0&q^{-1}}}dq
+ \] 
+\end{remark}
+
+Now our problem is to compute
+\begin{align*}
+ P_d(t)=P_{V_d}(t) &= -Res_0 (q-q^{-1}) \prod_{i=0}^d \frac{1}{1-tq^{d-2i}}
+\end{align*}
+$\matx{q&0\\ 0&q^{-1}}$ acts on $V_d$ by $diag(q^d,q^{d-2},\dots, q^{-d})$.
+
+Now introduce quantum binomial coefficients. We define
+\begin{align*}
+ [d]_q &= \frac{q^d-q^{-d}}{q-q^{-1}}\\
+ [d]_q! &= [d]_q[d-1]_q\cdots [1]_q\\
+ \qbinom{p}{d} &= \frac{[p]_q!}{[d]_q![p-d]_q!}
+\end{align*}
+\begin{claim}
+ $P_d(t)=\sum_{k\ge 0} Res_0(q-q^{-1}) \qbinom{d+k}{k} t^k$
+\end{claim}
+which is just a calculation
+
+I define
+\[
+ \Phi(q,t) = \prod_{i=0}^d \frac{1}{1-tq^{d-2i}} = \sum_{k\ge 0} \qbinom{d+k}{k} t^k
+\]
+and get
+\[
+ \Phi(q,q^2t) = \frac{1-q^{-d}t}{1-q^{d+2}t} \Phi(q,t)
+\]
+Then you solve to get that if $\Phi(q,t)=\sum c_k(q)t^k$, we get the recurrence
+\[
+ c_k=c_{k-1} \frac{q^{k+d}-q^{-k-d}}{q^k-q^{-k}}.
+\]
+
+Immediately from that, we get the Cayley-Sylvester formula. If 
+\[
+ m(d,k)=\dim (\sym^k V_d)^G
+\]
+then we get
+\[
+ m(d,k)=
+ \begin{cases}
+  0 & d_k \text{ is odd}\\
+  \text{coeff of }u^{dk/2}\text{ in }\frac{(1-u^{k+1})\cdots (1-u^{k+d})}{(1-u^2)\cdots (1-u^d)} & \text{else}
+ \end{cases}
+\]
+Next time we'll do the case $d=4$ and $n=2$, $d=3$ (elliptic curves).

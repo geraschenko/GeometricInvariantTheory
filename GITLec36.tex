@@ -1,0 +1,80 @@
+\sektion{36}{More about Luna's slice theorem}
+
+\begin{theorem}[Luna's slice theorem]
+ Let $X$ be an affine variety with an action of a reductive group $G$, and let $x\in X$ be a point with closed orbit $G\cdot x$. Then there exists an affine subvariety $S\subseteq X$ (called an \emph{\'etale slice}) such that
+ \begin{enumerate}
+  \item[(a)] $x\in S$
+  \item[(b)] $S$ is $G_x$-invariant
+  \item[(c)] $\phi\colon G*_{G_x}S\to X$, given by sending $(g,s)$ to $gs$, is excellent
+  \item[(d)] $\im \phi$ is affine.
+ \end{enumerate}
+\end{theorem}
+Recall that being excellent means that
+\[\xymatrix{
+ G *_{G_x}S\ar[r]^-\phi \ar[d] & X \ar[d]\\
+ S\quot G_x \ar[r]_{\phi_G} & X\quot G
+}\]
+is cartesean and the horizontal arrows are etale.
+
+\begin{example}
+ Let $G$ be a reductive group (thing $G=SL(n)$ if you like) with Lie algebra $\g$, and consider the adjoint action. $x\in \g$, then $G\cdot x$ is closed if and only if $x$ is semi-simple. Let $x\in \g^{reg}=\{x\in \g^{ss}|Z_\g(x)=\t$ the Lie algebra of the maximal torus$\}$. In this example, the slice is given by $\t^{reg}=\t\cap\g^{reg}$. I have $G*_T \t\to \g$ and $G*_T\t^{reg}\to \g^{reg}$. The second map is not an isomorphism; it's a covering. The preimage of a point is the intersection of the orbit with the maximal torus. What is true that that $\t^{reg}/W\to \g^{reg}\quot G$ is an isomorphism, where $W=N(T)/T$ is the Weyl group.
+\end{example}
+
+\begin{proof}[Proof of Luna]
+ \underline{Step 1}. Reduce to the case where $X=V$ is a linear representation of $G$. We have $X\subseteq V$ is a closed immersion for some $V$. Suppose we have a slice $G*_{G_x}S\to V$, then I claim that $G*_{G_x} (S\cap X)\to X$ is also a slice.
+ \begin{exercise}
+  If $\phi\colon Y\to X$ is excellent and $Z\subseteq X$ is a $G$-invariant closed subvariety, then $\phi^{-1}(Z)\to Z$ is excellent.
+ \end{exercise}
+
+ \underline{Step 2}. $x\in V$, and $T_xV=T_x (G\cdot x)\oplus N$ where $N$ is $G_x$-invariant because $G_x$ is reductive (because the orbit is closed; see last lecture). I have a natural map $\phi\colon G*_{G_x}N\to V$, given by $\phi(g,n)=g(x+n)$.
+ \begin{enumerate}
+  \item[(a)] $\phi$ is $G$-equivariant
+  \item[(b)] $G\cdot (e,0)$ has the minimal dimension, and is therefore closed.
+  \item[(c)] the restriction of $\phi$ to this orbit $G\cdot (e,0)$ is an isomorphism onto the orbit of $x$
+  \item[(d)] $d\phi|_{(e,0)}$ is an isomorphism, so $\phi$ is \'etale at $(e,0)$. 
+ \end{enumerate}
+ \begin{lemma}[Fundamental Lemma]
+  Let $G$ be reductive, with $X$ and $Y$ affine. Let $\phi\colon Y\to X$ be a $G$-equivariant map with $\phi(y)=x$ such that $Gx$ and $Gy$ are closed orbits, $\phi|_{Gy}\colon Gy\to Gx$ is an isomorphism, and $\phi$ is \'etale at $y$. Then there exists an open affine set $U$ in $Y$ such that
+  \begin{enumerate}
+   \item[(a)] $y\in U$,
+   \item[(b)] $U=p_Y^{-1}(p_Y(U))$,
+   \item[(c)] $\phi|_U:U\to X$ is excellent
+   \item[(d)] $\phi(U)$ is affine.
+  \end{enumerate}
+ \[\xymatrix{
+  Y\ar[r]^\phi \ar[d]_{p_Y} & X\ar[d]^{p_X}\\
+  Y\quot G\ar[r]_{\phi_G} & X\quot G
+ }\]
+ \end{lemma}
+ It should be clear that applying this lemma will finish the proof, so we just need to prove it.
+ 
+ Let $R=k[X]$ and $S=k[Y]$. let $r$ and $s$ be the ideals of $Gx$ and $Gy$ respectively. Define $\hhat R=\varprojlim R/r^n$. We have $\phi^*\colon R\to S$, with the induced map $R^G\to S^G$. We have $\hhat{R^G}=\varprojlim R^G/(r\cap R^G)^n$.
+ 
+ The map is \'etale at $y$ (and so at each point of the orbit), so it is \'etale in some neighborhood. From this, we see that $\phi^*\colon R/ r^n\to S/s^n$ is an isomorphism, so we get an induced isomorphism $\hhat R\to \hhat S$.
+ 
+ I need to do a digression. Let $R$ be a $k$-algebra with an algebraic action of $G$. Then $R=\bigoplus R(M)$ is a sum of isotypic components, where $M$ runs over irreducible representations of $G$ up to isomorphism, and $R(M)$ is a direct sum of (possibly infinitely many) copies of $M$. Each isotypic component is an $R^G$-module. 
+ \begin{theorem}[finite generation of coinvariants]
+  $R(M)$ is a finitely generated $R^G$-module.
+ \end{theorem}
+ This follows from
+ \begin{theorem}
+  Suppose $R$ is noetherian. If $N$ is any $R$-module (and $G$-module, compatibly) finitely generated over $R$, then $N^G$ is finitely generated over $R^G$.
+ \end{theorem}
+ To prove this, pick generators $n_1,\dots, n_k\in N^G$ for $RN^G\subseteq N$. For $n\in N^G$, I have $n=\sum a_i n_i$, so $n=\sum \bar a_i n_i$ after applying the Reynolds operator.
+ 
+ To get the first theorem, apply this theorem to $N=R\otimes M^*$ and use the fact that $(R\otimes M^*)^G\cong R(M)$.
+ 
+ $\hhat R(M) = \varprojlim R(M)/(r^n\cap R(M))$. On the other hand, $\hhat{R(M)} = R(M)\otimes_{R^G} \hhat{R^G}$.
+ \begin{lemma}
+  $\hhat R(M)\cong \hhat{R(M)}$. In particular, $\hhat R^G\cong \hhat{R^G}$.
+ \end{lemma}
+ Follows from the following. There exists $m_0\ge 1$, $n_0\ge 0$ such that for any $n\in \ZZ$, we have $r^{m_0n+n_0}\cap R(M)\subseteq (r^G)^nR(M)\subseteq r^n \cap R(M)$. I'll give you a sketch and you can fill in the details yourself.
+ 
+ $A= R\oplus \bigoplus r^n t^n \subseteq R[t]$. Then $A^G$ is finitely generated over $R^G$, say with generators $a_1t^{m_1},\dots, a_st^{m_s}$, and $A(M)$ is finitely generated over $A^G$, say with generators $b_1t^{n_1},\dots, b_\ell t^{n_\ell}$. Let $m_0=\max m_i$ and $n_0=\max n_i$. For $\bar a\in r^{m_0n+n_0}\cap R(M)\Rightarrow \bar a=a t^{m_0n+n_0}$. $at^{m_0n+n_0} = \sum \underbrace{p_j(a_1t^{m_1},\dots, a_s t^{m_s})}_{\in (r^G)^n t^n} b_j t^{n_j}$.
+ 
+ So I get $R\otimes_{R^G}\hhat{R^G}\cong S\otimes_{S^G}\hhat{S^G}$. Taking invariants, I get $\hhat{R^G}\cong \hhat{S^G}$. So $\phi_G$ is \'etale at $p_Y(y)$.
+ 
+ $\bbar R=R\otimes_{R^G} S^G$ is regular functions on the fiber product, $k[X\times_{X\quot G}Y]$. Using the results we have, we can prove $\bbar R\otimes_{S^G} \hhat{S^G} = R\otimes_{R^G} S^G\otimes_{S^G}\hhat{S^G} = R\otimes_{R^G}\hhat{R^G}\cong S\otimes_{S^G}\hhat{S^G}$. By a theorem from commutative algebra, I can put a local ring downstairs because the completion of a local ring is flat. $\bbar R\otimes_{S^G} S_{loc}\cong S\otimes_{S^G}S_{loc}^G$. So we can find $f\in S^G$ such that after localization of $S^G$, I get what I need, an isomorphism $\bbar R_f\cong S_f$. Take $U_f=Y_f\cap p_Y^{-1}(V)$, where $V$ is the open set where $\phi_G$ is \'etale, so we get the property of the fiber product for $U_f$.
+ 
+ Now we need the image to be affine. Pick $f_1$ which is zero on $X\setminus \phi(U_f)$ and pull it back.
+\end{proof}

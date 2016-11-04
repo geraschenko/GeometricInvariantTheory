@@ -1,0 +1,39 @@
+\sektion{33}{Moment maps and GIT quotients}
+
+There will be no class Friday, Monday, Wednesday, but we'll have two extra classes after Nov.~4. I'll send out an email.
+
+Let's recall some things. Suppose $G$ is a reductive group acting on a projective variety $X$, and $L\in\pic^GX$, which automatically gives an equivariant embedding $X\hookrightarrow \PP^n$, and we have a canonical map $\bar\mu\colon \PP^n\to \mathfrak{su}(n+1)^*$. Let $K\subseteq G$ be a maximal compact subgroup, so we get a map $\mathfrak{su}(n+1)^*\to \k^*$. Composing, we get a map $X\to \k^*$. We have $\bar\mu(z)(v)=v-\frac{(z,v)}{(z,z)}z$ for $z,v\in \CC^{n+1}$. We showed that $X\quot_L G\cong \mu^{-1}(0)/K$ is an isomorphism of topological spaces.
+
+In the case $G=T\subseteq (\CC^*)^{n+1}$ is the torus. Then I have $\mu\colon X\to \PP^n\to \RR^{n+1}\cong ((\CC^*)^{n+1})^\vee_\RR \xrightarrow\ga T^\vee_\RR$, where $T^\vee_\RR=T^\vee\otimes_\ZZ \RR$. If $X=\overline{T\cdot x}$, then $\mu(X)=P$ is a convex polytope. We have an isomorphism of posets between orbits and faces of the image of $\mu$. The embedding $T\subseteq (\CC^*)^{n+1}$, we have the characters $\chi_0,\dots, \chi_n$. We choose the standard basis $\e_1,\dots, \e_n$ in $\RR^{n+1}$, then the formula for $\bar\mu$ is
+\[
+ \bar\mu(z) = \frac{\sum |z_i|^2\e_i}{\sum |z_i|^2}.
+\]
+In particular, $\bar\mu(\PP^n)=\Delta_n$ is the convex hull of $\e_0,\dots, \e_n$. So we have $X\to \PP^n\to \Delta_n\xrightarrow\ga P$, with $\ga(\e_i)=\chi_i$. We have $P=\mu(X)$ is the weight polytope or moment polytope of $X$. It is the convex hull of $\chi_0,\dots, \chi_n$. Some of these characters may be interior points. The ones on the outside are the ones that correspond to fixed points of the action.
+
+Suppose $H\subseteq T$ is a subtorus. We want to consider $X\quot_L H$, which has an action of $T$. It is a toric variety with torus $T/H$. How do we relate the polytopes of these two toric varieties? Under the moment map, the moment polytope will have vertices in the lattice of characters. The inclusion $H\subseteq T$ induces a map $\pi\colon T^\vee_\RR\to H^\vee_\RR$. Let $Q=\pi(P)$.
+\begin{proposition}
+ $X\quot_L H$ is a toric variety with moment polytope equal to $\pi^{-1}(0)$. If $0\not\in \pi^{-1}(0)$, then the geometric quotient is trivial.
+\end{proposition}
+\begin{proof}
+ Consider $\tilde\mu\colon X\to H^\vee_\RR$. By the theorem of Kirwan, if $K_H\subseteq H$ is a maximal compact subgroup, $\tilde\mu^{-1}(0)/K_H\cong X\quot_L H$. Now consider the group that preserves the fiber of $\tilde\mu$ over $0$. First of all, all of $K_H$ preserves the fiber. In fact, $Stab_T(\tilde\mu^{-1}(0))=K\cdot S$, where $S=T/H$. Pick any point $x\in \tilde\mu^{-1}(0)$. The restriction $\mu\colon \overline{S\cdot x}\to \hhat H_\RR^\perp = \{\chi\in G^\vee|\chi|_H=1\}$. Now I can use the theorem again to say that this is the moment map restricted to the fiber.
+\end{proof}
+Suppose we've fixed $L\in \pic X$, but I allow the linearization to vary (by a character). We get for each $\chi\in \hhat H$ an element $L_\chi\in \pic^G X$. We can also take $L^{\otimes m}$ for any $m$, so I can take $\chi\in \hhat H_\QQ$. If $m\chi\in \hhat H$, we can take the linearization $\chi$ on $L^{\otimes m}$. \anton{hats and checks are the same thing, right?}
+\begin{proposition}
+ $X\quot_{L_\chi}H$ is a toric variety whose fan is the dual fan to $\pi^{-1}(\chi)\cap P$.
+\end{proposition}
+\begin{corollary}
+ The quotient $X\quot_{L_\chi}H$ is non-degenerate (has stable orbits, so has the right dimension) if and only if $\pi^{-1}(\chi)\cap P$ has full dimension, or equivalently, $\chi$ is an interior point of $Q$.
+\end{corollary}
+It's clear that you get chambers in $Q$ where the preimage polytope is combinatorially the same. Therefore, we get a nice unerstanding of how the quotient changes based on linearization. Note that we've fixed $L$. If we change $L$, $P$ changes. In the case $X=\PP$, then there is only one choice of $L$, so we get a complete understanding in that case.
+\begin{proof}[Proof of Proposition]
+ $\tilde\mu_m\colon X\to \PP^n\to \PP(\sym^m(\CC^{n+1}))\to \RR^{n+1}\to \hhat T_\RR P\to \hhat H_\RR$. Taking the Veronese map just gives you $m\cdot \Delta_n$, which maps to $m\cdot Q$. We have $\e_i\mapsto \chi_i+\chi$, so $m\e_i\mapsto m(\chi_i+\chi)$. So taking the preimage of chi under this map $\tilde\mu_m$ of zero is $m\cdot \tilde\mu^{-1}(\chi)$.
+\end{proof}
+
+\subsektion{Chow quotients}
+Next time I'll talk about this paper of Kapranov, Sturmels, somebody else. For now, let me prove a result I promised you before.
+
+Let $X$ be a complex projective variety (though I think it works for characteristic zero, since you may be able to reduce to the case of a subfield of $\CC$). We can talk about algebraic cycles of homology class $\delta\in H_{2k}(X,\ZZ)$. The space of these cycles is denoted $C_k(X,\Delta)$, which turns out to be a projective variety. Pick a generic orbit of a reductive group $G$, and consider it's closure $\overline{G\cdot x}$. For generic $x$, we get $\overline{G\cdot x}\in C_k(X,\delta)$. Remember that the Chow quotient is the closure of the image of this open set of $X$ under the map $x\mapsto \overline{G\cdot x}\in C_k(X,\delta)$. Note that this definition of the quotient does not depend on any linearization.
+\begin{theorem}
+ If $L\in \pic^GX$ is a non-degenerate linearization (i.e.~there exist stable orbits), then there is a regular birational map $X\quot_C G\to X\quot_L G$.
+\end{theorem}
+It's clear that if I take the closures of stable orbits, I get a bijection. Now consider a limit cycle. Let $Z(t)\in C_k(X,\delta)$, with $Z(t)\in U$ for $t\neq 0$ (these are irreducible), and $Z(0)$ is a limit cycle. \anton{I should probably say that $G$ is connected.} The support of $Z(0)$ contains at least one semi-stable orbit. For this I just have to check that $0\in\mu(Z(0))$. But $0\in \mu(Z(t))$ for any $t\neq 0$, so by continuity of $\mu$, we get $0\in \mu(Z(0))$. It might contain several semi-stable orbit, but they all go to the same point of $X\quot_L G$. That is, any equivariant rational function must take the same value on all these orbits. To see this, suppose it is false. That is, suppose there is a rational invariant function $f$ which takes different values on different obrits. But $f$ is constant on $Z(t)$ for $t\neq 0$, so by continuity, we get that $f|_{Z(0)}$ must be constant.

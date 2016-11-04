@@ -1,0 +1,63 @@
+\sektion{38}{Lecture 38}
+
+Two more applications of the slice theorem.
+\begin{lemma}
+ If a reductive group $G$ acts on an affine variety $X$, then for any $y\in X$ there exists a 1-parameter subgroup $\lambda(t)\in G$ such that $\lim_{t\to 0} \lambda(t) y=y_0$ and $Gy_0$ is closed.
+\end{lemma}
+\begin{proof}
+ Let $Y=\overline{Gy}$, and let $Gx$ be the unique closed orbit in $Y$ (this orbit is affine, so the stabilizer $G_x$ is reductive). By what we proved last time, I have the isomorphism $Y\cong G*_{G_x}Z$, where $Z$ has a unique closed $G_x$-orbit. $Z$ may be singular, but we can $G_x$-equivariantly embed it into a vector space $V$ so that $x$ goes to $0$. For any $v\in V$, there is a $1$-parameter subgroup $\tilde \lambda(t)\in G_x$ such that $\lim \tilde\lambda(t) v=0$ by Hilbert-Mumford. $y=(g,v)$ and take $\lambda(t)=g\tilde\lambda(t)g^{-1}$ and it works.
+\end{proof}
+
+Luna stratification: assume $X$ is smooth affine and $G$ is reductive. Recall that if $x\in X$ has closed orbit, then by the Luna slice theorem, some \'etale neighborhood is isomorphic to a fiber bundle. $T_xX=T_x (Gx)\oplus N_x$, where $N_x$ is $G_x$-invariant. We know that some \'etale neighborhood of $x$ is isomorphic to $G*_{G_x}N_x$.
+
+Consider $\M=\{G*_H M|M$ a linear representation of $H$, a reductive subgroup of $G\}/\sim$, where $\sim$ is $G$-equivariant isomorphisms. If $x\in X$ and $Gx$ is closed, we associate to $x$ the isomorphism class $[G*_{G_x}N_x]$. Any point in the same orbit gives an isomorphic fiber bundle. So we have, $X\xrightarrow p X\quot G\xrightarrow \ga \M$. So we can define $(X\quot G)_\mu=\ga^{-1}(\mu)$ and $X_\mu=p^{-1}(X\quot G)_\mu$.
+\begin{theorem}
+ \begin{enumerate}
+  \item $\M_X=\im \ga$ is a finite set.
+  \item $X\quot G = \bigsqcup_{\mu\in \M_X} (X\quot G)_\mu$, and each $(X\quot G)_\mu$ is a non-singular locally closed subvariety of $X\quot G$.
+  \item All fibers of $p\colon X_\mu\to (X\quot G)_\mu$ are isomorphic (in fact, it's a locally isotrivial fibration; there is an \'etale cover making it the trivial fibration).
+ \end{enumerate}
+\end{theorem}
+\begin{example}
+ Consider the case $X=\g=\gl(n)$ and $G=GL(n)$ with the adjoint action. Then $p\colon X\to \AA^n\cong \AA^n/S_n$ (the coefficients of the characteristic polynomial), and I have the \'etale cover $\AA^n\to \AA^n$ given by taking roots (this is the quotient by $S_n$).
+ 
+ Let $x\in X$ be semi-simple, so the orbit is closed. In some basis, $x$ is block identity (with eigenvalues $\lambda_i$ with multiplicities $m_i$). So $\M_X$ can be identified with the set of partitions of $n$. When they are all different (all multiplicites 1), you get the open stratum. This stratification is $S_n$-invariant, so it descends to the quotient $\AA^n/S_n$. 
+\end{example}
+\begin{proof}[Sketch of Proof]
+ $Gx$ is closed. $G*_{G_x}N_x$ is an \'etale neighborhood. In this neighborhood, we consider $Y=\{y\in G*_{G_x}N_x|G_y$ is conjugate to $G_x\}$. It is enough to consider elements of the form $(e,v)$ and use $G$ to move them around. We see that $(e,v)\in Y$ is and only if $v$ is fixed by $G_x$. We have $N_x=N_x^G\oplus M_x$, and $Y\cong G*_{G_x}N_x^G$, so $Y$ looks like a subspace of $G*_{G_x}N_x$. $X_\lambda$ is (\'etale) locally isomorphic to $Y=G*_{G_x}N_x^{G_x}$. It's clear that this thing is locally closed. So after the \'etale cover, the stratum is a subspace. If $S$ is a slice, then there is an \'etale map $p\colon (S/G_x)_\lambda\to N_x^{G_x}$. The fiber is isomorphic to the nil cone $m_x\in M_x$.
+\end{proof}
+\begin{remark}
+ If $X\quot G$ is irreducible, then we have a single open stratum $(X\quot G)_p$, usually called the principal stratum. Then we have $X_p\to (X\quot G)_p$. This is the only stratum such that the fibers are non-singular. If $x\in X_p$ has closed orbit, then $p^{-1}(p(x))\cong G*_{G_x}m_x$, and $k[M_x]^G=k$, so $m_x=M_x$, and $G*_{G_x}M_x$ is non-singular. For all other strata, the fibers are nil cones, which can never be non-singular.
+ 
+ In the example of the adjoint representation, the fibers are closed orbits over the principal stratum.
+\end{remark}
+\begin{exercise}
+ If $M$ is a linear representation of $G$, then the nil cone is non-singular if and only if $M=M^G\oplus W$, where $k[W]^G=k$.
+\end{exercise}
+
+\bigskip
+
+We always have the assumption that $G$ is reductive, and in characteristic zero, this cannot be improved. We want the results to work for Chevalley groups (like $GL(n,F)$ and $SL(n,F)$) in finite characteristic, and it does! We can replace linearly reductive by geometrically reductive.
+\begin{definition}
+ $G$ is \emph{geometrically reductive} if for any linear representation $V$ and any $v\in V^G\setminus 0$, there exists $m>0$ and $F\in \sym^m(V^*)$ such that $F(v)=1$.
+\end{definition}
+This is equivalent to the following. Suppose you have an exact sequence of finite-dimensional representations
+\[
+ 0\to W\to V\to k\to 0
+\]
+where $k$ has the trivial $G$-action. Then there exists an $m>0$ such that
+\[
+ 0\to \sym^{m-1} V\otimes W\to \sym^m V\to \sym^m k=k\to 0
+\]
+splits. \anton{exercise}
+
+There are two key results.
+\begin{theorem}[Nagata?]
+ If $G$ is geometrically reductive and $R$ is a finitely generated $k$-algebra (or just noetherian ring?) with a $G$-action, then $R^G$ is a finitely generated algebra.
+\end{theorem}
+This allows us to define $X\quot G=\specm k[X]^G$.
+\begin{theorem}
+ If a geometrically reductive group $G$ acts on an affine variety $X$, and $Z_1, Z_2\subseteq X$ are two disjoint closed $G$-invariant subsets, then there exists an $f\in k[X]^G$ such that $f(Z_i)=i$.
+\end{theorem}
+
+

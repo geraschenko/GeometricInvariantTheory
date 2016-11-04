@@ -1,0 +1,60 @@
+\sektion{29}{Lecture 29}
+
+We had the map $\mu^{-1}(0)/K\to X\quot_LG$. We were working on the criterion for semi-stabilty: $x$ is semi-stable if and only if $\mu(\bbar{G\cdot x})$ contains 0. The argument was based on the result of Kempf-Ness that if you consider $f(v)=(v,v)=\|v\|^2$ restricted to an orbit $G\cdot v$, we have
+\begin{enumerate}
+ \item If $v\neq 0$, then v is a critical point of $f$ is and only if $\mu(v)$=0. We proved this last time.
+ \item Every critical point is a minimum.
+ \item If minimum is obtained on $G\cdot v$, then it obtained on a single $K$-orbit.
+ \item A minimum is attained if and only if the orbit $G\cdot v$ is closed.
+\end{enumerate}
+(2) and (3) were proven as follows. First restrict to the case $G=T$ is a torus. Let $\t=\lie(T)$ and $\t_K$ be the lie algebra of the compact subgroup, and $Stab_\t(v)$ the stabilizer of $v$. We have
+\[
+ \phi\colon \t\xrightarrow\exp T\xrightarrow{f(tv)}\RR
+\]
+We have that $\phi=\sum a_i e^{\ell_i(s)}$. Since all the stabilizers are conjugate, it's clear that $\phi$ is constant along $Stab_\t(v)$ and along $\t_K$. So I can consider $\bbar\phi\colon \t/(Stab_\t v + \t_K)\to \RR$. This $\bbar\phi$ is not constant along any line, so it has strictly positive second derivative. From this, you get (2) and (3) for a torus.
+
+To get (2) and (3) in general, we need some knowledge about complex reductive groups. See Helgason's book ``Symmetric spaces and Lie algebras''.
+
+\begin{proposition}
+ Fix a redictive group $G$ over $\CC$ and a maximal compact subgroup $K\subseteq G$. Let $\T$ be the set of all maximal tori $T$ in $G$ such that $T\cap K$ is a maximal compact subgroup of $K$. Then $G=\bigcup_{T\in \T}KT$.
+\end{proposition}
+It's pretty clear how we're going to get (2) and (3) for $G$ from this result. Let's prove the Proposition in the case $G=GL(n)$.
+\begin{proof}
+ The maximal compact subgroup of $G=GL(n)$ is $K=U(n)$. A maximal torus $T$ can always be diagonalized in $\CC^n$. We have that $T\in\T$ if and only if the eigenbasis can be chosen to be orthogonal. The ``polar decomposition'' says that $X\in GL(n,\CC)$ can be written uniquely as $X=UH$, where $U$ is unitary and $H$ is positive definite hermitian. This is easy to see: $\bbar X^t X$ is a positive definite hermitian operator, so take $H=\sqrt{\bbar X^t X}$ and $U=XH^{-1}$.
+ 
+ But hermitian operators are diagonalizable, and the eigenbasis can be chosen to be orthogonal.
+\end{proof}
+Now let's prove (2) and (3). Suppose $v,w\in G\cdot v$ and $f(v)=f(w)$ is a minimum. We have $w=g\cdot v$ for some $g=k\cdot t$ where $k\in K$ and $t\in T\in \T$. Since $f$ is $K$-invariant, we have that $f(v)=f(tv)$, and for $T$ we know that the theorem is true. So $v$ and $tv$ are in the same $K$-orbit, so $t\in T_K Stab_v(t)$ ($T_K=T\cap K$), so $w\in K\cdot v$.
+
+If $v$ is a critical point on $G\cdot v$, then it is a critical point on $K\cdot Tv$, where $T\in \T$. It is a minimum on $K\cdot Tv$ for all $T$, so it is a minimum on $\bigcup KTv=Gv$.
+
+Now let's prove (4). I need another fact about reducitive groups. The main idea is to use the Hilbert-Mumford criterion. Recall we proved that if $G\cdot v$ is not closed, then one can find a 1-parameter subgroup $\lambda(t)\subseteq G$ such that $\lim_{t\to 0}\lambda(t)v=w\not\in G\cdot v$. This $\lambda(t)$ lies in some torus $T$. Assume for now that we may choose $T\in \T$. Choose an orthogonal basis $v_1,\dots, v_N$ for $V$ such that $\lambda(t)v_i=t^{b_i}v_i$ and $b_1\ge b_2\ge\cdots\ge b_N$. If $v=\sum c_i v_i$, then we see that $c_i=0$ whenever $b_i<0$. Then we see that
+\[
+ (\lambda(t)v,\lambda(t)v) = \sum |c_i|^2|t|^{b_i}.
+\]
+with all $b_i\ge 0$. So as $t$ goes to zero, we see that the length of $v$ decreases, so it cannot be a minimum of $f$. The only way the length doesn't change is if $\lambda(t)v=v$ for all $v$. So it remains to show that we may choose $T\in \T$ such that $\lambda(t)\subseteq T$.
+
+Every 1-parameter subgroup canonically defines a parabolic subgroup. Consider the adjoint action of $G$ on $\g$. The action $\Ad_{\lambda(t)}$ on $\g$ is diagonalizable. It defines a $\ZZ$-grading on $\g$, $\g=\bigoplus \g_i$, where $\g_i=\{x\in \g|\Ad_{\lambda(t)}x=t^ix\}$. We have that $[\g_i,\g_j]\subseteq \g_{i+j}$, so $\p=\bigoplus_{i\ge 0}\g_i\subseteq \g$ is a Lie subalgebra. The corresponding Lie subgroup $P\subseteq G$ is a parabolic subgroup. In this way, you get all parabolic subgroups. The algebro-geometric characterization of parabolic subgroups is that $G/P$ is projective if and only if $P$ is projective.
+\begin{proposition}
+ For any 1-parameter subgroup $\lambda(t)\subseteq G$, there is an element $g\in P$ (the associated parabolic subgroup) such that $g\lambda(t)g^{-1}$ is contained in some $T\in \T$.
+\end{proposition}
+\begin{proof}
+ Again, let's prove this only in the case $G=GL(n)$. We can choose a basis $e_1,\dots, e_n$ in which $\lambda(t)$ is diagonal, say $\lambda(t)e_i=t^{a_i}e_i$, with $a_1\ge a_2\ge \cdots\ge a_n$. The problem is that the $e_i$ may not be orthogonal. Define $\tilde e_1=e_1$, $\tilde e_2=e_2-(e_2,\tilde e_1)\tilde e_1$, $\tilde e_i = e_i - \sum_{j<i} (e_i,\tilde e_j)\tilde e_j$. This change of basis is given by some upper triangular matrix $g$, which lies in $P$. In general, you have to be careful so that you choose $g$ to lie in your algebraic group.
+\end{proof}
+Now let's prove (4). If the orbit $Gv$ is closed, then $f$ attains a minimum. Suppose $f$ has a minium at $v$ on the orbit $G\cdot v\neq \bbar{G\cdot v}$. By the Hilbert-Mumford criterion, we can find $\lambda(t)$ such that $\lim_{t\to 0} \lambda(t)v=w\not\in G\cdot v$. Choose $g$ as in the proposition, and you get $\lim_{t\to 0}\lambda(t) g^{-1}v=g^{-1}w$. You can think of the parabolic as a block upper triangular matrix. Where $b_i<0$, $v$ must have zero coordinates, and when you multiply by by $g^{-1}$, you don't distrub that. So we get $\lim_{t\to 0}g\lambda(t)g^{-1}v=0$, and we saw that $f$ being minimum of $v$ implies the 1-parameter subgroup fixes $v$.
+\begin{theorem}
+ {\ }
+ \begin{enumerate}
+  \item[(a)] $x\in X$ is semi-stable if and only if $0\in \mu^{-1}(Gx)$.
+  \item[(b)] $\mu^{-1}(0)/K\to X\quot_L G$ is a homeomorphism.
+ \end{enumerate}
+\end{theorem}
+\begin{proof}
+ Recall the definition of semi-stability: $x\in \PP(V)$ is semi-stable if and only if $0\not\in \bbar{G\cdot v}$, where $v$ is a vector on the line defined by $x$. The point is that $\bbar{G\cdot v}$ has only one closed orbit $Z$ because $V$ is affine. So $x$ is semi-stable if and only if $Z\neq \{0\}$.
+ 
+ Consider $f$ on the orbit closure $\bbar{G\cdot v}$. This minimum exists, and by (4), this minimum must be at some $w\in Z$. If $w\neq 0$, then $\mu(w)=0$ by (1). If $w=0$, then $0\not\in\mu(\bbar{G\cdot x})$ ($\mu$ is not defined at $0$, so if the minimum of $f$ is at $0$, there is no other ciritical point, so by (1), the image doesn't contain $0$).
+ 
+ The closure equivalence class of $G\cdot v$ meets $\mu^{-1}(0)$ at most at one $K$-orbit. It meets it only if the corresponding point $x\in \PP(V)$ is semi-stable. So we get an embedding $\mu^{-1}(0)\hookrightarrow X^{ss}(L)$, and we have the map $X^{ss}(L)\to X\quot_L G$. The composition is $K$-equivariant, so we have a continuous bijection from a compact space to a hausdorff space (use the complex topology on $X\quot_L G$), so it's a homeomorphism.
+\end{proof}
+Next time, we'll prove convexity of the image of $\mu$ in the case $G$ is a torus. Then we'll return to Chow quotients.
+

@@ -1,0 +1,222 @@
+\sektion{2}{Affine Geometric Quotients}
+
+An affine algebraic group $G$ over an algebraically closed field $k$ is an affine variety $G$ together with algebraic maps $m\colon G\times G\to G$, $i\colon G\to G$, and $e\colon \ast\to G$, satisfying the following commutative diagrams:
+\[
+ \xymatrix@C+1pc{
+  G\times G\times G\ar[r]^-{m\times 1_G}\ar[d]_{1_G\times m} & G\times G\ar[d]^m\\
+  G\times G\ar[r]^m & G
+ }\qquad
+ \xymatrix@C-1pc{
+  G \ar[dr]_{1_G} \ar@<.5ex>[rr]^-{e\times 1_G} \ar@<-.5ex>[rr]_-{1_G\times e} & & G\times G \ar[dl]^m\\
+  & G
+ }\qquad
+ \xymatrix{
+  G\times G\ar@<.5ex>[rr]^-{1_G\times i} \ar@<-.5ex>[rr]_-{i\times 1_G} & & G\times G\ar[d]^m\\
+  G\ar[r] \ar[u]^\Delta &\ast\ar[r]^e & G
+}\]
+This is equivalent to the coordinate ring $k[G]$ being equipped with the structure of a (commutative) \emph{Hopf algebra}: algebra maps $\mu\colon k[G]\to k[G]\otimes k[G]$ (\emph{comultiplication}), $\tau\colon k[G]\to k[G]$ (\emph{antipode}), and $\e\colon k[G]\to k$ (\emph{counit}) satisfying the following commutative diagrams:
+\[\hspace{-2pc}\xymatrix{
+ k[G]\ar[r]^-\mu \ar[d]_\mu & k[G]\otimes k[G]\ar[d]^{\mu\otimes \id}\\
+ k[G]\otimes k[G] \ar[r]^-{\id\otimes\mu} & k[G]\otimes k[G]\otimes k[G]
+ }\quad
+ \xymatrix@C-2.2pc{
+  & k[G]\ar[dl]_\mu\ar[dr]^\id\\
+  k[G]\otimes k[G]\ar@<.5ex>[rr]^-{\e\otimes \id}\ar@<-.5ex>[rr]_-{\id\otimes\e} & & k[G]
+ }\quad
+ \xymatrix@C-1.7pc{
+  k[G]\ar[r]^-\e\ar[d]_\mu & k\ar[r] & k[G]\\
+  k[G]\otimes k[G] \ar@<.5ex>[rr]^-{\id\otimes\tau}\ar@<-.5ex>[rr]_{\tau\otimes\id} & & k[G]\otimes k[G]\ar[u]_m
+}\]
+Basically, if you're working with an affine algebraic group, you can forget the group and just remember the Hopf algebra structure on its ring of regular functions. To go back and forth between the Hopf algebra structure on $k[G]$ and the group structure on $G$, you use the following relations for $f\in k[G]$ and $g,h\in G$ ($e\in G$ is the identity element).
+\[
+ \fbox{$\mu(f)(g,h)=f(gh)\qquad \tau(f)(g)=f(g^{-1})\qquad \e(f)=f(e)$}
+\]
+
+\begin{example}
+ If $G=\GG_m=k^\times$, then $k[G]=k[t,t^{-1}]$. We have $\mu(t)=t\otimes t$, $\tau(t)=t^{-1}$, and $\e(t)=0$.
+\end{example}
+\begin{example}
+ If $G=\GG_a=k$, then $k[G]=k[t]$. We have $\mu(t)=t\otimes 1+1\otimes t$, $\tau(t)=-t$, and $\e(t)=1$.
+\end{example}
+
+
+\subsektion{Representions of Algebraic Groups}
+
+If $V$ is a finite-dimensional vector space, then a \emph{representation} of $G$ on $V$ is a morphism of algebraic groups $\rho\colon G\to GL(V)$. If $V$ is infinite-dimensional (and we will need infinite-dimensional representations), then you have to be a bit more delicate. So use the notion of a comodule.
+
+\begin{definition}
+ A \emph{$G$-comodule} structure on a vector space $V$ is a $k$-linear map $\sigma\colon V\to k[G]\otimes V$ (called a \emph{coaction}) satisfying the diagrams
+ \[\xymatrix{
+   V\ar[r]^-\sigma\ar[d]_\sigma & k[G]\otimes V\ar[d]^{\mu\otimes 1_V}\\
+   k[G]\otimes V \ar[r]^-{1_G\otimes \sigma} & k[G]\otimes  k[G]\otimes V
+  }\qquad\qquad
+  \xymatrix{
+   V\ar[r]^-\sigma \ar[dr]_{1_V} & k[G]\otimes V \ar[d]^{\e\otimes 1_V}\\
+   & V
+ }\]
+ A morphism of comodules is a $k$-linear map $\phi\colon V\to W$ that intertwines the coactions: $\sigma_W\circ \phi = (\id\otimes\phi)\circ \sigma_V$. In particular, a \emph{subcomodule} (or \emph{invariant subspace}) is a subspace $W\subseteq V$ such that $\sigma(W)\subseteq k[G]\otimes W$.
+\end{definition}
+\begin{remark}\label{lec02Rmk:rep=comod}
+ Let's check that the notion of a finite-dimensional comodule corresponds to the notion of a finite-dimensional representations.\anton{what's wrong with the naive notion of an infinite-dimensional representation? Is $GL(V)$ not finite type or is it not even algebraically definable (what is determinant?)?}
+ 
+ Given a vector space $V$ with basis $\{e_1,\dots, e_n\}$ and comodule structure $\sigma\colon V\to k[G]\otimes V$, we have $\sigma(e_i)=\sum_j f_{ij}\otimes e_j$ for some $f_{ij}\in k[G]$. Then we can define $\rho^*\colon k[GL(V)]\to k[G]$ by $x_{ij}\mapsto f_{ij}$ and verify that the axioms of a comodule imply that the induced map of varieties $\rho\colon G\to GL(V)$ is a group homomorphism.
+ 
+ Conversely, if $\rho$ is a representation, then we can define a coaction $\sigma\colon V\to k[G]\otimes V$ by $e_i\mapsto \sum_j \rho^*(x_{ij})\otimes e_j$. The fact that $\rho$ is a group homomorphism implies that $\sigma$ satisfies the axioms of a coaction.
+ 
+ So from now on, we'll use the terms ``comodule'' and ``representation'' interchangably. To go back and forth between the two, use the relation that for $g\in G$ and $v\in V$,
+ \[
+  \fbox{$\displaystyle\sigma(v)=\sum f_i\otimes v_i \quad \Longleftrightarrow \quad g\cdot v = \sum f_i(g)v_i.$}\qedhere
+ \]
+\end{remark}
+\begin{example}
+ Let $G=k^\times$. Given $m\in \ZZ$, we get a $1$-dimensional representation given by the action $t\cdot v=t^mv$. Using Remark \ref{lec02Rmk:rep=comod}, you may check that this corresponds to the coaction $v\mapsto t^m\otimes v$.
+\end{example}
+\begin{remark}[$\hom$ and $\otimes$]
+ For any pair of representations $V$ and $W$, the tensor product $V\otimes W$ has the structure of a represenation, given by the action $g\cdot (v\otimes w)=gv\otimes gw$ (i.e.~the coaction $v\otimes w\mapsto \sum f_ig_j\otimes v_i\otimes w_j$, where $v\mapsto \sum f_i\otimes v_i$ and $w\mapsto \sum g_j\otimes w_j$).
+
+ Furthermore, $\hom_k(V,W)$ has the structure of a representation given by the action $(g\cdot \phi)(v)=g\cdot \bigl(\phi(g^{-1}\cdot v)\bigr)$.\footnote{The corresponding coaction is \[\bigl(v\mapsto \phi(v)\bigr)\mapsto \bigl(v\mapsto (m\otimes \id_V)(\id_{k[G]}\otimes \tau\otimes\id_V)(\id_{k[G]}\otimes\sigma)(\id_{k[G]}\otimes\phi)\sigma(v)\bigr).\] There is a string diagram yoga to figuring out these coactions.} In particular, the dual of a representation $V^*=\hom_k(V,k)$ has the structure of a representation ($k$ is interpreted as the trivial representation), making $\hom_k(V,W)\cong V^*\otimes W$ an isomorphism of representations.
+ 
+ The invariants $\hom_k(V,W)^G$ consist of those linear maps $\phi$ for which $\phi(v)=g\cdot \phi(g^{-1}\cdot v)$ for all $g\in G$ and $v\in V$. This is exactly the space of $G$-equivariant maps (i.e.~morphisms of representations) $\hom_G(V,W)=\{\phi\in\hom_k(V,W)|g\cdot \phi(v)=\phi(g\cdot v)\}$.
+\end{remark}
+
+\begin{proposition}\label{lec2Prop:union_findim}
+ Any representation $V$ of an affine group $G$ is a union of finite-dimensional representations.
+\end{proposition}
+\begin{proof}
+ It is enough to show that any vector $v\in V$ lies in a finite-dimensional representation. We have that $\sigma(v)=\sum_{i=1}^N f_i\otimes v_i$, a finite sum in which we can choose the $f_i$ to be linearly independent. Now consider the space $M_v=\langle v_1,\dots, v_N\rangle$. First of all, $v=\sum \e(f_i)v_i$ by one of the axioms of a coaction, so $v\in M_v$. Next we'll show that $M_v$ is an invariant subspace. To see that, note that 
+ \[
+  \sum \mu(f_i)\otimes v_i = (\mu\otimes 1_V)\sigma(v) = (\id\otimes \sigma)\sigma(v) = \sum f_i\otimes \sigma(v_i)
+ \]
+ by the other axiom of a coaction. Since the $f_i$ are linearly independent, we can choose linear functionals $\lambda_i\in \hom_k(k[G],k)$ such that $\lambda_i(f_j)=\delta_{ij}$. Applying $\lambda_i\otimes \id_{k[G]}\otimes \id_V$ to the left-hand side of the equation, we clearly get an element of $k[G]\otimes M_v$, and applying it to the right-hand side, we get $\sigma(v_i)$. So $\sigma(v_i)$ is in $k[G]\otimes M_v$, as desired.
+\end{proof}
+\begin{remark}\label{lec2Rmk:lin_idpt_trick}
+ The linear functional trick at the end of the proof of Proposition \ref{lec2Prop:union_findim} also shows that if $\sum f_i\otimes v_i = \sum f_i\otimes w_i$ and the $f_i$ are linearly independent, then $v_i=w_i$.
+\end{remark}
+\begin{remark}\label{lec2Rmk:M_v_minimal}
+ The space $M_v$ constructed in the proof of Proposition \ref{lec2Prop:union_findim} is actually \emph{the smallest} invariant subspace containing $v$. To see this, it suffices to show that for any invariant subspace $W$ containing $v$ must contain each of the $v_i$. Since $W$ is invariant, $\sigma$ sends $W$ into $k[G]\otimes W$, and since $v\in M$, we must have $\sigma(v)=\sum_{j=1}^S h_j\otimes w_j$ for some $h_j\in k[G]$ and $w_j\in W$. Applying the linear functional $\lambda_i\otimes \id$ (where $\lambda_i(f_j)=\delta_{ij}$) to the equality $\sum_{i=1}^N f_i\otimes v_i=\sum_{j=1}^S g_j\otimes w_j$, we get $v_i=\sum_{j=1}^S \lambda_i(g_j)w_j$ which is clearly in $W$.
+\end{remark}
+
+
+\begin{corollary}
+ Any irreducible representation of $G$ is finite-dimensional.
+\end{corollary}
+\begin{proposition}\label{lec2Prop:G_m-reps}
+ Any representation of $k^\times$ can be written as $V=\bigoplus_{m\in \ZZ}T_m$, where $T_m=\{v\in V| t(v)=t^mv\} = \{v\in V|\sigma(v)=t^m\otimes v\}$.
+\end{proposition}
+\begin{proof}
+ It is clear that the $T_m\cap T_n=0$ for $m\neq n$, so we only need to show that every $v\in V$ can be written as a sum of elements of the various $T_m$. We have that $\sigma(v)=\sum_{i=1}^N t^i\otimes v_i$ for some $v_i\in V$. By one of the axioms of a coaction, we have
+  \[
+  v = (\e\otimes\id_V)\sigma(v) = \sum \e(t^i)\otimes v_i = \sum v_i
+ \]
+ So it is enough to show that $v_i\in T_i$. Using the other axiom of a coaction, we have
+ \[
+  \sum t^i\otimes t^i\otimes v_i = (\mu\otimes 1_V)\sigma(v) = (\id\otimes \sigma)\sigma(v) = \sum t^i\otimes \sigma(v_i)
+ \]
+ By Remark \ref{lec2Rmk:lin_idpt_trick}, we get that $\sigma(v_i)=t^i\otimes v_i$, so $v_i\in T_i$ as desired.
+\end{proof}
+\begin{definition}
+ A \emph{character} of an algebraic group $G$ is a group homomorphism to $k^\times$. Equivalently, (using the weight $1$ representation of $k^\times$) a character is a $1$-dimensional representation of $G$. The set of characters $G^\vee =\hom_\gp(G,k^\times)$ has a group structure induced by the group structure on $k^\times$. The $1$-dimensional representation associated to a character $\chi\in G^\vee$ is denoted by $V_\chi$, and has the action $g\cdot v=\chi(g)v$ (or the coaction $v\mapsto \chi\otimes v$, where $\chi\in\hom_\gp(G,k^\times)\subseteq \hom(G,k)=k[G]$ is regarded as a regular function on $G$).
+\end{definition}
+\begin{example}
+ By Proposition \ref{lec2Prop:G_m-reps}, $(k^\times)^\vee\cong \ZZ$.
+\end{example}
+\begin{example}[Algebraic Torus]
+ Let $G=\GG_m^r=k^\times\times\cdots \times k^\times$. The group of characters $G^\vee$ is a free abelian group of rank $r$.
+\end{example}
+\begin{corollary}[to Proposition \ref{lec2Prop:G_m-reps}]
+ Any representation $V$ of an algebraic torus $G$ may be written as $V=\bigoplus_{\chi} T_\chi$, where $T_\chi=\{v\in V|g\cdot v=\chi(g)v\}=\{v\in V|\sigma(v)=\chi\otimes v\}$.
+\end{corollary}
+\begin{proof}[Sketch Proof]
+ We have that $G=\GG_m^r$. Restricting to each copy of $\GG_m$ and applying Proposition \ref{lec2Prop:G_m-reps}, we get a direct sum decomposition of $V$. The desired decomposition is the common refinement of all of those decompositions.
+\end{proof}
+\begin{proposition}\label{lec2Prop:G_a-nilpotents}
+ Suppose $\mathrm{char}(k)=0$, and let $V$ be a representation of $G=\GG_a=k$. Then there exists a locally nilpotent operator $A\in \End_k(V)$ (i.e.~for any $v\in V$, $A^{N(v)}v=0$) such that the representation is given by $t\cdot v= \exp(tA)v=1+tAv+\frac12 t^2A^2v+\cdots$ (which terminates for each $v$ because $A$ is locally nilpotent), or by the corresponding coaction $v\mapsto \sum \frac{1}{p!}t^p \otimes A^pv$.
+\end{proposition}
+\begin{proof}
+ For $v\in V$, $\sigma(v) = \sum_{m=0}^N t^m\otimes v_m$. As usual, we have
+ \[
+  \sum_m (t\otimes 1+1\otimes t)^m\otimes v_m = (\mu\otimes \id_V)\sigma(v) = (\id_{k[G]}\otimes \sigma)\sigma(v) = \sum_m t^m\otimes \sigma(v_m)
+ \]
+ By Remark \ref{lec2Rmk:lin_idpt_trick}, we have
+ \begin{align*}
+  \sigma(v_m) &= \sum_{n=m}^N \binom{n}{m}t^{n-m}\otimes v_n = \sum_{p=0}^{N-m} \binom{m+p}{m} t^p\otimes v_{m+p}\\
+  &= \sum_{p=0}^{N-m} \frac{t^p}{p!}\otimes (m+p)(m+p-1)\cdots(m+1) v_{m+p}.
+ \end{align*}
+ So we define 
+ \[Av_m=
+ \begin{cases}
+  (m+1)v_{m+1} & m<N\\
+  0 & \text{else}
+ \end{cases}
+ \]
+ \anton{but the $v_m$ may not be linearly independent, and they may not span.}\anton{You may define $A$ on a space $W=\langle w_1,\dots, w_N\rangle$ by $Aw_m=(m+1)w_{m+1}$. Then using the action $\exp(tA)$, $W$ is a representation. The calculation above gives a map from $W$ to $V$. This should show that you can define the operator $A$ without worrying about linear independence of the $v_m$. Also, the operator $A$ is unique. So you can define it on $M_v$, then on some $M_w$, and the operators on the intersection should agree, so you can extend to the sum of the two spaces}.
+\end{proof}
+\begin{remark}
+ Proposition \ref{lec2Prop:G_a-nilpotents} is a result about \emph{algebraic} representations of $\GG_a$. If you consider the additive group $G=\GG_a$ over $\CC$ and any endomorphism $A$ of a vector space $V$ (need not be locally nilpotent), having $t$ act by $\exp(tA)$ gives $V$ the structure of a representation of $G$. But if $A$ is not locally nilpotent, the corresponding map $G\to GL(V)$ is not algebraic. Another way to say this is that the coaction $V\to k[G]\otimes V$ does not send every element of $V$ into $k[G]\otimes V$, but into some \emph{completion} $k[G]\hhat \otimes V$ (in this case, the completion with respect to the topology $V$ inherits from $\CC$\anton{I think}).
+\end{remark}
+
+\subsektion{Reductive Groups}
+\begin{definition}
+ An affine group $G$ is \emph{(linearly)\footnote{We will usually drop the word ``linearly''.} reductive} if any representation of $G$ is completely reducible. That is, one of the following equivalent\footnote{To see that (1) implies (2), use transfinite induction on the dimension of $V$. To see that (2) implies (1), \anton{you have to get that any partial decomposition of $V$ into irreducibles can always be continued}.} conditions hold.
+ \begin{enumerate}
+  \item If $W\subseteq V$ is an invariant subspace, then it has an invariant direct complement (i.e.~an invariant subspace $W'\subseteq V$ such that $V=W\oplus W'$).
+  \item $V= \bigoplus_{i\in I}V_i$ with the $V_i$ irreducible.\qedhere
+ \end{enumerate}
+\end{definition}
+\begin{remark}[Isotypic components]\label{lec2Rmk:isotypic}
+ The decomposition $V= \bigoplus_{i\in I}V_i$ with the $V_i$ irreducible is \emph{not canonical}. For example, if the action of $G$ on $V$ is trival, then any direct sum decomposition of $V$ into $1$-dimensional vector spaces works. However, there is a canonical decomposition of $V$, called the decomposition into \emph{isotypic components}.
+ 
+ Let $J$ be the set of all irreducible representations of $G$. For a given $j\in J$, let $V_j$ be the corresponding irreducible represetation, let $T_j$ be the sum of all subrepresentations $W\subseteq V$ for which $W\cong V_j$. This $T_j$ is called the \emph{$V_j$-isotypic component of $V$}. We claim that $T_j\cong \bigoplus_{I_j} V_j$ for some index set $I_j$, and that there is a canonical decomposition $V=\bigoplus_{j\in J} T_j$ (canonical in the sense that the $T_j$ are uniquely determined and respected by any morphisms of representations).
+ 
+ First, let's show that $T_j\cong \bigoplus_{I_j} V_j$. If $W\subseteq V$ is an irreducible subrepresentation and $U\subseteq V$ is some subrepresentation (may not be irreducible), then the intersection $U\cap W$ is an invariant subspace of $W$. Since $W$ is irreducible, we either have $W\subseteq U$, in which case $W+U=U$, or $W\cap U=\{0\}$, in which case $W+U\cong W\oplus U$. So we can build up $T_j$ as a direct sum of copies of $V_j$, one copy of $V_j$ at a time, applying transfinite induction if we need to.
+ 
+ By the assumption that $V$ decomposes as a sum of irreducible subrepresentations, we know that $V=\sum_{j\in J} T_j$.\footnote{Note that if $V$ is not completely reducible, it is \emph{not} the sum of its isotypic components.} We will prove by (transfinite) induction that $V\cong \bigoplus_{j\in J}T_j$. For $j\in J$ and $S\subseteq J$ with $j\not\in S$, assume (by induction) that $\sum_{i\in S} T_i\cong \bigoplus_{i\in S}T_i$. Let $W$ be an irreducible subrepresentation of the invariant subspace $T_j\cap \bigoplus_{i\in S}T_i$. Then $W$ is an invariant subspace of $T_j\cong \bigoplus_{I_j} V_j$. Composing the inclusion $W\hookrightarrow T_j$ with the projections $T_j\to V_j$, we get maps $W\to V_j$. If $W\neq 0$, one of these maps must be non-zero, so by Schur's Lemma,\footnote{Schur's Lemma stattes that any morphism $f\colon W\to U$ of irreducible representations is either zero or an isomorphism. To prove it, simply note that $\ker f\subseteq W$ and $\im f\subseteq U$ are invariant subspaces.} it must be an isomorphism. So we must have $W\cong V_j$. Similarly, for some $i\in S$, the projection of $W$ onto the $T_i$ must be non-zero, from which we get that $W\cong V_i$, contradicting $j\not\in S$. It follows that $T_j\cap \bigoplus_{i\in S}T_i=0$, so $T_j+\bigoplus_{i\in S}T_i\cong T_j\oplus\bigoplus_{i\in S}T_i$. By (transfinite) induction we build direct sum decomposition $V=\bigoplus_{j\in J} T_j$. \anton{This feels more complicated than it has to be}
+ 
+ Finally, suppose $V=\bigoplus_{j\in J}T_j$ and $W=\bigoplus_{j\in J} R_j$ are the isotypic component decompositions of two representations, then any morphism of representations $f\colon V\to W$ must send $T_j$ to $R_j$ for each $j$. Otherwise, we would get a non-zero morphism $T_i\to R_j$ for $i\neq j$. Composing with the inclusions $V_i\hookrightarrow T_i$ and the projections $R_j\to V_j$, we get a bunch of morphisms $V_i\to V_j$, at least one of which must be non-zero. By Schur's lemma, we get that $V_i\cong V_j$, contradicting $i\neq j$.
+\end{remark}
+
+\begin{proposition}
+ The following conditions on an algebraic group $G$ are equivalent.
+ \begin{enumerate}[label=\alph*.]
+  \item $G$ is reductive.
+  \item Any representation $V$ decomposes as $V=V^G\oplus W$. (Note this implies $W^G=0$)
+  \item For any surjection $V\twoheadrightarrow W$ of representations, $V^G\to W^G$ is surjective.
+  \item For any representation $V$ and any $v\in V^G$, there exists $f\in (V^*)^G$ such that $f(v)=1$.
+ \end{enumerate}
+\end{proposition}
+\begin{proof}
+ $(a\Rightarrow b)$ follows from Remark \ref{lec2Rmk:isotypic}: $V^G$ is the trivial isotypic component and $W$ is the sum of the other isotypic components.
+ 
+ $(b\Rightarrow c)$ Let $V=V^G\oplus V'$ and $W=W^G\oplus W'$. By a Schur's Lemma argument like the one at the end of Remark \ref{lec2Rmk:isotypic}, there are no non-zero morphisms of representations $V^G\to W'$ or $V'\to W^G$. So the only way a morphism $V\to W$ can be surjective is if $V^G\to W^G$ is surjective.
+ 
+ $(c\Rightarrow a)$ Let $W\subseteq V$ be an invariant subspace. We have the surjection of representations $\hom_k(V,W)\to \hom_k(W,W)$ given by restriction. Taking invariants, we have $\hom_G(V,W)\to \hom_G(W,W)$, which is surjective by $(c)$. So there exists some $\psi\in\hom_G(V,W)$ that restricts to $\id_W\in\hom_G(W,W)$. The kernel $\psi$ is a complementary invariant subspace to $W$.
+ 
+ $(c\Rightarrow d)$ Let $W$ be the linear subspace of $V$ spanned by $v$. Since $v\in V^G$, $W$ is isomorphic to the trivial $1$-dimensional representation $k$. We have a surjection of representations $V^*\cong\hom_k(V,k)\to \hom_k(W,k)$. By $(c)$, the induced map $(V^*)^G\to \hom_G(W,k)=\hom_k(W,k)$ is surjective, so there exists some $f\in (V^*)^G$ lifing the linear functional that is $1$ on $v$.
+ 
+ $(d\Rightarrow b)$ Choose a basis for $V^G$, so $V^G=\mathrm{span}\{v_i\}_{i\in I}$. Choose $f_i\in (V^*)^G$ such that $f_i(v_i)=1$. Then $W=\bigcap_{i\in I} \ker(f_i)$ is an invariant complementary subspace to $V^G$.
+\end{proof}
+\begin{example}
+ We proved that any torus is reductive in any characteristic.
+\end{example}
+\begin{theorem}[Maschke's Theorem]\label{lec2Thm:Maschke}
+ If $G$ is a finite group with $\mathrm{char}(k)\nmid |G|$, then $G$ is reductive.
+\end{theorem}
+\begin{proof}
+ Let's prove property (c). Pick a linear functional $f\in V^*$ such that $f(v)=1$. Then define $\bar f(w) = \frac{1}{|G|}\sum_{g\in G} f(g(w))$. This $\bar f$ is an invariant functional such that $\bar f(v)=1$.
+\end{proof}
+\begin{example}
+ Suppose $k=\CC$, and let $G$ be a semi-simple connected Lie group. By the classification of complex semi-simple Lie groups, $G$ is actually an algebraic group (for example, $G=SL(n,C)$). Then Weyl's theorem states that every finite-dimensional representation of $G$ is completely reducible (you have to use that infinite-dimensional representations are unions of finite-dimensional representations). Thus, $G$ is reductive.
+\end{example}
+Note that $GL(n,\CC)=\bigl(SL(n,\CC)\times \CC^\times\bigr)/\mu_n$. It turns out that every reductive group is obtained by taking a semi-simple group, producting with a torus, and quotienting by a finite group.
+
+
+
+
+
+
+
+
+
+
+
+

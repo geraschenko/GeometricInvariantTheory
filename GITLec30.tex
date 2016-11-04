@@ -1,0 +1,51 @@
+\sektion{30}{Lecture 30}
+
+\begin{example}
+ Suppose we have $n$ points in $\PP^1$. We haven't discussed this problem yet, but we've considered ordered $n$-tuples. We have an $SL(2)$ action on $(\PP^1)^n$. There are lots of linearizations, but there is one which is symmetric, the one coming from the standard action $(\CC^2)^{\otimes n}$ (you can get more via the Veronese embeddings). We have a natural map $(\CC^2)^n\to (\CC^2)^{\otimes n}$. We checked the stability condition in the case of numbered points, but stability only depends on the connected component of the group, so we have that the semi-stable points are the ones where the multiplicity of each point is $\le n/2$.
+ 
+ We have $K=SU(2)\subseteq SL(2)$. Let $\nu\colon \PP^1\to \su(2)^*\cong \RR^3$ be the moment map for the action on $\PP^1$. Think of $\su(2)$ as hermitian $2\times 2$ matrices with trace zero. The image of the moment map will be the sphere in $\RR^3$. The image of $\nu$ will be the set of matrices $X$ such that $\bbar X^t=X$ and $\tr(X)=0$. This means that the eigenvalues of $X$ must be $\{1/2,-1/2\}$, and $X$ is of the form $\matx{a&b\\ \bbar b& a}$ where $-a^2-b\bbar b = -1/4$. This is exactly the usual identification if $\PP^1$ with $S^2$.
+ 
+ So for $(x_1,\dots, x_n)\in (\PP^1)^n$, we have $\mu(x_1,\dots, x_n) = \sum \nu(x_i)$. So $\mu^{-1}(0)$ is the set of sets of $n$ points on the sphere such that the sum of them is zero. We have to quotient this by the action of $SU(2)$, which is just given by rotation of the sphere (via the map $K=SU(2)\to SO(3,\RR)$).
+ 
+ If $n=4$, we know the quotient is $X\quot G\cong \PP^1$, given by the cross-ratio. We want to classify sets of four points $x_1,\dots, x_4\in S^2$ such that $\sum x_i=0$, up to rotation. Let $y=x_1+x_2$ and $x_3+x_4=-y$. We can rotate so that $y$ perpendicular to the equator. Fixing the vertical axis, we can still rotate $x_3$ to be on some fixed meridian. Under these conditions, everything is determined uniquely by $x_1$. It lies on some line of latitude, so $x_2$ must be on at the same latitude, and opposite longitude. Now we know that $x_3$ is on the meridian, and $x_4$ must be at the opposite longitude.
+\end{example}
+
+\subsektion{Convexity Theorems}
+
+Suppose $M$ is a compact connected symplectic manifold and $T\cong (S^1)^n$ is a real torus acting on $M$, preserving the symplectic form $\om$. Suppose we have a moment map $\mu\colon M\to \t^*=\RR^n$.
+\begin{theorem}\label{lec30:thm1}
+ {\ }
+ \begin{enumerate}
+  \item[(a)] $\mu^{-1}(c)$ is connected for all $c$.
+  \item[(b)] $\mu(M)$ is convex.
+  \item[(c)] Let $Z=\{x\in M|d\mu(x)=0\}=Z_1\sqcup\cdots \sqcup Z_N$ (the $Z_i$ are the connected components). Each $Z_i$ is a non-singular manifold, and $\mu(Z_i)=c_i$ is a single point. Moreover, $\mu(M)$ is the convex hull of the $c_i$. In particular, $\mu(M)$ is a convex polytope.
+ \end{enumerate}
+\end{theorem}
+\begin{theorem}\label{lec30:thm2}
+ Suppose $M$ is a complex variety with K\"ahler structure, and $T_\CC$ is a complex torus acting on $M$ such that the real torus $T_K$ preserves the K\"ahler structure. Given $y\in M$, let $Y=T_\CC\cdot y$ and $\overline Y$ its closure. Suppose a moment map $\mu$ exists.
+ \begin{enumerate}
+  \item[(a)] $\mu(\overline Y)=P$ is a convex polytope.
+  \item[(b)] If $S$ is an open face of $P$, then $\mu^{-1}(S)$ is exactly one orbit of $T_\CC$ whose complex dimension is equal to the real dimension of $S$.
+  \item[(c)] $\mu\colon \overline Y/T_K\to P$ is a homeomorphism of topological spaces.
+ \end{enumerate}
+\end{theorem}
+It is clear that a projective toric variety is exactly such a situation. On the other hand, we have the fan of the variety. The relationship between the fan $\Sigma$ of $\overline Y$ and $P$ is that $\Sigma$ is the dual fan of $P$.
+
+We can regard $P\subseteq \RR^n$ and $\Sigma\subseteq (\RR^n)^*$. For a face $S$ of $P$, the corresponding cone in $\Sigma$ is $\sigma=\{\lambda\in (\RR^n)^*|\lambda$ attains its maximum (on $P$) at $S\}$. The moment map is not unique (because you can shift by scalar of scale), but the fan is uniquely determined. For example, \anton{picture for $\PP^2$, but equalateral rather than what I'm used to}. It is often more conviniant to work with the polytope rather than the fan.
+
+Let $\H_n$ be the $n\times n$ hermitian matrices. We have a natural action of $U(n)$ (since $\H_n$ is naturally $\mathfrak u(n)$), given by $g\cdot X = g^{-1}Xg = \bbar g^t Xg$. The orbits are given by eigenvalues $(\lambda_1,\dots, \lambda)n)$. Each orbit $M$ is a real manifold, but it's actually a complex manifold. The isotropy group is $U(n_1)\times\cdots \times U(n_k)$, where $n=n_1+\cdots n_k$ and the $n_i$ are the multiplicities of the eigenvalues. So the quotient by the isotropy group is a flag variety. What is the moment map of the orbit $M$ \anton{with respect to the action of $T^n=\{diag(e^{i\theta_1},\dots, e^{i\theta_n})\}\subseteq U(n)$}? It is just the projection onto the diagonal: $\mu(X)=(x_{11},x_{22},\dots, x_{nn})$. We get that $\mu(M)$ is the convex hull of $\{(\lambda_{s(1)},\dots, \lambda_{s(n)}|s\in S_n\}$. Such convex hulls are called permutohedrons. These orbits are actually all the same variety. You have a lot of choice in the eigenvalues, but all the combinatorial and topological characteristics will be the same. All that matters is the multiplicities $n_1$, \dots, $n_k$.
+
+Let's start the proof of the first theorem.
+
+We have $(M,\om)$ and $f_1,\dots, f_n$ are commuting functions (in the sense that $\{f_i,f_j\}=0$) such that the corresponding vector fields $L_{f_i}=\om(df_i)$ generate some torus $\lie T=\t$ (which may have larger dimension than $n$. \anton{the flow of the Hamiltonian may not correspond to a \emph{closed} 1-parameter subgroup}. Then we have $f\colon M\to \RR^n$ factoring as $M\xrightarrow{\mu}\t^*=\RR^m\xrightarrow{projection}\RR^n$. \anton{now we've started denoting the dimension of the torus in the theorem by $m$.}
+ 
+Now we can rephrase the theorem as
+\begin{enumerate}
+ \item[(a)] $f^{-1}(c)$ is connected.
+ \item[(b)] $f(M)$ is convex.
+\end{enumerate}
+If $n=1$, then (b) is trivial. In general, $(a)\Rightarrow (b)$. Suppose by induction that I've proven it up to $n$. Now given $g\colon M\xrightarrow f \RR^{n+1}\xrightarrow \pi \RR^n$ for any projection $\pi$. By induction, the preimage under $g$ of any point is connected. We have $f(M)\cap \pi^{-1}(c)=f(g^{-1}(c))$ is connected because $f$ is continuous and $g^{-1}(c)$ is connected. But $\pi^{-1}(c)$ is a line. But this means that $f(M)$ is convex.
+
+Now let's do the proof of (a) in the case where $n=1$. For this, we use some Morse theory. $f$ is \emph{non-degenerate} (in the Morse sense) if it has isolated critical points and the hessian $D^2f = \Bigl(\pder{^2f}{x_i\partial x_j}\Bigr)$ is non-degenerate.
+
+If the signature of the hessian $D^2 f$ is never $1$ or $n-1$, then the preimage $f^{-1}(c)$ is always connected. This is because the preimage is a quadric which can only have two connected components if the signature is $\pm 1$. The basic idea is to prove that the Hamiltonian is a non-degenerate Morse function.

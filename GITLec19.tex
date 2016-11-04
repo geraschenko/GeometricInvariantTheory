@@ -1,0 +1,101 @@
+\sektion{19}{Lecture 19}
+
+We started talking about linearization last time, and there was a little discussion. If the zero section of $L$ is $G$-invariant, then the action is linear. If you have a map $\AA^1\to \AA^1$ which is an isomorphism sending zero to zero, then it must be linear.
+
+On the elements of $L$, it will be a left action, but on sections, it's a right action.
+
+Last time, we discussed the homomorphism $\alpha\colon \pic^G X\to \pic X$. We described the kernel of $\alpha$ as $H^1=Z^1(G,\O(X)^\times)/B^1(G,\O(X)^\times)$, where $Z^1(G,\O(X)^\times) = \{\Phi\in \O(G\times X)^\times|\Phi$ satisfies the cocycle condition$\}$ and $B^1(G,\O(X)^\times)=\{\Phi| \Phi(g,x)=\frac{\phi(gx)}{\phi(x)}$ for some $\phi\in \O(X)^\times\}$.
+\begin{theorem}[Rosenlicht]
+ Suppose $X$ and $Y$ are irreducible varieties. Then the natural map $\O(X)^\times\times \O(Y)^\times \to \O(X\times Y)^\times$ is surjective. Namely, $f(x,y)\in \O(X\times Y)^\times$ can always be written as $f(x,y)=\ga(x)\beta(y)$.
+\end{theorem}
+\begin{proof}
+ This is a local statement \anton{$\ga$ and $\beta$ are unique upto scalar, so we can glue}, so we may assume that $X$ and $Y$ are affine. We choose an embedding $X\hookrightarrow \bbar X$ into a proper normal variety (normalizing if needed) \anton{do the reduction to the normal case}. For a given $y\in Y$, consider $\phi_y(x)=f(x,y)$ on $\bbar X$, which is invertible on $X$, but it could give a divisor on $\bbar X$. Since $\bbar X\setminus X = \bigcup Z_i$ divisors $Z_i$ \anton{and some higher codimension stuff}. So we have $\div(\phi_y(x))=\sum m_i(y)Z_i$. Since the $m_i$ are continuous functions \anton{why are they continuous?}, they must be constant. So $\div(\phi_y(x))=\div(\phi_{y_0}(x))$ so $\phi_y(x)/\phi_{y_0}(x)=\beta(y)$ \anton{here we're using properness of $\bbar X$ to say that $\phi_y/\phi_{y_0}\in k^\times$, and normalness to make divisors behave nicely}, and we have $f(x,y)=\phi_{y_0}(x)\beta(y)$.
+ 
+ \anton{$\div(\phi_y)$ should be equal to the intersection of $\div(f)$ with the fiber over $y$. But $\div(f)$ is supported on $(\bbar X\setminus X)\times Y=\bigcup Z_i\times Y$, so it is of the form $\sum m_i Z_i\times Y$.}
+ \anton{We assume that $\bbar X\setminus X$ consists of codimension 1 pieces, but if there are pieces of higher codimension, they don't mess anything up}
+ 
+ \anton{another approach: We have $\div(f)=\sum m_i Z_i\times Y$ for some integers $m_i$. Choose a rational function $\ga\in \O(\bbar X)$ such that $\div(\ga)=\sum m_i Z_i$. Then when $\ga(x)$, regarded as a function on $\bbar X\times Y$ has the same divisor as $f(x,y)$, so the ratio is an invertible function $\beta(x,y)$. Since $\bbar X$ is proper, $\beta$ must be constant along fibers, so it is really $\beta(y)$.}
+\end{proof}
+Now I have a cocycle $\Phi(g,x)=\chi(g)\beta(x)$. We may rescale $\chi$ and $\beta$ (inversely) so that $\chi(e)=1$. The cocycle condition becomes
+\[
+ \chi(gh)\beta(x)=\chi(g)\beta(hx)\chi(h)\beta(x).
+\]
+It follows that $\beta(x)$ is constant \anton{after you cancel the $\beta(x)$'s, the $\beta(hx)$ is the only dependence on $x$}, so $\beta(hx)=1$ since $\beta(x)=\chi(e)\beta(x)=\Phi(e,x)=1$. So we have $\Phi(g,x)=\chi(g)$. Thus, any cocycle is a character since $\chi(gh)=\chi(g)\chi(h)$.
+
+Now we have
+\[
+ 0\to G_X^\vee\to G^\vee\to \ker \alpha \to 0
+\]
+the right map is surjective because we have a linearization of $\O_X$, and we've shown that any other differs by a character. $G_X^\vee = \{\chi(g) = \phi(gx)/\phi(x)|\phi\in \O(X)^\times\}$, which is the group of characters arrising from semi-invariants on $X$.
+\begin{example}
+ If $G^\vee =1$ (like in the case of $SL$), we get that $\ker \alpha$ is trivial, so linearizations are unique.
+ 
+ If $\O(X)^\times =k^\times$ (like in the projective case), then $G_X^\vee=1$, so then $\ker \alpha=G^\vee$.
+\end{example}
+\begin{theorem}
+ Let $G$ be a connected affine algebraic group. Then $\O(G)^\times = k^\times G^\vee$.
+\end{theorem}
+We've already seen this for a torus.
+\begin{proof}
+ We have the multiplication $m\colon G\times G\to G$. Given $f\in \O(G)^\times$, we have $m^* f(g,h)=f(gh)$. On the other hand, I know that $f(gh)=f_1(g)f_2(h)$. Rescale $f$ so that $f(e)=1$ and rescale $f_1$ and $f_2$ (inversely) so that $f_1(e)=1$ (it follows that $f_2(e)=1$). Then $f_1(g)=f_2(g)=f(g)$ by substituting $h=e$ or $g=e$.
+\end{proof}
+
+Given a linearization, we have
+\[\xymatrix{
+ G\times X\ar[r]^-\sigma \ar[d]_{p_2} & X\\
+ X
+}\]
+the two pullbacks $\sigma^* L$ and $p_2^* L$ are isomorphic. The data of a linearization is exactly the data of this isomorphism (satisfying a cocycle condition). We have that for $g\in G$, $g^* L=\sigma^* L|_{X\times e}$.
+\begin{proposition}
+ In the case where $G$ is connected, $L$ has a $G$-linearization if and only if $\sigma^* L\cong p_2^* L$. \anton{that is, if an isomorphism exists, you can find an iso satisfying the cocycle condition}
+\end{proposition}
+\begin{proof}
+ By assumption, there is $\psi_g\colon L\to g^* L$, and we have to check that it can be made into an action. First we normalize so that $\psi_e=\id$. Now I have to check the following diagram
+ \[\xymatrix{
+   L\ar[d]_{\psi_h}\ar[r]^-{\psi_{gh}} & (gh)^* L\\
+   h^*L\ar[ur]_{h^*\circ \psi_g\circ (h^*)^{-1}}
+ }\]
+ The two maps differ by an automorphism. There is a function $F(g,h)\in \O(X)^\times$ such that $\psi_{gh}\circ F(g,h)=h^*\circ \psi_g\circ (h^*)^{-1}\circ \psi_h$. Since $F(g,h)\in \O(X)^\times$, I can think of it as a function of three variables: $F(g,h,x)=F_1(g)F_2(h)F_3(x)$ by the Theorem.
+ 
+ We know that $F(e,h,x)=F(g,e,x)=1$, so we get $F_2(h)F_3(x)=1$ and $F_1(g)F_3(x)=1$, so $F_1$, $F_2$, and $F_3$ must be constant. \anton{this proof can probably be rewritten more cleanly with everything taking place on $G\times G\times X$}
+\end{proof}
+This is a strange result. It is related to the structure of affine algebraic groups in general.
+
+Now our goal is to construct the following sequence
+\[
+ 0\to \ker \alpha\to \pic^G X\to \pic X\to \pic G
+\]
+\begin{remark}
+ Given $f\in \O_X^\times$, we get a nonvanishing function $F(g,x)=f(gx)/f(x)$. By the theorem, we get $F(g,x)=\chi(g)\beta(x)$, where we may rescale so that $\chi(e)=1$. Then it is easy to see that $\beta$ is identitcally 1, so $f(gx)/f(x)=\chi(g)$. It is easy to check that $\chi$ is a character. Thus, we've constructed a map $\O_X^\times(X)\to G^\vee$. The image of this map is exactly $G_X^\vee$, and the kernel is $(\O_X^\times)(X))^G$, $G$-invariant invertible regular functions. So we're shooting for a long exact sequence
+ \[\xymatrix{
+  0\ar[r] & (\O_X^\times(X))^G \ar[r] & \O_X^\times(X)\ar[r] & G^\vee \ar`r[d]`[l]`p+<-15.5pc,-4pc>`[dll][dll] \\
+  & \pic^G X \ar[r] & \pic X\ar[r] & \pic G
+ }\]
+ This is certainly a long exact sequence in some cohomology theory. The left column is probably happening on the quotient stack $[X/G]$, the middle one on $X$, and the right one on $G$.
+\end{remark}
+
+\begin{proposition}
+ Let $X$ be non-singular, with $G$ an affine connected algebraic group acting on $X$. Let $F$ be a line bundle on $G\times X$. Fix some $x_0\in X$. Then $F\cong p_1^*(F|_{G\times x_0}) \otimes p_2^*(F|_{e\times X})$.
+\end{proposition}
+\begin{lemma}
+ If $G$ is a connected affine group, then there is an open set $U\subseteq G$ such that $U\cong (k^\times)^n\times k^m$.
+\end{lemma}
+We'll prove this lemma later, but for now, we'll do some examples and use it to prove the proposition.
+\begin{example}
+ $G=SL(n)$. Then we have the subgroups $T\subseteq G$ (the diagonal matrices), $N^+\subseteq G$ (strictly upper triangular matricies), and $N^-\subseteq G$ (strictly lower triangular matricies). Then $U=N^-TN^+$ is clearly an open subset of $G$. Since the three subgroups don't intersect, there is a unique way to write an element of $U$ as a product, so $U\cong N^-\times T\times N^+$. The $T$ is a torus, and the $N^\pm$ are affine spaces.
+\end{example}
+There is a statement in Hartshorne which I'll use: $Cl(X\times \AA^1)\cong Cl(X)$. Another statement we'll use: if $Z\subseteq X$ is a subvariety of codimension 1, we have an exact sequence
+\[
+ \ZZ\cdot Z \to Cl(X)\to Cl(X\setminus Z)\to 0.
+\]
+In particular, if $Cl(X)=0$, then $Cl(X\setminus Z)=0$. And if $Z$ is of codimension bigger than 1, it doesn't change $Cl$ whne you remove it.
+
+Now we have $U\times X\subseteq G\times X$. Let $Z=G\setminus U$. Then we have $Cl(U\times X)=Cl(X)$ (since you're just removing stuff of high codimension from $X\times \AA^n$). We have $F(U\times X)=p_2^*(F_1)$. Let $F_2=p_2^*(F_1)\otimes F^{-1}$. Then the divisor of $F_2$ will be supported on $Z\times X$, which has some irreducible components $Z_i\times X$. So $F_2=p_1^*(F_3)$ for some line bundle $F_3$ on $G$.
+
+This allows me to define the map $\pic X\to \pic G$ in the sequence
+\[
+ 0\to \ker \alpha\to \pic^G X\xrightarrow\alpha \pic X\to \pic G.
+\]
+It is defined by sending $L$ to $p_2^*L\otimes \sigma^*(L)^{-1}$ on $G\times X$, which should then come from something on $G$ \anton{will be added next time}. We want a map so that the map is exact \anton{we've already proven this because linearizable if and only if $p_2^*L\cong \sigma^* L$}.
+
+I'll also have to show that $\pic G$ is a finite group.

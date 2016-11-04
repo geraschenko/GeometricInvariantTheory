@@ -1,0 +1,102 @@
+\sektion{16}{Lecture 16}
+
+Recall the setup: We have $K=k(\!(t)\!)\supseteq O=k[\!\![t]\!\!]\supseteq \m=(t)$. We proved that
+\[\xymatrix{
+ \spec K \ar[r] & G\ar[d]^\phi\\
+ & \bbar{G\cdot x}\rlap{$\;\ni y$}
+}\]
+if $\phi(g)=g\cdot x$, there is a point $g\in G(K)$ such that $\lim_{t\to 0} g(t)x=y$ and such that $\phi(g)\in O\otimes_k V$.
+
+We proved Iwahori's theorem (kinda): If $G$ is reductive, and $g\in G(K)$ is a point, then $g(t)=A(t)\lambda(t)B(t)$ where $A,B\in G(O)$ and $\lambda$ is a 1-parameter subgroup. The action of the 1-torus $\lambda$ is diagonalizable, so you can think of the action of $\lambda$ as $\lambda(t)=diag(t^{a_1},\dots, t^{a_n})$.
+
+\begin{lemma}
+ Suppose $\lambda(t)$ is a 1-parameter subgroup of $G$, $x\in X$, and $B\in G(O)$ such that the limit $\lim_{t\to 0}\lambda(t)B(t)x=y$ exists. Then the limit $\lim_{t\to 0}\lambda(t)B(0)x=z$ exists and $z\in \bbar{G\cdot y}$.
+\end{lemma}
+\begin{proof}
+ 
+\end{proof}
+
+
+\begin{theorem}
+ $x$ is semi-stable (resp.~properly stable) with respect to the action of $G$ if and only if it is semi-stable (resp.~properly stable) for any 1-parameter subgroup $\lambda$ of $G$.
+\end{theorem}
+\begin{proof}
+ It is clear that if the point is semi-stable with respect to $G$, then it is semi-stable with respect to a subgroup.
+ 
+ Now suppose $x$ is semi-stable for any 1-parameter subgroup $\lambda$, but $x$ is not stable with respect to $G$. Since $x$ is unstable, $0\in \bbar{G\cdot x}$. So there is a point $g\in G(K)$ such that $\lim_{t\to 0} g(t)x=0$. By Iwahori, we have $g(t)=A(t)\lambda(t)B(t)$ for some 1-parameter subgroup $\lambda$ and $A,B\in G(O)$. There is a natural homomorphism $G(O)\to G(k)$ given by evaluating at $t=0$. We may write $A(t)=A_1(t)A_0$ and $B=B_1(t)B_0$, where $A_0$ and $B_0$ are constant and $A_1$ and $B_1$ are 1 modulo $t$. Suppose $\lambda(t)=diag(t^{b_1},\dots, t^{b_n})$ in some basis.
+ \begin{align*}
+  0 &= \lim_{t\to 0} A(t)\lambda(t)B(t)x\\
+  0 &= \lim_{t\to 0} \lambda(t) B_1(t)B_0 x & \text{(left multiply by $A(t)^{-1}$)}
+ \end{align*}
+ If all $b_i>0$, this is no condition. If $b_i\le 0$, then we get that $(B_0x)_i=0$. So we conclude that
+ \[
+  \lim_{t\to 0} \lambda(t) B_0 x=0.
+ \]
+ \anton{we can ignore $B_1(t)$ because it goes to 1 as $t\to 0$. This implication only works in one direction: if $\lim_{t\to 0}\lambda(t)B_1(t)B_0x=0$, then $\lim_{t\to 0} \lambda(t)B_0x=0$. The other way doesn't work} But $B_0x\in G\cdot x$, so $B_0 x$ is a point in the orbit of $x$ which is not stable. That means that $x$ is unstable with respect to the 1-parameter subgroup $B_0^{-1}\lambda(t)B_0$.
+ 
+ Assume that $x$ is not properly stable with respect to $G$. We have to consider two cases.
+  
+ Case (a). $G\cdot x\neq \bbar{G\cdot x}$.\anton{Remark: we actually show that the orbit of $x$ is closed if and only if it is closed under the action of all 1-parameter subgroups} Let $y\in \bbar{G\cdot x}\setminus G\cdot x$. Then we get $y=\lim_{t\to 0} A_1(t)A_0\lambda(t)B(t)B_0x$, so we have
+ \[
+  \lim_{t\to 0} \lambda(t) B_1(t)B_0x = A_0^{-1} y.
+ \]
+ By the same sort of condition as in the first part of the proof, we have a limit $z=\lim_{t\to 0} \lambda(t)B_0 x$. $A_0^{-1}y$ may have more zero coordinates than $z$. If $b_i>0$, then we get $(A_0^{-1}y)_i=0$. If $b_i=0$, we get $(A_0^{-1}y)_i=(B_0x)_i$, and if $b_i<0$, we get $(B_0x)_i=0$. It is easy to check that $\lim_{t\to 0} \lambda(t^{-1})(A_0^{-1}y)=z$ componentwise. So we have that $z\in \bbar{G\cdot y}$. This implies that $z\not\in G\cdot x$, showing that the orbit of $x$ under the action of a 1-parameter subgroup is not closed.
+ 
+ Case (b). $G\cdot x= \bbar{G\cdot x}$, but $Stab(x)$ is not finite. The stabilizer is the fiber of the map $G\to G\cdot x$. If the fiber is not finite, then it is affine. By the same argument as before, there is a point $g(t)\in G(K)\setminus G(O)$ such that $g(t)x=x$ (because the stabilizer is not proper). Letting $g(t)=A(t)\lambda(t)B(t)$, we compute $\lim_{t\to 0} \lambda(t)B_1(t)B_0x= A_0^{-1}x$. By the same argument as before, we have that the limit $\lim_{t\to 0}\lambda(t)B_0x=z$ exists. The implies that $\lambda(t)\in Stab(z)$. $z$ lies in the closure of the orbit, but the orbit is closed, and is stabilized by $\lambda$ (looking at coordinates of $z$ ... the only non-zero ones are those for which $b_i=0$), so $z$ is not properly stable with respect to a 1-parameter subgroup, so niether is $x$.
+\end{proof}
+
+\subsektion{Applications}
+In the case of $SL(n)$. Any 1-parameter subgroup is diagonalizable. In that basis, the diagonal matrices form a maximal torus. All maximal tori are conjugate. So we can check stability with respect to $G$ by checking it for all maximal tori using the condition we proved before.
+
+First let's consider the case of $\H_{n,d}$.
+\begin{proposition}
+ $f\in \VV_{1,d}$ ($d\ge 2$) is semi-stable if the multiplicity of each point is $\le d/2$, and $f$ is properly stable is the multiplicity of each point is $<d/2$.
+\end{proposition}
+\begin{proof}
+ In this case, $G=SL(2)$. Any 1-parameter subgroup in some basis is $\matx{t&0\\ 0&t^{-1}}$. I'll draw the picture of characters in the case $d=6$. \anton{draw $x^{6-i}y^i$ at position $2i-6$; the usual 7-dimensional representation of $SL(2)$}
+ 
+ If $f=\sum a_i x^{d-i}y^i$, then $\supp(f)=\{x^{d-i}y^i|a_i\neq 0\}$. The unstable situation is when $x^4|f$ or $y^4|f$ (that's when the convex hull of the support misses 0). Similarly, the semi-stable situation is where $x^3|f$ or $y^3|f$.
+\end{proof}
+Now let's consider plane cubics. $\VV_{2,3}$, which is 10-dimensional. Here we have $G=SL(3)$. The maximal torus is diagonal matrices $diag(t_1,t_2,t_3)$ such that $t_1t_2t_3=1$. Now it is convinient to draw the torus as 2-dimensional, with three weights that add up to zero, induced from the 3-dimensional torus. \anton{triangle with 10 monomials of degree 3, $x^3$, $y^3$, $z^3$ are the vertices. two monomials in the interior of each edge}. The zero is the monomial $xyz$.
+
+Unstable forms (so-called nil forms) are all basically the same, the forms supported at $y^3,xy^2,x^2y,x^3,y^2z$ (up to renaming the variables). Then the form can be written as
+\[
+ zy^2=ay^3+bxy^2+cx^2y+dx^3.
+\]
+If $d\neq 0$, we can apply the transformation $x\mapsto x+\alpha y$ to get
+\[
+ zy^2=ay^3+bxy^2+dx^3
+\]
+applying $z\mapsto z+ay+bx$ and rescaling, we get that the curve is of the form
+\[
+ zy^2=x^3.
+\]
+So the nil curves are exactly the cuspidal cuves.
+
+But there are degenerations. If $d=0$, then we have
+\[
+ zy^2=ay^3+bxy^2+cx^2y
+\]
+this is a line tangent to a quadratic curve.
+
+We can have further degeneration (the quadric can degenerate). Then you get three lines meeting at a point, and the lines could lie on top of each other.
+
+We already proved in general that smooth curves are stable.
+
+Now let's consider the semi-stable forms. The maximal support is $y^3,xy^2,x^2y,x^3,y^2z,zx^2,xyz$ (up to permuting the variables). This corresponds to the form
+\[
+ zp(x,y)=q(x,y)
+\]
+where $p$ is a quadratic form. After some change of coordinates, we can get rid of the coefficient of $y^2z$, so we get that $p$ is non-degenerate. It can be written as
+\[
+ z(x^2+y^2)=q(x,y)
+\]
+and after $z\mapsto z+\alpha x+\beta y$ and some more dancing, we can get
+\[
+ zy^2=x^3-zx^2
+\]
+A nodal cubic.
+
+There is one more situation (which is in the closure of this one), where the support is $y^3, y^2x, y^2z, x^2y,xyz,yz^2$. This must be of the form $yp(x,y,z)=0$ which is a line and a quadric (not tangent). It can further degenerate to three lines, not all meeting at a point (corresponding to $xyz=0$ in some basis). I think we've now listed all the orbits of the action. Question: if all these are semi-stable, why do only some of them appear in the quotient? Answer: only the most general one appears ... the quotient identifies the things in the closures of the semi-stable orbits.
+
+We have the $SL(3)$-invariants $g_2$ (of degree 4) and $g_3$ (of degree 6). We get the quotient $\proj k[g_2,g_3]$, which I believe is isomophic to $\PP^1$, as we can see from the charts $g_2^3/g_3^2$ and $g_3^2/g_2^3$.

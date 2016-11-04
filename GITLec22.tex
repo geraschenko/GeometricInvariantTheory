@@ -1,0 +1,55 @@
+\sektion{22}{Some toric examples}
+
+Last time we talked about categorical, good, and geometric quotients.
+\begin{proposition}
+ If $X$ is affine and $G$ is reductive, then $\phi\colon X\to Y=\specm k[X]^G$ is a categorical quotient. Moreover, the restriction to the stable locus, $\phi\colon X^s\to Y^s$, is a geometric quotient.
+\end{proposition}
+\begin{proof}
+ We already proved that $\phi$ is a surjective open submersion. The categorical quotient property follows from the Separation Lemma: if $W_1,W_2\subseteq X$ are closed $G$-invariant subsets that don't intersect, then $\phi(W_i)$ are closed subsets of $Y$ which don't intersect. The proof is at the end of the last lecture.
+ 
+ The action of $G$ on $X^s$ is closed (almost by definition), so the fibers of the restricted map are orbits.
+\end{proof}
+Now suppose $X$ is an arbitrary algebraic variety (prefered irreducible, but not always needed). Suppose $L\in \pic^G X$, then we constructed $X^{ss}(L)\quot G$ by gluing together the affine quotients for the $X_{f_1},\dots, X_{f_k}$, where the $f_i$ are invariant sections of some tensor power of $L$. Since each of the $X_{f_i}\quot G$ is a categorical quotient, you can check that gluing them together you still get a categorical quotient.
+
+\begin{theorem}
+ Suppose $G$ is a reductive group acting on an algebraic variety $X$, with $L\in \pic^G X$. Then $\phi\colon X^{ss}(L)\to X^{ss}(L)\quot G$ is a good categorical quotient, and the restriction $\phi\colon X^s(L)\to X^s(L)\quot G$ is a geometric quotient. There exists an ample line bundle $M$ on $X^{ss}\quot G$ such that $\phi^*(M)\cong L^{\otimes r}$, so the quotient is a quasi-projective variety. \anton{you don't even need $L$ to be ample, though it will be ample on $X^{ss}$ almost by hypothesis.}
+\end{theorem}
+Recall that we have the $Y_i=X_{f_i}\quot G$. One way to define $M$ is to say what the transition functions between the $Y_i$ are. We take the transition function to be $f_i/f_j= \phi^*(\alpha_{ij})$. Then you can get that $\phi^*M$ is a power of $L$.
+
+All this depends on how you choose your $L$ and the linearization.
+
+\bigskip
+
+\underline{Certain class of examples}. Let $X=\AA^n$ and $G$ a reductive group acting linearly on $X$. Even in such a simple situation, we get many differnt quotients. We have to calculate $\pic^G X$. We have that $\pic X=\{1\}$ and $\O(X)^\times=k^\times$. From the exact sequence, we get that $\pic^G X=G^\vee$.
+
+Take $x\in \AA^n$ and $u\in \AA^1$. The total space of the bundle is $\AA^n\times \AA^1$. Given $\chi\in G^\vee$, we define the linearization $g(u,x)=(\chi^{-1}(g)u,gx)$. Call this linearized bundle $L_\chi$.
+
+If $\chi=1$, then all the invariants are of the form $u^nf(x)$, where $f(x)\in k[\AA^n]^G$. So when we take the proj quotient, we get the usual affine quotient $X\quot G=X\quot_{L_{\chi=1}}G=X^{ss}(L_{\chi=1})\quot G$. But in other cases, we get other quotients.
+
+\begin{example}
+ Consider the action of $G=k^\times$ by homothety: $t\cdot (x_1,\dots, x_n)=(tx_1,\dots, tx_n)$. We have different linearizations, $t\cdot (u,x_1,\dots, x_n)=(t^au,tx_1,\dots, tx_n)$.
+ 
+ When $a=0$, the only invariant section is the zero section, so the quotient is $\AA^n\quot G=*$. If $a>0$, then $\AA^n\quot G=\varnothing$.
+ 
+ If $a<0$, then it doesn't matter which negative $a$ you take because $L$ and $L^{\otimes r}$ give the same quotient. In fact, as soon as the set of semi-stable points is the same, the quotients are isomorphic because the quotient is the categorical quotient. This gives us invariants $ux_1,\dots, ux_n$. So the quotient is $\proj k[ux_1,\dots, ux_n]\cong \PP^{n-1}=\AA^n\quot_{L_q} G$.
+\end{example}
+Q: is there always some ``best'' choice where the quotient has maximal dimension? A: you still get different birational models.
+
+You want $\dim X\quot G = \dim X-\dim G\cdot x$ for generic $x$. If you have such a thing, then $X^{s}(L)$ is non-empty. If you have two such linearized bundles, you have $X^s(L_1)\cap X^s(L_2)=U$ is an open set. So the two quotients will be birationally equivalent, with generic point given by the fraction field of $\O(U)^G$.
+\begin{example}
+ Consider $G=k^\times$ acting on $\AA^4$ by $t\cdot (x_1,x_2,x_3,x_4)=(tx_1,tx_2,t^{-1}x_3,t^{-1}x_4)$. The possible linearizations are $t\cdot (u,x_1,x_2,x_3,x_4)=(t^{-a}u,tx_1,tx_2,t^{-1}x_3,t^{-1}x_4)$.
+ 
+ We get three cases as before. If $a=0$, the generating invariants are $z_{13}=x_1x_3,z_{14}=x_1x_4,z_{23}=x_2x_3,z_{24}=x_2x_4$, and they satisfy the relation $z_{13}z_{24}-z_{14}z_{23}$. Let $Y_0=X\quot_{L_0}G$. We have that $Y_0$ is a quadatic cone with a singularity at 0. What are the semi-stable points in this case? Define $V^+=\{x_1=x_2=0\}$ and $V^-=\{x_3=x_4=0\}$. The semistable locus is $X^{ss}(L_0)=\AA^4\setminus (V^+\cup V^-)$.
+ 
+ If $a=1$, then we have all the old invariants ($z_{13},z_{14},z_{23},z_{24}$), but also $t_1=ux_1$ and $t_2=ux_2$. Now $X^{ss}(L_1)=\AA^4\setminus V^+$. This $X^{ss}$ is not affine, but I can glue together $X_{t_1}$ and $X_{t_2}$. We get $Y_+\subseteq \PP^1\times \AA^4$. Relations are $z_{13}t_2-z_{23}t_1=0$, $z_{14}t_2-z_{24}t_1=0$, $z_{13}z_{24}-z_{23}z_{14}=0$. We get a map $p_+\colon Y_+\to Y_0$. We get that $p_+^{-1}(y)$ is a point if $z_{ij}\neq 0$ and $p_+^{-1}(0)=\PP^1$. This is sort of a ``partial blow-up.'' \anton{this is one of the resolutions of the toric variety which is a cone on a square} You can check that $Y_+$ is non-singular. This is called a small resolution because the fibers are codimension bigger than 1. The projectivization of the tangent space is 2-dimensional (it's the $\PP^1\times \PP^1$ sitting inside the $\PP^3$ which is really the projectivization of the tangent space). $Y_+$ is a blow up of the subvariety $z_{12}=z_{23}=0$.Note that $V^+\quot G\cong \PP^1$.
+ 
+ If $a=-1$, then everything is very similar, but we get $t_3=ux_3$ and $t_4=ux_4$. The relation you get is the ``transpose'' of the one in the case $a=1$. Again, we get a resolution $p_-\colon Y_-\to Y_0$.
+ 
+ By the symmetry of the situation, $Y_+$ and $Y_-$ are isomorphic, but \emph{not as varieties over $Y_0$}.
+\end{example}
+
+\subsektion{Toric Varieties as GIT quotients}
+
+We're in the situation $X=\AA^n$ and $G=T$ is a torus acting linearly on $\AA^n$. Then we have a large group of linearizations (it is $T^\vee$). Whenever we take $\AA^n\quot_{L_\chi} T$, it will have the action of a bigger torus. $t\cdot (x_1,\dots, x_n)=(\chi_1(t)x_1,\dots, \chi_n(t)x_n)$. $\chi$ stands for linearization. The semi-invariants are all monomials. So in $\AA^n$, we have a big torus, $U=(\AA^1\setminus 0)^n$. On the quotient $\AA^n\quot_{L_\chi}T$, the torus $U$ acts, giving the quotient the structure of a toric variety.
+
+Next time, we'll consider the following example, $\matx{x_1& x_2& x_3\\ y_1& y_2& y_3}$, with the action of $\matx{t_1&0\\ 0&t_2}$ on the left and $diag(s_1,s_2,s_3)$ on the right. So we have an action of a 5-dimensional torus (except that a 1-dimensional subtorus acts trivially). The quotient turns out to be a projective surface.

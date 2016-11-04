@@ -1,0 +1,95 @@
+\sektion{20}{Lecture 20}
+
+\begin{theorem}
+ If $G$ is an affine algebraic group, then $\pic G$ is finite.
+\end{theorem}
+We can assume $G$ is connected (since $\pic G\cong G/G^\circ\times \pic G^\circ$ and $G/G^\circ$ is finite).
+\begin{proposition}
+ Suppose $L$ is a line bundle on $G$. Let $L^\times$ be the complement of the zero section. Then we can define a group structure on $L^\times$ such that we have the following exact sequence of groups:
+ \[
+  1\to k^\times\to L^\times\xrightarrow\delta G\to 1.
+ \]
+ Moreover, the pullback of $L$ along $\delta$ to $L^\times$ is $L^\times$-linearizable.
+\end{proposition}
+\begin{proof}
+ Let $\pi\colon L\to G$ be the projection.
+ \[\xymatrix{
+  L\times L\ar[d]_{\pi\times\pi}\ar[r] & p_1^*L\otimes p_2^*L\ar[d] \ar[r]^-\phi_-\sim & m^*L \ar[r]\ar[d] & L\ar[d]^\pi \\
+  G\times G\ar[r]^\id & G\times G\ar[r]^\id & G\times G \ar[r]^-m & G
+ }\]
+ \anton{in general, we showed that any bundle on $G\times X$ is a product of a bundle on $G$ and one on $X$. This allows us to construct the isomorphism $\phi$. Note that $m^*L|_{e\times G}\cong L$.}\anton{the map $L\times L\to p_1^*L\otimes p_2^*L$ is the map $V\times W\to V\otimes W$ on fibers.} We want to show that the composition across the top row, $\mu\colon L\times L\to L$ is a group structure. But $\mu$ is only determined up to scalar. We identify $L_e\cong k\ni 1$, and consider
+ \[\xymatrix{
+  L\ar[r]\ar[d] & L\times\{1\}\ar[d]\ar[r]^-\mu & L\ar[d]\\
+  G\ar[r] & G\times \{e\}\ar[r] & G
+ }\]
+ I have $\mu(u,1)=\chi(\pi(u))u$, where $\chi(g)\in \O(G)^\times$. Similarly, I get $\mu(1,v)=\eta(\pi(v))$. So I rescale $\phi$, by chaning it to $\phi\circ (\chi^{-1}\otimes \eta^{-1})$.
+ 
+ Then I need to check associativity of $\mu$. We want $\mu\circ (\id\times \mu)=\mu\circ (\mu\otimes \id)$. I know that if we apply $\pi$, the thing is associative. Last time, we proved (using the Rosenlicht result) that the cocycle condition is automatically satisfied. We have $\mu\circ (\id\times\mu) (u,v,w)=\psi(\pi(u),\pi(v),\pi (w)) \mu\circ (\mu\times \id)(u,v,w)$. By Rosenlicht, we have $\psi(g,h,k)=\psi_1(g)\psi_2(h)\psi_3(k)$. But we have by construction $\psi(e,e,e)=1$, so $\psi_i(e)=1$ (after rescaling). Then we get $1=\psi(g,e,e)=\psi_1(g)$ and similarly, $\psi_3$ and $\psi_2$ are identically 1.
+ 
+ So $\mu\colon L^\times\times L^\times\to L^\times$ is a group. The second statement (about linearization) comes from the same $\mu\colon L^\times\times L\to L$.
+\end{proof}
+\begin{lemma}
+ Let $L\in \pic G$. Then there exists a algebraic group $G'$ and a finite cover $\ga\colon G'\to G$ such that $\ga^* L$ is is trivial (and therefore linearizable).
+\end{lemma}
+\begin{remark}
+ In fact, if you have a linearizable line bundle $L$ on $G$, it must be trivial as a line bundle. This is because the linearization canonically identifies all the fibers of $L$, so you get an isomorphism $L\cong L_e\times G$.
+\end{remark}
+\begin{proof}
+ Consider the sequence
+ \[
+  1\to k^\times\to L^\times\xrightarrow\pi G\to 1.
+ \]
+ We know that $\pi^*L$ is $L^\times$-linearizable. Since $L^\times$ is an algebraic group, there is a faithful representation $V$, so $L^\times\subseteq GL(V)$. The action of $k^\times=T$ breaks $V$ up as $V=V_{\eta_1}\oplus\cdots \oplus V_{\eta_k}$ where $V_\eta=\{v\in V| tv=\eta(t)v\}$. For any $t\in k^\times$ and $g\in L^\times$, we have $tgv=g(g^{-1}tg)v$. But $\eta(g^{-1}tg)=\eta(t)$ because $L^\times$ is a connected group (the conjugation acts trivially on the space of characters $T^\vee\cong \ZZ$).
+ 
+ So $L^\times(V_\eta)=V_\eta$. Suppose $\eta_1\neq 1$. Then we have $\rho\colon L^\times\to GL(V_{\eta_1})$. I can take $G'=\rho^{-1}(SL(V_{\eta_1}))$. Since $\eta_1$ is non-trivial, $G'$ has the same dimension as $G$. Since $\pi^*L$ was $L^\times$-linearizable, it is $G'$-linearizable, and hence trivial.
+\end{proof}
+I claim this means that some power of $L$ in $\pic G$ will be trivial. Consider the exact sequence
+\[
+ 1\to \Ga\to G'\to G\to 1.
+\]
+I claim that $L^{\otimes |\Ga|}$ is $G$-linearizable because the $\Ga$ action in the $G'$-linearization is trivial.
+\begin{corollary}
+ Every element of $\pic G$ has finite order.
+\end{corollary}
+\begin{lemma}
+ $\pic G$ is a finitely generated abelian group.
+\end{lemma}
+\begin{proof}
+ Recall that we have a dense open subset $U\subseteq G$ of the form $U\cong (k^\times)^n\times \AA^m$. Let $Z=G\setminus U=\bigcup Z_i$, then we get an exact sequence
+ \[
+  \bigoplus \ZZ\cdot Z_i \to Cl(G)\to Cl(U)=0.
+ \]
+ So $\pic G=Cl(G)$ is finitely generated.
+\end{proof}
+Recall that we constructed the exact sequence
+\[
+ 0\to \ker\alpha\to G^\vee\to \pic^G X\to \pic X\to \pic G.
+\]
+Since $\pic G$ is finite, we get the following corollary.
+\begin{corollary}
+ Let $L$ be a line bundle on a smooth variety $X$ and let $G$ be a connected group.\footnote{We used $G$ connected in proving that if $p_2^*L\cong \sigma^*L$, then $L$ linearizable. We need connected because we use the Rosenlicht result.} Then there exists an $n>0$ such that $L^{\otimes n}$ is $G$-linearizable.
+\end{corollary}
+\begin{remark}
+ If $G$ is not connected, then you can linearize over the connected part and then deal with the finite part.
+\end{remark}
+\begin{remark}
+ We need $X$ smooth because we want the Weil divisors to be the same as Cartier divisors.
+\end{remark}
+\begin{theorem}[Linearization Theorem]
+ Let $G$ be a connected affine algebraic group acting on a smooth quasi-projective variety $X$. Then there exists a representation $G\to GL(V)$ and a $G$-equivariant embedding $X\hookrightarrow \PP(V)$.
+\end{theorem}
+This is the analogue of the result for $X$ affine. The reason this was harder is that we didn't have functions on $X$, so we had to choose a line bundle.
+\begin{proof}
+ Take any very ample line bundle $L$. By taking some power, we may assume $L$ is $G$-linearizable. Then $\Ga(X,L)$ is a representation of $G$. Since $L$ is ample, there is a finite-dimensional subspace $W\subseteq \Ga(X,L)$ such that $X\to \PP(W^*)$ is an embedding (mapping $x$ to $h_x=\{s\in W|s(x)=0\}$). As we've shown before, $W$ is inside a finite-dimensional invariant subspace (so we may assume $W$ is $G$-invariant).
+\end{proof}
+For $X$ projective and a very ample $G$-linearized line bundle $L$, we can construct the quotient $X\quot_L G = \proj(\bigoplus \Ga(X,L^{\otimes n}))$.
+
+We can define $X^s(L)$ (resp.~$X^{ss}(L)$) to be the stable (resp.~semi-stable) locus with respect to the embedding coming from $L$. That is, $x\in X$ is $L$-semi-stable if there is an invariant section $f\in \Ga(X,L^{\otimes n})$ such that $f(x)\neq 0$, and $L$-stable if furthermore the action of $G$ on $X_f$ is closed. Note that this implies that the orbit of $x$ is closed.
+
+If $X$ is projective, then $x\in X$ is stable.
+
+
+
+
+
+

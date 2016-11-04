@@ -1,0 +1,100 @@
+\sektion{4}{Poincar\'e Series}
+
+The first problem set has been posted at \url{math.berkeley.edu/~serganov/274/}.
+
+Given an action of an algebraic group $G$ on an affine variety $X$, we would like to determine $R^G$ and understand its properties. Poincar\'e (or Hilbert) series are an important tool for doing this.
+
+Assume that $G$ acts on a vector space $V$ linearly. Then $R=k[x_1,\dots, x_n]=\sym^*(V^*)$, with its natural grading, and $G$ acts in a way that respects the grading, so $R^G$ inherits a grading. \anton{move}
+\begin{definition}
+ Suppose $M=\bigoplus M_d$ a graded $k$-module. Then the \emph{Poincar\'e series} of $M$ is $P_M(t) = \sum_{d\ge 0} \dim_l(M_d) t^d$.
+\end{definition}
+\begin{remark}
+ You may have seen Poincar\'e series before. A closed subscheme $X\subseteq \PP^n$ of projective space corresponds to a graded ideal $I\subseteq k[x_0,\dots, x_n]=S$. Then $S/I$ is a graded $k$-algbra, and its Poincar\'e series is usually called the \emph{Hilbert function} of $X$. The Hilbert function is an important invariant of $X$. For example, the dimension of $X$ is equal to the degree of its Hilbert function.
+\end{remark}
+
+\begin{lemma}
+ \anton{add tensor product here?}
+ If $0\to M\to N\to K\to 0$ is a short exact sequence of graded $A$-modules, then $P_N=P_M+P_K$.
+\end{lemma}
+\begin{proof}
+ $0\to M_d\to N_d\to K_d\to 0$ is exact, so $\dim(N_d)=\dim(M_d)+\dim(K_d)$.
+\end{proof}
+\begin{remark}\label{lec4Rmk:longer_exact_sequence}
+ Using basically the same proof, we see that for a finite exact sequence of graded modules
+ \[
+  0\to \cdots \to M_i\to M_{i+1}\to \cdots \to 0
+ \]
+ the alternating sum $\sum (-1)^i P_{M_i}(t)$ of the Poincar\'e series is zero.
+\end{remark}
+\anton{mention shifting grading here? it's very useful to regard a morphism that shifts grading as a graded morphism to a shifted module}
+\begin{example}
+ Let $R=k[y_1,\dots, y_n]$, where $\deg y_i=d_i$ for some $d_i>0$. Then
+ \[
+  P_R(t) = \frac{1}{(1-t^{d_1})\cdots (1-t^{d_n})}.\qedhere
+ \]
+\end{example}
+\anton{example of $\sym^*(V)$ and $\Lambda^* V$?}
+\begin{theorem}[Hilbert-Serre]\label{lec4Thm:Hilbert-Serre}
+ Suppose $R=k[y_1,\dots, y_n]$ with $\deg y_i=d_i$. If $M$ is a finitely generated graded $R$-module, then
+ \[
+  P_M(t) = \frac{F(t)}{(1-t^{d_1})\cdots (1-t^{d_n})}
+ \]
+ for some $F(t)\in \ZZ[t,t^{-1}]$.
+\end{theorem}
+\begin{proof}
+ We prove the result by induction on $n$, the number of generators of $R$. If $n=0$, the result is clearly true, with $P_M(t)$ being the ``graded dimesion'' of $M$ as a graded vector space over $k$. Now suppose $n>0$. Let $M'$ and $M''$ be the kernel and cokernel of multiplication by $y_n$.
+ \[
+  0\to M'\to M\xrightarrow{y_n} M[d_n]\to M''\to 0
+ \]
+ By Remark \ref{lec4Rmk:longer_exact_sequence}, we get the identity
+ \[
+  P_{M'} - P_M + t^{d_n}P_M - P_{M''}=0.
+ \tag{$*$}\]
+ Since $M'$ and $M''$ are graded modules over $k[y_1,\dots, y_{n-1}]$, the induction hypothesis tells us that
+ \[
+  P_{M'}(t) = \frac{F'(t)}{(1-t^{d_1})\cdots (1-t^{d_{n-1}})} \qquad\text{and}\qquad P_{M''}(t) = \frac{F''(t)}{(1-t^{d_1})\cdots (1-t^{d_{n-1}})}
+ \]
+ for some $F'(t),F''(t)\in \ZZ[t,t^{-1}]$. Solving for $P_M$ in ($*$), we get the desired result.
+\end{proof}
+Another way to get a proof is to construct a finite resolution by free modules.
+\begin{corollary}
+ If $G$ is a reductive group acting on an affine scheme $\specm R$, $P_{R^G}(t)=\displaystyle\frac{F(t)}{(1-t^{d_1})\cdots (1-t^{d_n})}$ for some $F(t)\in \ZZ[t,t^{-1}]$..
+\end{corollary}
+
+\subsektion{The case of a finite group}
+
+\begin{example}
+ Let $G=\ZZ/n=\langle g\rangle$ act on $\CC^2$ by $g\mapsto \matx{\om&0\\ 0& \om^{-1}}$ where $\om$ is a primitive $n$-th root of unity. Then $k[x,y]^G=k[xy,x^n,y^n]=k[u,v,w]/(u^n-vw)$. Regarding $R^G$ as a module over the subring $k[x^n,y^n]$, it is free with generators $1, xy, (xy)^2,\dots, (xy)^{2n-2}$, so
+ \[
+  P_{R^G}(t)=\frac{1+t^2+\cdots +t^{2n-2}}{(1-t^n)^2}.\qedhere
+ \]
+\end{example}
+\begin{lemma}\label{lec4Lem:trace_formula}
+ For a linear representation $W$ of a finite group $G$, $\dim W^G = \displaystyle\frac{1}{|G|} \sum_g \tr g$.
+\end{lemma}
+\begin{proof}
+ Recall the Reynolds operator that we constructed in the proof of Maschke's Theorem (\ref{lec2Thm:Maschke}), $\frac{1}{|G|} \sum g\colon W\to W^G$. Since it is a projector, its trace is the dimension of the image.
+\end{proof}
+\begin{proposition}[Moilen's formula]\label{lec4Prop:Moilen}
+ For a finite group $G$ acting linearly on a vector space $V$, $P_{R^G}(t) = \displaystyle\frac{1}{|G|}\sum_{g\in G} \frac{1}{\det(1-gt)}$.
+\end{proposition}
+\begin{proof}
+ We have $k[V]=\sym^*(V^*)=\bigoplus_{d\ge 0} \sym^d(V^*)$, and we'd like to compute
+ \[
+  P_{R^G}(t) = \sum_{d\ge 0} \dim(\sym^d(V^*))^G t^d
+ \]
+ Any element $g\in G$ is of finite order, so it must act diagonalizably. So for some basis $\{x_i\}$ of $V^*$, $g$ acts by the diagonal matrix $\mathrm{diag}(a_1,\dots, a_n)$. Then $g$ acts on $\sym^d(V^*)$ by $g\cdot (x_1^{c_1}\cdots x_n^{c_n}) = (a_1^{c_1}\cdots a_n^{c_n})(x_1^{c_1}\cdots x_n^{c_n})$. Then we have
+ \[
+  \frac{1}{\det(1-gt)} = \prod_{i=1}^n \frac{1}{1-a_it} = \sum_{d\ge 0} \bigl(\tr g|_{\sym^d(V^*)}\bigr)t^d
+ \]
+ Applying Lemma \ref{lec4Lem:trace_formula} completes the proof.
+\end{proof}
+
+% \bigskip
+% \underline{Forcast of things to come}.
+% 
+% Next time: some examples of Moilen's formula.
+% 
+% There is a very nice thing that for a finite group the geometric quotient $\AA^n\quot G$ is non-singular if and only if the action of $G$ is generated by pseudo-reflections.
+% 
+% Using this result, we'll construct geometric quotients $\CC^2\quot G$ for finite subgroups $G\subseteq SU(2)$.

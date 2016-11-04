@@ -1,0 +1,99 @@
+\sektion{13}{Lecture 13}
+
+Last time somebody asked if in characteristic $p$ the stabilizer is also finite. The answer is of course yes because $\dim \g_x\ge \dim G_x$. Since we showed that the stabilizer in the Lie algebra is zero, so the group is finite. Of course, the problem is that $GL(n+1)$ is not reductive in finite characteristic.
+
+Question: Does the the quotient space we've been working with represent the correct functor? Answer: We'll discuss all this stuff next week.
+
+Recall what we did last time. We proved the Cayley-Sylvester formula. We had $V_d=\VV_{1,d}$, and we showed that
+\[
+ \dim (\sym^k V_d)^{SL(2)}=
+ \begin{cases}
+  0 & dk\text{ odd}\\
+  \text{coef of } u^{dk/2}\text{ in } \frac{\dots}{\dots}
+ \end{cases}
+\]
+\begin{example}[$d=4$]
+ The is the case of four points in $\PP^1$. We are looking for the coefficient of $u^{2k}$ in $\frac{(1-u^{k+1})\cdots(1-u^{k+4})}{(1-u^2)(1-u^3)(1-u^4)}$. This will be the same as the coefficient of $u^{2k}$ in $\frac{1-u^{k+1}-u^{k+2}-u^{k+3}-u^{k+4}}{(1-u^2)(1-u^3)(1-u^4)}$ (even though these things are completely equal). We can rewrite this as
+ \begin{align*}
+  \frac{1}{(1-u^2)(1-u^3)(1-u^4)} - & \frac{u^{k+1}(1+u+u^2+u^3)}{(1-u^2)(1-u^3)(1-u^4)} \\
+  &=
+  \frac{1}{(1-u^2)(1-u^3)(1-u^4)} - \frac{u^k u}{(1-u)(1-u^2)(1-u^3)}
+ \end{align*}
+ The $u^{2k}$ coefficient of this is the same as the $u^k$ coefficient of
+ \[
+  \frac{1}{(1-u)(1-u^{3/2})(1-u^2)} - \frac{u}{(1-u)(1-u^2)(1-u^3)}  
+ \]
+ \anton{subbing $u\mapsto u^{1/2}$ for the first term and taking out a $u^k$ in the second part}
+ 
+ Eventually, I should get $\frac{1}{(1-u^2)(1-u^3)}$. To get this, I multiply by $(1+u^{3/2})$ to get that I want the coefficient of $u^k$ in
+ \[
+  \frac{1+u^{3/2}-u}{(1-u)(1-u^2)(1-u^3)}
+ \]
+ and then I can forget about \anton{something ... the $u^{3/2}$?}
+ 
+ So we have $P_u(t)=\frac{1}{(1-t^2)(1-t^3)}$. So we have two algebraically independent invariants $f_2$ and $f_3$ (of degree 2 and 3 respectively).
+ 
+ I have $\sym^2(V_2)=V_4\oplus V_0$. We may regard $V_2$ as having basis $x^2=u$, $2xy=v$, and $y^2=w$. Then $Q=4uw-v^2$ is invariant under $SL(2)$, so it spans the $V_0$.
+ 
+ The form $A=\xi_0 x^4+4\xi_1 x^3y+6\xi_2 x^2y^2+4\xi xy^3+\xi_4y^4$ is some element of $\sym^2 V_2$. I may rewrite $A=\xi_0u^2+2\xi_1 uv+2\xi_2 uw+\xi_2 v^2+2\xi_3 vw+\xi_4w^2$.
+ 
+ I get a map $SL(2,\CC)\to SO(3)=\{x\in SL(3)|x^tQx=Q\}$ as we've seen before. We have $\tr(AQ)=0$, which is the condition that cuts out $V_4$ \anton{?}.
+ 
+ In matrix form $Q=\matx{0&0&2\\ 0&-1&0\\ 2&0&0}$ and $A=\matx{\xi_0&\xi_1&\xi_2\\ \xi_1&\xi_2&\xi_3\\ \xi_2&\xi_3&\xi_4}$.
+ 
+ We have $\det(A+\lambda Q)=4\lambda^3-f_2(\xi)\lambda-f_3(\xi)$ remains invariant under element of $SO(3)$ and therefore under $SL(2,\CC)$. Explicitly
+ \begin{align*}
+  f_2(\xi) &=\det\matx{\xi_0& \xi_2\\ \xi_2&\xi_4}-4\det\matx{\xi_1&\xi_2\\ \xi_2&\xi3}\\
+  f_3(\xi) &= \det\matx{\xi_0&\xi_1&\xi_2\\ \xi_1&\xi_2&\xi_3\\ \xi_2&\xi_3&\xi_4}
+ \end{align*}
+  and we get the discriminant is the resultant $D=f_2^3-27f_3^2$.
+\end{example}
+
+The next example is more interesting. $\VV_{2,3}=\{f=\sum_{i+j+k=3} a_{ij} x^iy^jz^k\}$ is the space of degree $3$ forms in $2+1$ variables. We have $\dim \VV_{2,3}=10$. These are cubic curves in $\PP^2$. In the case of complex geometry, the smooth ones are just tori.
+
+The idea is that every smooth curve of degree 3 is in fact an abelian group, of the form $\CC/\Ga$ for some lattice $\Ga=\ZZ\om_1+\ZZ\om_2$.
+
+We define $W(z)=\frac{1}{z^2}+\sum_{\ga\in \Ga\setminus 0} \frac{1}{(z-\ga)^2}-\frac{1}{\ga^2}$. This is a doubly periodic function, with $W(z+\om_1)=W(z+\om_2)=W(z)$. The integral around the parallelogram has to be zero, so $W(z)$ cannot have a single pole in the parallelogram. We write out the Laurent series
+\begin{align*}
+ W(z) &=\frac{1}{z^2}+3G_2z^2+5G_3z^4+\cdots\\
+ G_2&=\sum_{\ga\in \Ga\setminus 0} \frac{1}{\ga^4}\\
+ G_3&= \sum_{\ga\in \Ga\setminus 0}\frac{1}{\ga^6}\\
+ W'(z) &= -\frac{2}{z^3}+6G_2z+20G_3z^3
+\end{align*}
+So we get $(W')^2-4W^3+g_2W+g_3=0$ \anton{by some reason} with $g_2=60G_4$ and $g_3=140G_6$.
+
+We get the map $z\mapsto (W:W':1)$ and $0\mapsto (0:1:0)$. The image is a cubic curve in $C$ $\PP^2$.
+
+We get the curve $4X^3-g_2XZ^2-g_3Z^3=Y^2Z$. This is called the Wierstrauss normal form of the curve. We suspect that $g_2$ and $g_3$ are the invariants.
+
+For $Z=1$, we get $4x^3-g_2x-g_3=y^2$. This is non-singular when something something, which gives me an expression for the discriminant $D=g_2^3-27g_3^2$.
+
+Whatever $\Ga$ you pick, it turns out that $D$ will not vanish, so you'll get a non-singular curve. This should remind you of the previous example.
+
+We notice that $C$ has the structure of an abelian group. Pick a point and call it $O$. Given two points $a$ and $b$, you draw the line through them; it intersects in a third point $c$. Then draw a line connecting $O$ to $c$, and this intersects in a third point, which we call $a+b$.
+
+From this we see that every smooth cubic has $9$ inflection points. To see this, consider the tangent line to $O$, it will intersect at some other point $O'$. An inflection point is a solution to the equation $3a=O'$. But the group is $\CC/\Ga$, so we know that there are $9$ solutions to this equation.
+
+In particular, the curve has an inflection point. In Weirstrauss normal form, we get a special inflection point $(0:1:0)$, with tangent line $z=0$. Given any curve, you transform it to one that satisfies these conditions. Once you have these conditions, the curve is given by an equation of the form
+\[
+ f=ax^3+\overbrace{bx^2z}+cxz^2+dz^3+ezy^2+\overbrace{hxyz+fyz^2}
+\]
+Using the transformations $y\mapsto \alpha y+\beta x+\ga z$ and $z\mapsto x+\delta z$, you can get rid of the overbraced terms.
+
+Next we'll show that $\H_{1,4}^{sm}/PSL(2)$ and $\H_{2,3}^{sm}/PSL(3)$ are isomorphic. Given a smooth cubic curve $C$, we map it to $\PP^1$ as follows. Given a point $a$, you map it to the line connecting $O$ and $a$ ($O$ gets mapped to the tangent line). It is clear that this map $C\to \PP^1$ is a double cover of $\PP^1$. The branch points are exactly the solutions to $a+a=O'$, the 2-torsion points (of which there are $4$). We claim that these branching points determine $C$ uniquely (the choice of $O$ is actually unimportant once you take the group actions into account). It turns out that a $PSL(3)$ orbit in $\H^{sm}_{2,3}$ corresponds exactly to a $PSL(2)$ orbit in $\H^{sm}_{1,4}$. The best way to do this is by a calculation.
+
+First you have to check that orbits are sent to orbits. You check that when you change your $O$, the branch points are related by a projective transformation. This is again the result that a doubly periodic function with a double pole in the parallelogram is defined almost uniquely.
+
+\anton{this is Gale duality}
+
+Question: where to read more? Answer: In \cite{mukai}.
+
+What are the degrees of $g_2$ and $g_3$? We didn't compute them. You pick some linear transformation with a given determinant and see what it does to $g_2$ and $g_3$. You use the transformation $x\mapsto x$, $y\mapsto t^{-1}y$, and $z\mapsto t^2z$ (which has determinant $t$). Then you see that $g_2$ must have degree 4 and $g_3$ must have degree 6.
+
+\subsektion{Proj quotients}
+
+Let $X\subseteq \PP(V)$ be a projective variety. Then $X=\proj R$ for some graded ring $R$. Suppose a reductive group $G$ acts linearly on $V$ and induces an action on $X$. If you take the $GL(V)$-invariants of the whole ring, you clearly don't get any invariants (because of scalar action). You may as well assume $G=G\cap SL(V)$ since we're interested in everything being projective. The the most natural quotient to consider is $X\quot G=\proj R^G$.
+
+In the affine case, we tried to find when invariants separate orbits. In the projective spectrum, we get all rational functions $f/g$ where $f,g\in R^G$. The trouble comes up when all invariants are zero.
+
+The plan is to define stable and semi-stable points and discuss the Hilbert-Mumford criterion.

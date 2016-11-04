@@ -1,0 +1,89 @@
+\sektion{8}{Chevalley-Jordan decomposition}
+
+A new set of exercises has been posted.
+
+I'm going to talk about algebraic groups. The main goal is to describe reductive algebraic groups in any characteristic. Recall that we're only talking about affine algebraic groups. So we may assume $G\subseteq GL(V)$.
+
+Last time I used right-invariant derivations, but I actually prefer left invariant.
+
+We have $\g=\{d|L_g\circ d=d\circ L_g\}\subseteq \mathrm{Der} k[G]$. This condition is equivalent to $(\id\otimes d)\circ \Delta=\Delta\circ d$ in the Hopf algebra $k[G]$. Algebraically, for $x\in T_e G$, we can realize $x\in \mathrm{Der}(\O_e,k)$. We have $L_g(x)=gx$. The vector field $L_x=(\id\otimes x)\circ \Delta$ is left invariant. Another way to describe this is that $L_x f|_g=L_g(f)|_e$.
+
+So we have $\g\cong T_e G$. In particular, since the group $G$ is non-singular, $\dim G=\dim \g$. In fact, we've constructed a functor from the category of affine algebraic groups to the category of finite-dimensional Lie algebras. To see this, you have to check that for a homomorphism $\phi\colon G\to H$ of algebraic groups, the induced $D\phi|_e\colon \g\to \h$ is a homomorphism of Lie algebras. We'll call this functor $\lie$.
+
+\begin{remark}
+ If $G$ is a Lie group, or analytic complex group, then if $G$ is connected, then $\g$ almost determines $G$. For a Lie algebra $\g$, there is a unique connected simply-connected group $\tilde G$ such that $\lie(\tilde G)=\g$. And any other connected Lie group $G$ with the same Lie algebra is a quotient of $\tilde G$ by some central discrete subgroup $\Ga$.
+ 
+ However, this is not true in the algebraic category. We've discussed the algebraic groups $k^\times$ and $k$. Both have the same Lie algebra (the unique 1-dimensional Lie algebra), but neither is a quotient of the other. Basically, in differential geometry, we have the exponential map, which is very powerful. But in the algebraic category, we have some other tools which are perhaps even better.
+\end{remark}
+
+In our case, we always have $G\subseteq GL(V)$. So first, we'll compute the Lie algebra of $GL(V)$. It is $\gl(V)$, the matrix algebra, with the bracket $[X,Y]=XY-YX$. Since $G$ is a closed subgroup, we just have to compute the tangent space to the identity.
+
+How do you compute this? Consider $A=k[\e]/\e^2$. We have that $\lie(G)=\{X\in \gl(V)|1+\e X\in G(A)\}$.
+\begin{example}
+ We have the group $SL(V)=\{g\in GL(V)|\det g=1\}$. So $\sl(V)=\{X|\det(1+\e X)=1+\e\tr(X)=1\}=\{X|\tr(X)=0\}$.
+\end{example}
+Given the Lie algebra, what can you say about the group? Like reductivity or some other properties?
+
+\subsektion{Representations}
+If we have a representation $G\to GL(V)$, we automatically get a representation $\g\to \gl(V)$. This works if $V$ is finite-dimensional. Otherwise, we have $\sigma\colon V\to k[G]\otimes V$. Then any $x\in \g$ acts by $V\xrightarrow{\sigma} k[G]\otimes V\xrightarrow{x\otimes \id}V$.
+
+Given a representation $V$ of $G$, we have $V^G=\{v|gv=v$ for all $g\in G\}$. Similarly, we get $V^\g=\{v|Xv=0$ for all $X\in \g\}$.
+\begin{exercise}
+ $V^G\subseteq V^\g$.
+\end{exercise}
+The inverse is not true! For example, if $G$ is finite, then $\g$ is trivial. The inverse is true if $\mathrm{char}(k)=0$ and $G$ is connected (which means irreducible). This is very useful because often checking that something is invariant under an infinitessimal action is easier than checking that it is invariant under a global action.
+\begin{proposition}
+ $G$ connected and $\mathrm{char}(k)=0$, thne $V^G=V^\g$.
+\end{proposition}
+\begin{proof}
+ Suppose $v\in V^\g$. Then consider the map $\phi\colon G\to V$ given by $g\mapsto gv$. We have $D\phi|_e=0$ by assumption. Since $\phi$ is equivariant with respect to the action of $G$, $D\phi=0$ \anton{Use that $Dg$ never sends non-zero things to zero and the commutative square you get from applying $D$ to the equivariance square}. Since $G$ is connected, the image must be a point. \anton{need a result: in characteristic zero, the kernel of $d\colon A\to \Om_{A/k}$ is exactly $k$. This uses that $A$ is faithfully flat over $k$ (actually, we have a section, so we don't need the faithfully flat yoga)}
+\end{proof}
+Note that we need the fact that if the differential of a map is zero, then the map is constant, which is clearly not true in characteristic $p$. To see this, consider the action of $k^\times$ on $V$ by $t\cdot v=t^pv$. Then the action of $\lie(k^\times)$ is trivial.
+
+The same is true with invariant subspaces. Suppose $W\subseteq V$ is a $G$-invariant subspace, then it is invariant with respect to the action of $\g$. But the converse is only true if $\mathrm{char}(k)=0$ and $G$ is connected. The argument is similar.
+
+Since $G\subseteq GL(V)$, consider the stabilizer of some $v\in V$, $G_v=\{g\in G|gv=v\}$, and $\g_v=\{X\in \g|Xv=0\}$. We always have $\lie(G_v)\subseteq \g_v$, but other containment is not always true. If $\mathrm{char}(k)=0$, then $\lie(G_v)=\g_v$ and $T_v(G\cdot v)=\g v$. Note that it doesn't make a difference if $G$ is connected in this case.
+
+\begin{example}[Adjoint representation]
+ A group $G$ can act on itself by conjugation: $x\mapsto gxg^{-1}$. The identity is preserved, so it preserves $\g=T_e G$. Thus, we have a representation $\Ad\colon G\to GL(\g)$. In the case $G=GL(V)$, then $\g=\gl(V)$, and the action is honestly action by conjugation: $X\mapsto gXg^{-1}$. In general, this is an automorphism of $\g$ as a Lie algebra, not just a linear automorphism!
+ 
+ We get a corresponding representation $\ad\colon \g\to \gl(\g)$. This is given by $\ad(X)(Y)=[X,Y]$.
+\end{example}
+If $\mathrm{char}(k)=0$ and $G$ is connected, then $\ker \Ad=Z(G)$. If $G$ is connected and $\g$ is abelian, then $G$ is abelian as well. This is not true in characteristic $p$, and here is an example.
+\begin{example}
+ $G = \Bigl\{\matx{a&0&0\\ 0&a^p& b\\ 0&0&b}|a\in k^\times, b\in k\Bigr\}$ then $\g = \Bigl\{ \matx{t&0&0\\ 0&0&s\\ 0&0&0} | s,t\in k\Bigr\}$. $\g$ is abelian, but $G$ is not. We have that $\ker \Ad = \{\matx{1&0&0\\ 0&1&b\\0&0&1}\}$, but $Z(G)=\{1\}$.
+\end{example}
+
+\subsektion{Chevalley-Jordan decomposition}
+This is nice and works in all characteristics. However, we will assume $k=\bar k$.
+\begin{theorem}
+ Any operator $x\in \End_k(V)$ on a finite dimensional space can be written uniquely as a sum of a semi-simple (diagonalizable) operator and a nilpotent operator $X=X_s+X_n$ such that
+ \begin{enumerate}
+  \item $[X_s,X_n]=0$
+  \item There exist polynomials $p(t)$ and $q(t)$ with zero constant coefficients such that $X_s=p(X)$ and $X_n=q(X)$.
+ \end{enumerate}
+\end{theorem}
+This is basically Jordan normal form of the operator, plus something else. If $X$ is invertible, then $X_s$ is also invertible. Then $X=X_s(1+X_s^{-1}X_n)=X_sX_u$. The operator $X_s^{-1}X_n$ is not nilpotent, but $1+X_s^{-1}X_n$ is \emph{unipotent}, meaning that $(x-1)^N=0$. This is \emph{Chevalley decomposition}. The following doesn't work for Lie groups, but is true for algebraic groups.
+\begin{theorem}
+ If $G\subseteq GL(V)$ is a closed algebraic subgroup, then $g\in G\Rightarrow g_s,g_u\in G$, and $x\in \g\Rightarrow x_s,x_u\in \g$.
+\end{theorem}
+The proof follows from a simple observation.
+\begin{lemma}
+ Suppose $H\subseteq G$ are affine groups, and suppose $I_H$ is the ideal corresponding to $H$. Then $H=\{g\in G|g(I_H)\subseteq I_H\}$ and $\h=\{x\in \g|x(I_H)\subseteq I_H\}$.
+\end{lemma}
+\begin{proof}
+ The containments $\subseteq$ should be clear.
+ 
+ Suppose $g\in G$ such that $g(I_H)\subseteq I_H$, and let $f\in I_H$. It is enough to show that $f(g^{-1})=0$ \anton{this shows that $g^{-1}\in H$, so $g\in H$}. But $f(g^{-1})=(gf)(e)=0$ (since $gf\in I_H$ and $e\in H$).
+\end{proof}
+From this lemma, we get the theorem because $g_s$ and $g_u$ are polynomials in $g$! As soon as $g$ preserves some space, $g_s$ and $g_u$ must also preserve it. \anton{we're taking $G=GL(V)$ and $H=G$, and regarding $GL(V)$ as sitting inside of $End(V)$ to apply the Jordan form theorem}
+
+It looks like the decomposition depends on the choice of embedding $G\subseteq GL(V)$, but in fact the decomposition is natural.
+\begin{remark}
+ For any representation $\rho\colon G\to GL(V)$, $\rho(g_s)$ is always semi-simple and $\rho(g_u)$ is always unipotent.
+ 
+ Suppose we define $G$ as being in $GL(W)$, so $G\subseteq GL(W)$, then $g_s$ and $g_u$ act semi-simply and unipotently on $W$ by construction. So $g_s$ and $g_u$ are semi-simple (resp unipotent) operators on $W^*$, so they are semi-simple (resp unipotent) on $\sym^*(W^*)=k[W]$, so they are semi-simple (resp unipotent) on $k[G]=k[W]/I_G$. $V\otimes V^*\to k[G]$, given by $v\otimes \psi\mapsto \<\psi,gv\>$. If I let $G$ act only on the $V$ and not the $V^*$, then the map is equivariant. So any finite-dimensional representation appears in $k[G]$ \anton{For the map to be injective, you need $V$ to be irreducible, so we're only showing that $g_s$ and $g_u$ act as expected on irreducible representations}. If you like, $k[G]$ is an injective generator for the category of algebraic $G$-modules.
+\end{remark}
+For Lie groups, this doesn't hold. For example, consider the Lie algebra $\matx{t&t\\ 0&t}$. Expoentiating, we get a Lie group. First, note that the Lie algebra is not closed under taking semisimple and nilpotent parts.
+
+Q: is the problem that we can have Lie subgroups that aren't closed? A: no, that's not the only problem. You can find a closed subgroups which is not a Zariski closed subgroup, in which case the decomposition result fails. Moreover, you can take bad representations which violate the decomposition result.

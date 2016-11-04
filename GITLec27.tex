@@ -1,0 +1,45 @@
+\sektion{27}{The Moment Map}
+
+Suppose $X$ is a projective variety with an action of a reductive group $G$, with finite generic stabilizer, and $Stab(x)$ never unipotent. If $Z\in X\quot_C G$, then each component of $Z$ is the closure of a single $G$-orbit.
+\begin{proof}
+ Suppose not. Let $x\in Z_i$ generic, so its orbit $Gx$ is maximal-dimensional among orbits in $Z_i$. If the result is not true, we know that $\dim(Stab(x))>0$. Since this stabilizer is not unipotent, there is a non-trivial torus $T\subseteq Stab(x)$. Suppose $X\subseteq \PP^n$, with the action on $\PP^n$ linear. Consider $T_x(\PP^n)=T_x(Gx)\oplus N$, with $N$ a $T$-invariant subspace of $T_x(\PP^n)$. Next, take $S=x+N\subseteq \PP^n$. By definition, $S$ is transverse to $Gx$. So there is an open neighborhood $x\in U$ such that $S$ will be transverse to any orbit $Gy$ for $y\in U$. If $y\in Z_i$, then by dimension and transversality, $Gy$ intersects $S$ in finitely many points. On the other hand, $S$ is a $T$-invariant subvariety by construction, so the action of $T$ on $Z_i\cap S$ is trivial.
+ 
+ Now consider a curve $x(t)\subseteq S\cap X$ with $x(0)=x$ and $Stab(x(t))$ finite for $t\neq 0$ \anton{why can we find such a curve in $S\cap X$?}. Now I define $C(t)=\overline{T\cdot x(t)}$. Outside of $Z$, $T$ acts with finite stabilizer, so $\dim C(t)=\dim T$. It degenerates to a cycle $C$, which lies in $Z_i\cap S$ (on which the action of $T$ is trival). But we showed that the components of $C$ must be closures of single $T$-orbits, a contradiction.
+\end{proof}
+\anton{for transversality, it looks like we really used that $X$ is smooth.}
+
+Let me introduce the next theorem, which I'll only prove later, after we've done the symplectic moment map.
+\begin{theorem}
+ Suppose $k=\CC$, and $X$ is projective with an action of a reductive group $G$. Let $L\in \pic^GX$. Then there exists a morphism of algebraic varieties $X\quot_C G\to X\quot_L G$. If $X^s(L)\neq\varnothing$, then this is morphism is birational.
+\end{theorem}
+\anton{btw, can we characterize when Mumford quotients have maps between them? It should be some kind of chamber decomposition of $\pic^G X$. Is the Chow quotient the fiber product of all the Mumford quotients?}
+
+\subsektion{Definition of the moment map}
+Let $M$ be a real symplectic manifold of dimension $2n$ with symplectic form $\om\in \Om^2M$, $d\om=0$, and $\om$ non-degenerate at all points. Assume $K$ is a connected real Lie group which acts on $M$ and preserves $\om$. Since $\om$ is non-degenerate, we get an identification $\om\colon T^*M\cong TM$. Let $v\in Vect(M)$ such that $L_v(\om)=0$ (i.e.~$v$ is a Hamiltonian vector field).\footnote{For a differential $k$-form $\alpha$, $d\alpha$ is a $(k+1)$-form and $i_v\alpha = \alpha(v,-)$ is a $(k-1)$-form. $L_v\alpha = i_v d\alpha + d(i_v \alpha)$.} Then (at least locally), there exists a function $H_v$ such that $\<dH_v,w\>=\om(v,w)$ for all $w\in Vect(M)$. This follows from the Darboux lemma, which gives us coordinates $p_1,\dots, p_n, q_1,\dots, q_n$ such that $\om=\sum p_i\wedge q_i$. Then $v=\sum \pder{H}{p_i}\pder{}{q_i}-\pder{H}{q_i}\pder{}{p_i}$ (possibly in the other order). If such a function exists globally (e.g.~if $M$ is simply connected), then the field is Hamiltonian. Denote the set of such vector fields by $HVect(M)$
+
+$C^\infty(M)$ has a Poisson bracket $\{f,g\}= \om(df,dg)=\om(df)\cdot g$, where we're thinking of $\om$ as an isomorphism $T^*M\xrightarrow\sim TM$. Then we get a short exact sequence
+\[
+ 0\to \RR\to C^\infty(M)\xrightarrow[f\mapsto \{f,-\}]{\om\circ d} HVect(M)\to 0
+\]
+which is in general a non-trivial central extension of Lie algebras.
+
+Let $\k=Lie(K)$. From the action, we have a map $\k\to HVect(M)$. Assume we can lift this to a Lie algebra homomorphism $\k\to C^\infty(M)$. This is always possible, for example, if $\k$ is a semi-simple Lie algebra (because semi-simple Lie algebras don't have non-trivial central extensions). If $u\in \k$, we will write $L_u$ for the image in $HVect(M)$. Assume every $L_u$ is Hamiltonian (which will always be true if $M$ is simply connected). \anton{notice that the lift is not unique; you can replace all the $H_u$ by $H_u+const$ and still get a lift. Actually, since $\k\to C^\infty(M)$ is required to be Lie algebra homomorphism, it's only determined up to an element of $\hom_{Lie}(\k,\RR)$. In particular, if $\k$ is semi-simple, the map is unique}
+
+Under all these assumptions, we can define a map $\mu\colon M\to \k^*$, given by $\<\mu(x),u\>=H_u(x)$ for $x\in M$ and $u\in \k$. \anton{This $\mu$ is defined only up to shift, since any two lifts $\k\to C^\infty(M)$ will differ by an element of $\hom(\k,\RR)=\k^*$.}
+\begin{remark}
+ $K$ acts on $\k$ by the adjoint representation. It also acts on $HVect(M)$. The map $\mu$ is $K$-equivariant. Infinitesimally, you can write it as $\<d\mu(x)(\xi),u\>=\om(\xi,L_u)$ for $\xi\in T_xM$.
+\end{remark}
+\begin{example}
+ If $X$ is any smooth variety, there is a canonical symplectic variety associated to it, namely $M=T^*X$. If $x_1,\dots, x_n$ are local coordinates on $M$, then the coordinates on the fibers are $p_i=\pder{}{x_i}$, and $\om=\sum dp_i\wedge dx_i$. If I have any vector field $v=\sum f_i\pder{}{x_i}$ on $X$, it automatically induces a vector field on $M$.
+ \begin{exercise}
+  Check that $H_v=\sum p_if_i$.
+ \end{exercise}
+\end{example}
+\begin{example}
+ Let $K=U(n+1)$ act on $\CC^{n+1}$. This extends to an action on $\PP^n_\CC$ (thought of as a real manifold!). It is easy to check that the action on $\PP^n$ is transitive. By definition, $U(n+1)$ are those transformations that preserve the Hermitian form $(v,w)$ on $\CC^{n+1}$. In coordinates, $(v,w)=\sum v_i\bbar w_i$. Such a form defines a Kahler form on $\PP^n$, which can be written in homogeneous coordinates $\sum_{i=0}^n \frac{dz_i\, \bbar{dz_i}}{\sum |z_i|^2}$, called the Fubini-Study form. On the imaginary part of $\k$ this form is a symplectic form $\om$.
+ 
+ We get a moment map $\mu\colon \PP^n\to \k^*$. $\k$ is the space of skew-hermitian matrices, which I identify with hermitian matrices ($\bbar A^t=A$) by multiplying by $\sqrt{-1}$.
+ 
+ If $x\in \PP^n$, pick a vector $v\in \CC x$. Define $\<u,\mu(v)\>=\frac{\bbar v^t u v}{\bbar v^t v}$, where $v$ is regarded as a column vector. It is not hard to see that this is an equivariant map. If $g\in U(n+1)$, then $\<u,\mu(gv)\>=\frac{\bbar v^t \bbar g^t u g v}{\bbar v^t \bbar g^t gv}$, but $\bbar g^tg=1$, so this is $\<\bbar g^tug,\mu(v)\>$.
+\end{example}
+Next time we'll talk about the relation of this stuff to Mumford quotients.

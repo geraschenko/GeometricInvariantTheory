@@ -1,0 +1,121 @@
+\sektion{5}{More on Finite Groups and Reflection Groups}
+
+Today we'll consider the case of a finite group $G$ acting linearly on a vector space $V = \specm R[V]$. We'll assume that $\mathrm{char}(k)\nmid |G|$ (so representations are completely reducible). Using Moilen's formula (Proposition \ref{lec4Prop:Moilen}), we can compute the Poincar\'e series $P_{R^G}(t)$. The idea is that by looking at $P_{R^G}(t)$, you can sometimes guess what $R^G$ is. Before we do an example, let's consider a very interesting class of finite groups that act on $\AA^2=\CC^2$.
+
+\anton{on the McKay correspondence} Let $V=\CC^2$, with the usual action of $SL(2,\CC)$. We get an induced action of $SL(2,\CC)$ on $\sym^2 V$ so that the ``squaring'' map $\sigma\colon V\to \sym^2 V$ given by $v\mapsto v\cdot v$ is $SL(2,\CC)$-equivariant. Let $x$ and $y$ be the coordinates on $V$, and let $z_1$, $z_2$, and $z_3$ be the coordinates on $\sym^2 V$, with $\sigma$ corresponding to the map $z_1\mapsto x^2$, $z_2\mapsto xy$, $z_3\mapsto y^2$. The image of $\sigma$ (the cone $z_2^2-z_1z_3$) is invariant under the action of $SL(2,\CC)$, so $SL(2,\CC)$ respects the quadratic form $z_2^2-z_1z_3$ \anton{this is where we're using $SL(2,\CC)$ rather than $GL(2,\CC)$ (which only respects the form up to scalar))}. So the induced homomorphism $\ga\colon SL(2,\CC)\to GL(3,\CC)$ actually factors through $SO(3,\CC)$. It is easy to see that $\ker \ga = \{\pm 1\}$. Now consider $SO(3,\RR)\subseteq SO(3,\CC)$.\footnote{We're cheating a little bit here. Up to isomorphism, there is only one non-degenerate quadratic form on $\CC^2$, but there are four non-isomorphic non-degenerate quadratic forms on $\RR^2$, and we want the positive definite one. With our choice of $\sigma$, we actually get the form with signature $(1,-1,-1)$ instead of $(1,1,1)$. But we can change coordinates on $\sym^2 V$ so that $\sigma$ becomes $z_1\mapsto \frac{x^2+y^2}{2i}$, $z_2\mapsto xy$, $z_3=\frac{x^2-y^2}{2}$. Then the image of $\sigma$ is the surface $z_1^2+z_2^2+z_3^2=0$, and the action of $SL(2,\CC)$ respects the quadratic form $z_1^2+z_2^2+z_3^2$.} We have that $\ga^{-1}(SO(3,\RR))=SU(2)$ \anton{how to see this?} Givne a finite subgroup $H\subseteq SO(3,\RR)$, we get a finite subgroup $G=\ga^{-1}(H)\subseteq SU(2)$. In this way, we can find many finite groups that act on $\CC^2$.
+
+\begin{example} 
+ Let $H\subseteq SO(3,\RR)$ be the group of rotations of the cube; $H$ is abstractly isomorphic to $S_4$. Now consider $G=\ga^{-1}(H)$, a non-trivial central extension of $S_4$. We have $|H|=24$ and $|G|=48$.
+ 
+ Now we consider the action of $G$ on $V$ and try to describe the geometric quotient $V\quot G=\specm k[V]^G$. We'd like to use Moilen's formula to compute $P_{R^G}(t)$, so we need to be able to compute $\det(1-gt)$ for every $g\in G$. So we make a table, recording the possible diagonal forms of $g$, the order of $g$, and the number of elements of the given form: \anton{how to make this table?}
+ \[
+ \newcommand{\mx}[2]{\ensuremath\!\!\begin{pmatrix}\!\!#1\!\!&0\\ 0& \!\!#2\!\!\end{pmatrix}\!\!}
+ \begin{tabular}{r|ccccccc}
+  form & $\mx 11$ & $\mx{-1}{-1}$ & $\mx{e^{\frac{2\pi i}3}}{e^{-\frac{2\pi i}3}}$ & $\mx{-e^{\frac{2\pi i}3}}{-e^{\frac{2\pi i}3}}$ & $\mx{i}{-i\;}$ & $\mx{\om}{\om^{-1}}$ & $\mx{-\om}{-\om^{-1}}$ \\ \hline
+  order & 1 & 2 & 3 & 6 & 4 & 8 & 8 \\ \hline
+  number & 1 & 1 & 8 & 8 & 18 & 6 & 6
+ \end{tabular}\]
+ where $\om=\frac{1+i}{\sqrt 2}=e^{2\pi i/8}$. Applying Moilen's formula (\ref{lec4Prop:Moilen}), we have that $P_{R^G}(t)$ is
+ \[
+  \frac{1}{(1-t)^2}+\frac{1}{(1+t)^2} + \frac{8}{1+t+t^2}+\frac{8}{1-t+t^2} + \frac{18}{1+t^2}+\frac{6}{1+\sqrt 2 t+t^2}+ \frac{6}{1-\sqrt 2 t+t^2}
+ \]
+ Simplifying, we get \anton{I haven't verified this yet}
+ \[
+  P(t)=\frac{1-t^6+t^{12}}{(1+t^6)(1-t^8)} = \frac{1+t^{18}}{(1-t^{12})(1-t^8)}
+ \]
+ From this, we see that $R^G$ is a free module over the polynomial ring $k[f_8,f_{12}]$ (for some invariants $f_8$ and $f_{12}$ of degrees $8$ and $12$), with generators $1$ (of degree $0$) and $f_{18}$ (some invariant of degree $18$).
+ 
+ So $R^G$ has three generators, but what are the relations? We already know that $f_8$ and $f_12$ have no relations among them. But $f_{18}^2$ must satisfy some relation. By simple degree considerations, we see that the degree $(R^G)_{36}$ is spanned by $f_{12}f_8^3$ and $f_{12}^3$, so we must have 
+ \[
+  f_{18}^2 = af_{12}f_8^3 + bf_{12}^3
+ \]
+ for some $a,b\in k$. Later, we'll show that you can make $a=b=1$ \anton{ref once we've done it}. So $V\quot G \cong \specm k[x,y,z]/(x^2-yz^3-y^3)$ is a surface with a singularity at the origin. This is a so-called \emph{simple singularity}.
+\end{example}
+
+\begin{proposition}
+ Let $G$ act faithfully on an irreducible affine variety $X=\specm R$, and let $K$ be the field of fractions of $R$. Then
+ \begin{enumerate}
+  \item $R^G\subseteq R$ is an integral extension.
+  \item $K^G$ is the field of fractions of $R^G$.
+  \item $K^G\subseteq K$ is a normal extension, with Galois group equal to $G$.
+ \end{enumerate}
+\end{proposition}
+\begin{proof}
+ (1) Given $f\in R$, consider the polynomial $P_f(x)=\prod_{g\in G}(x-g(f))$. It is clear that $P_f$ is a monic polynomial, that it is invariant under the action of $G$ (so $P_f\in R^G[x]$), and that $f$ is a root of $P_f$. Thus, $R^G\subseteq R$ is an integral extension.
+ 
+ (2) Suppose $f/h\in K^G$, then we need to show that it can be written as the ratio of invariant functions. By (1), $h$ satisfies some monic polynomial $h^n+a_{n-1}h^{n-1}+\cdots +a_0=0$ where $a_i\in R^G$ and $a_0\neq 0$. So $h(h^{n-1}+a_{n-1}h^{n-2}+\cdots +a_1)=-a_0$ is an invariant element of $R$. Multiplying the numerator and denominator by $(h^{n-1}+a_{n-1}h^{n-2}+\cdots +a_1)$, we have reduced to the case where $f/h\in K^G$, and $h$ is \emph{invariant}. Then since $f/h=g(f/h)=g(f)/h$, we have that $f=g(f)$ for every $g\in G$. \anton{here we're using that $X$ is reduced and irreducible. Alternatively, if $\mathrm{char}(k)\nmid |G|$, we can apply the Reynolds operator to $f/h$ to get $f/h=\bar f/h$.}
+
+ (3) follows from (1) (as soon as you get an integral extension, ... use the primitive element theorem and the fact that the action is faithful)\anton{}
+\end{proof}
+
+\subsektion{Groups generated by reflections}
+
+In this section, we assume that $k=\bar k$ and $\mathrm{char}(k)=0$.
+
+\begin{definition}
+ Let $V$ be a vector space. A linear map $r\in \End(V)$ is a \emph{reflection}\footnote{Sometimes called a \emph{pseudoreflection}.} if $r\neq \id$, $r$ has finite order, and $r$ fixes a hyperplane $H_r$.
+\end{definition}
+So in some basis, the matrix of $r$ is diagonal, with all but one entry on the diagonal equal to 1, and the remaining entry is a root of unity. The hyperplane $H_r$ is defined by some non-zero linear function $\ell_r\in V^*$, which is determined up to scalar.
+
+Given a reflection $r$ and a function $f\in R=k[V]$, note that $f$ and $r(f)$ agree on $H_r$, so $f-r(f)$ vanishes along $H_r$. But the only polynomials that vanish along $H_r$ are those that are divisible by $\ell_r$.
+\begin{definition}
+ Given a reflection $r$, we define the \emph{Demazure operator} $D_r\colon R\to R$ by $f\mapsto \displaystyle \frac{f-r(f)}{\ell_r}$.
+\end{definition}
+\begin{lemma}
+ If $r\in G$ is a reflection, then $D_r\colon R\to R$ is $R^G$-linear.
+\end{lemma}
+\begin{proof}
+ Let $f\in R^G$ and $h\in R$, then $r(f)=f$ by assumption, so
+ \[
+  D_r(fg)= \frac{fh-r(fh)}{\ell_r}=\frac{fh-r(f)r(h)}{\ell_r}=fD_r(h).\qedhere
+ \]
+\end{proof}
+
+\begin{lemma}\label{lec5Lem:R_G}
+ Let $G\subseteq GL(V)$ be generated by reflections, and let $I\subseteq R$ be the ideal generated by $R_{>0}^G$. Let $g_1,\dots, g_m$ and $u_1,\dots, u_m$ be homogeneous non-zero elements of $R$, with the $g_i\in R^G$. If $g_1u_1+\cdots + g_mu_m=0$ and $u_1\not\in I$, then $g_1\in R^Gg_2+\cdots + R^G g_m$.
+\end{lemma}
+\anton{There should be a good way to think about this lemma in terms of the ring of \emph{coinvariants} $R_G=R/I$.}
+\begin{proof}
+ We will do induction on the degree of $u_1$. If $\deg u_1=0$, then $u_1=1$ (up to scalar), so $g_1=-g_2u_2-\cdots -g_mu_m$. Applying the Reynolds operator, we have $g_1=-g_2\bar u_2-\cdots -g_m\bar u_m$.
+ 
+ Now suppose $\deg u_1>0$. For a reflection $s\in G$, we apply $D_s$ to the relation to get $g_1D_s(u_1)+\cdots g_mD_s(u_m)=0$, a relation of lower degree. If the conclusion of the lemma is not true, then we must have $D_s(u_1)\in I$ by induction, so $u_1-s(u_1)\in I$. But this is true for all reflections $s\in G$. Since $G$ is generated by reflections, any $g\in G$ may be written as a product of reflections $g=s_1s_2\cdots s_b$, and we see that
+ \[
+  u_1-g(u_1)= \bigl(u_1-s_1(u_1)\bigr)+s_1\bigl(u_1-s_2(u_1)\bigr)+\quad\cdots\quad + s_1\cdots s_{b-1}\bigl(u_1-s_b(u_1)\bigr)
+ \]
+ so $u_1-g(u_1)\in I$ for all $g\in G$. In particular, $\frac{1}{|G|}\sum_g \bigl(u_1-g(u_1)\bigr)=u_1-\bar u_1\in I$. But since $\bar u_1\in I$, this implies that $u_1\in I$.
+\end{proof}
+
+\begin{theorem}[Chevalley-Shephard-Todd]
+ Suppose $G\subseteq GL(V)$. The ring $k[V]^G$ is isomorphic to a polynomial ring if and only if $G$ is generated by reflections.
+\end{theorem}
+It turns out this is equivalent to saying that the corresponding geometric quotient has no singularities. Today, we'll prove that if $G$ is generated by reflections, then $k[V]^G$ is a polynomial ring.
+\begin{proposition}\label{lec5:one_dir_CST}
+ If $G$ is generated by reflections, then $k[V]^G$ is a polynomial ring.
+\end{proposition}
+\begin{proof}
+ Let $f_1,\dots, f_r$ be a minimal homogenous generating set for the ideal $I\subseteq R$ generated by $R^G_{>0}$ such that $\deg f_1\leq\cdots \leq \deg f_r$. In the proof of Hilbert's theorem (\ref{lec3Thm:Hilbert}), we showed that the $f_p$ generate $R^G$ as a ring. So we need only to show that there are no algebraic relations among the $f_p$.
+ \begin{claim}
+  If $R=k[x_1,\dots, x_n]$, then for each $f_p$, there is some $i$ such that $\pder{f_p}{x_i}\not\in I$.
+ \end{claim}
+ \begin{proof}[Proof of Claim]
+  Suppose that $\pder{f_p}{x_i}\in I$ for all $i$. Since $\deg f_1\le \cdots \le \deg f_r$ and $\deg \pder{f_p}{x_i}<\deg f_p$, we must have $\pder{f_p}{x_i}\in R f_1+\cdots + Rf_{p-1}$ for all $i$. Then we get
+  \[
+   f_p \cdot \deg f_p = \sum_i x_i \pder{f_p}{x_i}\in R f_1+\cdots + Rf_{p-1}   
+  \]
+  Since $\mathrm{char}(k)=0$, $\deg(f_p)$ is invertible, contradicting the minimality of the set $\{f_1,\dots, f_r\}$.
+  \renewcommand{\qedsymbol}{\fbox{\scriptsize Claim}}
+ \end{proof}
+ Now suppose $h(t_1,\dots, t_r)\in k[t_1,\dots, t_r]$ such that $h(f_1,\dots, f_r)=0$. We may assume $h$ is homogeneous (where $\deg t_i=\deg f_i$) and of minimal degree. By the claim, there is some $x_i$ such that $\pder{f_1}{x_i}\not\in I$. By the chain rule, we have
+ \[
+  0 = \pder{h}{x_i}(f_1,\dots, f_r) = \sum_{p=1}^r \pder{h}{t_p}(f_1,\dots, f_r)\cdot \pder{f_p}{x_i}.
+ \]
+ Since $\pder{f_1}{x_i}\not\in I$, Lemma \ref{lec5Lem:R_G} tells us that
+ \[
+  \pder{h}{t_1}(f_1,\dots, f_s) = \sum_{p=2}^r c_p \pder{h}{t_p}(f_1,\dots, f_s)
+ \]
+ for some $c_p\in R^G$. But $\pder{h}{t_1}$ has degree strictly smaller than $h$, so this is an algebraic relation of smaller degree among the $f_p$, a contradiction.
+\end{proof}
+
+\begin{remark}
+ Note that we must have $r=n$ because $K$ is a finite extension of $K^G$, the fraction field of $R^G$.
+\end{remark}

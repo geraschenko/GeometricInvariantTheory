@@ -1,0 +1,68 @@
+\sektion{28}{Lecture 28}
+
+Last time, we considered the case $K=U(n+1)$ acting on $\PP^n$ in the standard way. We have a Hermitian form which induces the symplectic form, so we get a moment map $\mu\colon \PP^n\to \k^*$ defined by
+\[
+ \<\mu(v),u\>=\frac{(uv,v)}{(v,v)}
+\]
+where we've identified $\k^*$ with the space of hermitian matrices. The pairing $(-,-)$ is the hermitian form on $V=\CC^{n+1}$. In the formula, $v\in V$, and $u\in \sqrt{-1}\k^*$.
+
+If the group is reductive, we can identify $\k$ with $\k^*$ by the Killing form \anton{doesn't the group need to be semi-simple for that?}. In this case, we can write the moment map as $\mu(v)w=w-\frac{(u,w)}{(v,v)}v$, the projection onto the orthogonal complement of $v$. Here, I'm assuming the form is skew-linear in the first coordinate and linear in the second one.
+
+Since everything we're going to study is related to this example, I want to talk more about it.
+
+If $K$ is a compact group \anton{btw, compact groups always complexify to reductive groups}, and $V$ is a complex linear representation of dimension $n+1$. Then by compactness, there is a positive definite hermitian form $(-,-)$ on $V$. So I get a map $K\to U(n+1)$, giving the dual map $\mathfrak u(n+1)^*\to \k^*$. So for an arbitrary compact group, the moment map is induced by the one in the example.
+
+Consider the case $K=T$, the maximal torus of $GL(V)$, so $\t_K^*\cong \RR^{n+1}$. If I choose an orthonormal basis $\{e_0,\dots, e_n\}$ for $V$, then 
+\[
+ \mu(z_0,\dots, z_n)= \frac{(|z_0|^2,\dots, |z_n|^2)}{\sum |z_i|^2}.
+\]
+So the image is the simplex $\{(a_0,\dots, a_n)\in \RR^{n+1}|\sum a_i=1\}$. In general, when $K$ is a torus, the image of the moment map is a convex polytope.
+
+If $G$ is an arbitrary reductive group over $\CC$, then by Cartan's theorem, it has one compact real form $K\subseteq G$ (up to conjugation), with $K_\CC\cong G$. If $G$ is connected, it can be proven that $K$ is connected. See, for example, Helgason's book. Here are the classical cases:
+
+\begin{tabular}{c|c}
+ $G$ & $K$\\ \hline
+ \rule{0pt}{2.5ex}$\CC^\times$ & $S^1$\\
+ $SL(n,\CC)$ & $SU(n)$\\
+ $SO(n,\CC)$ & $SO(n,\RR)$\\
+ $Sp(2n,\CC)$ & $SU(n,\HH)$
+\end{tabular}
+
+If $X$ is a projective complex variety, we find an ample line bundle $L\in \pic^GX$. This gives us an immersion $X\hookrightarrow \PP(V)$, which is $G$-equivariant ($V=\Ga(X,L^{\otimes N})$ for some $N$). Since $K\subseteq G$, we get a map $\mu\colon X\to \k^*$.
+\begin{theorem}
+ (1) A point $x\in X$ is semi-stable if and only if $0\in \mu(\bbar{G\cdot x})$ \anton{we're using the \emph{particular} moment map we defined at the beginning of the lecture; actually, we require the map $\k^*\to C^\infty(M)$ to be a Lie algebra map}. (2) $\mu^{-1}(0)$ is $K$-invariant (since $0$ is invariant). Every semi-stable orbit either does not meet $\mu^{-1}(0)$ or they meet in a single $K$-orbit. We get an isomorphism of topological spaces $\mu^{-1}(0)/K\xrightarrow\sim X\quot_L G$.
+\end{theorem}
+\begin{example}
+ $G=T$ the maximal torus in $SL(V)$. The the image of the moment map is a simplex whose center is at $0$. The preimage $\mu^{-1}(0)=\{(z_0,\dots, z_n)| |z_0|=|z_1|=\cdots |z_n|\}$. This is exactly one $K$-orbit, since $K=\{diag(t_0,\dots, t_n)||t_i|=1\}$. The semi-stable orbit is the open orbit. There are other orbits corresponding to the faces of the simplex.
+\end{example}
+This theorem gives you a nice criterion for semi-stability, and it reduces to an ``easier'' case where the group is compact.
+
+
+The proof of the Theorem is due to Kempf and Ness. Consider $f(v)=(v,v)=\|v\|^2$ as a function on $V$. Restrict to some orbit $O=G\cdot v$.
+\begin{proposition}{\ }
+ \begin{enumerate}
+  \item $v\in O$ is a critical point (of the restriction $f:O\to \RR$) if and only if $\mu(v)=0$.
+  \item Every critical point is a minimum.
+  \item If $f$ has a minimum on $O$, then it attains it at a single $K$-orbit ($f$ is clearly $K$-invariant).
+  \item $f$ has a minimum on $O$ if and only if $O$ is closed.
+ \end{enumerate}
+\end{proposition}
+\begin{proof}
+ (1) Suppose $v$ is a critical point on $O=G\cdot v$. $T_v G\cdot v=\g\cdot v$, so it is a critical point if and only if 
+ \[
+  \der{}{t}(e^{ut}v,e^{ut}v)\Bigr|_{t=0}=0
+ \]
+ for all $u\in \g$. We have $\g=\k\oplus \m$, where $\k$ are skew-hermitian matrices and $\m$ are hermitian. When you calculate the LHS, you only need to consider the linear term in $t$, so the condition becomes
+ \[
+  (v+uvt+\cdots,v+uvt+\cdots)=(v,v) + ((uv,v)+(v,uv))t+\cdots
+ \]
+ But skew-hermitian means that $(av,v)=(v,av)$, so we get that the condition for being a critical point is that $(bv,v)=0$ for all $b$, which is equivalent to $\mu(v)=0$.
+ 
+ The idea for (2-4) i to do it first for the case where $G$ is a torus, and then do the general case using a bit of structure theory. In all these proofs, we can basically reduce to the case of a torus because of the Hilbert-Mumford criterion. So let's consider the case $G=T$.
+ 
+ Then the action is diagonalizable: $t(x_1,\dots, x_n)=(\chi_1(t)x_1,\dots, \chi_n(t)x_n)$. Since the form is invariant under the action of the torus, we can choose the $T$-eigenbasis to be orthonormal with respect to the form. $T=(\CC^*)^m$. We have a surjection $\CC^m\xrightarrow\exp T$. We have that $(tv,tv)=\sum |x_i|^2 |\chi_i(t)|^2$, which we regard as a function on $\CC^n$. We have $(t_1,\dots, t_n)=(e^{s_1},\dots, e^{s_n})$, so the form looks like $\sum |x_i|^2 |e^{\ell_i(s)}|^2$, where $\ell_i$ are some linear functions on $\CC^m$. This function is invariant with respect to $K$, so if we write $\CC^m=\RR^m + \sqrt{-1}\RR^m$, the imaginary part does not contribute to the form. If I define $\phi(s)=\|\exp(s\cdot v)\|$, we get the factorization $\phi\colon \RR^m\to \RR$. The restriction of $\phi$ to any line (parameterized by $\tau$) is given by $\sum c_i e^{a_i\tau}$. We can see that if the function is not constant on the line, it has a positive second derivative. That is, $\phi$ is convex when restricted to a line, and strictly convex if it is not constant. How can it happen that $\phi$ is constant? Only if each $\ell_i$ is zero. $\phi(s_0+\tau \vec r)$ constant implies that $\ell_i(\vec r)=0$ for all $i=0,\dots, n$, which implies that $\vec r$ is in the stabilizer of $e^{s_0}v$. If $v$ is a critical point, then I know that there are some directions where $\phi$ is constant, and these will form a subspace. $\phi(\tau\vec r)$ constant if $\vec r\in Stab(v)$, and the function $\phi\colon \RR^m/Stab(v)\to \RR$ is strictly convex, so it has a single critical point, which then must be a minimum. From this, we get (2) and (3) for a torus. We'll finish proving this theorem next time.
+
+
+\end{proof}
+
+

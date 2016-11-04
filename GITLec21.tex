@@ -1,0 +1,33 @@
+\sektion{21}{More on Stability}
+
+I'm going to talk a bit more about stability. We assume that $G$ is always reducitve.
+
+Let $L$ be a $G$-linearized line bundle on $X$. We define $X^{ss}(L)=\{x\in X| \exists f\in \Ga(X,L^{\otimes n})^G, f(x)\neq 0\}$. If $X$ is only quasi-projective, then I also require that $X_f$ be an affine variety (which is automatic if $X$ is projective). We define $X^s(L)=\{x\in X^{ss}(L)|$ the $G$-action on $X_f$ is closed$\}$. Note that these sets don't change if we replace $L$ by $L^{\otimes r}$.
+
+If $X$ is projective and $L$ is ample, we have the following criterion. Consider $X\hookrightarrow \PP(V)$, where $V=\Ga(X,L^{\otimes d})$. Then $x$ is semi-stable if and only if for any $v\in kx$, $0\not\in\bbar{G\cdot v}$. Moreover, $x$ is stable if and only if $G\cdot v$ is closed and $x$ is a regular point in $X$ \anton{equivalently, $v$ is regular in $X_a$.}.
+
+For the semi-stability criterion: the condition $0\not\in \bbar{G\cdot v}$ implies (by the Separation Lemma) that there is a homogeneous polynomial $f\in k[V]^G$ which does not vanish at $v$. Conversely, if $0\in\bbar{G\cdot v}$, then any invariant homogeneous function must vanish at $v$.
+
+For the stability criterion: let $f$ be a homogeneous invariant function such that $x\in X_f$. Note that $X_f$ is affine. If $x$ is stable, then $G\cdot x$ is closed in $X_f$. I claim that this implies that $G\cdot v$ is closed in $V$. For any point $w\in \bbar G\cdot v$, it is automatically in $X_f$, so the line $y=kw$ is in $X_f$. We have $y\in \bbar{G\cdot x}$, so there is some point on the same line where $f$ doesn't vanish, so $f$ doesn't vanish on the whole line. Conversely, if $G\cdot v$ is closed, then $G\cdot x$ is closed. Now we have to do regularity. If we have $X_f$ on which the action of $G$ is closed, then each point must be regular.
+
+Recall that in the affine situation, the stable points are regular points with closed orbits. We had the quotient map $\phi\colon X\to Y$. We showed that $X^s=X\setminus \phi^{-1}(\phi(X^\irr))$. The action of $G$ is closed on this open set. If there is a closed orbit with small dimension, then it is in the closure of some larger orbit. The fibers of $\phi$ are closure equivalence classes. We need a semi-continuity result to get that the fibers of $\phi$ have upper semi-continuous dimensions.
+
+\bigskip
+
+Now suppose $X$ is projective. We define $X\quot_L G=\proj \bigoplus_{n\ge 0} \Ga(X,L^{\otimes n})^G=X^{ss}\quot G$ (piecewise gluing) \anton{semi-stable or stable?}. If $X$ is not projective, there is another way to define it by gluing. We have $X^{ss}(L) = \bigcup_{i=1}^k X_{f_i}$, where we can assume that $f_i$ are invariant sections of the same power of $L$, $L^{\otimes r}$. Let $U_i=X_{f_i}$. Then $\O(U_i)=\{g/f_i^n|g,f^n\in \Ga(X,L^{\otimes rn})\}$. We have $\O(U_i)^G=\{g/f_i^n|g,f^n\in \Ga(X,L^{\otimes rn})^G\}$. Let $Y_i=\specm \O(U_i)^G$. We can glue them together in the natural way. \anton{I'm worried you might need \emph{stable} points to get geometric quotients to glue ... no, it should work}. We can define $Y_{ij}\subseteq Y_i, Y_j$ as a localization, then glue. It's a bit of work to show that this $X^{ss}\quot G$ does not depend on the choice of open cover. This is called a \emph{categorical quotient}, $Y$. We have a map $X^{ss}\to Y$. This map is surjective and an open submersion.
+
+\emph{Categorical quotients}. Suppose $G$ acts on a variety $X$. Suppose $\phi$ is a $G$-invariant map $\phi\colon X\to Y$. Suppose that for any $G$-invariant map $q\colon X\to Z$, there exists a unique factorization $q\colon X\xrightarrow\phi Y\to Z$. The categorical quotient is uniquely deteremined. People usually require more.
+
+\emph{Good quotients}. (1) We require $\phi$ to additionally be a surjective open submersion ($U\subseteq Y$ is open if and only if $\phi^{-1}(U)$ is open). (2) We also require that for any open set $U\subseteq Y$, $\phi^*(\O_Y(U))\cong \O_X(\phi^{-1}(U))^G$ \anton{LHS means fuctions which are constant on fibers: $\phi^{-1}\O_Y (\phi^{-1}(U))$. maybe this is called $\phi^\#$}.
+
+\emph{Geometric quotients}. We additionally impose (3) the fibers of $\phi$ are orbits of the $G$-action.
+
+These three conditions actually imply by themselves that $\phi$ is a categorical quotient.
+\begin{proof}
+ Suppose $q\colon X\to Z$ is $G$-invariant. Cover $Z$ by affine sets: $Z=\bigcup V_i$. Consider $\phi(q^{-1}(V_i))=U_i$, which are open sets on $Y$ by (1). We have $q^{-1}(V_i)\subseteq \phi^{-1}(U_i)$. Since the fibers are orbits (3), this should actually be an equality. Since $\phi$ is surjective (1), we have $Y=\bigcup U_i$. Since $q$ is $G$-invariant, we have a homomorphism $\O(V_i)\to \O(q^{-1}(V_i))^G=\O(\phi^{-1}(U_i))=\O(U_i)$. This gives a map $Y\to Z$.
+\end{proof}
+Charley: there is a proof in Borel that shows that (1) and (2) imply that $\phi$ is a categorical quotient.\anton{nevermind, it's slightly different} Vera: I think he uses something else too. Suppose you have (1) and (2) and (3$'$) if $W_1$ and $W_2$ are closed $G$-invariant sets in $X$ with $W_1\cap W_2=\varnothing$, then $\phi(W_1)\cap \phi(W_2)=\varnothing$. Then you can get that $\phi$ is a categorical quotient.
+\begin{proof}
+ Let $V_i$ be as in the previous proof. Define $W_i=X\setminus q^{-1}(V_i)$ (these are closed sets). Define $U_i=Y\setminus \phi(W_i)$. Since $\bigcap W_i=\varnothing$, the $U_i$ are an open cover of $Y$. Then procede exactly as in the previous proof.
+\end{proof}
+The main point is that $X^{ss}\quot G$ is a categorical quotient and $X^s\quot G$ is geometric quotient. Then we'll talk about linearizations. And toric varieties.

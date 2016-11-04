@@ -1,0 +1,99 @@
+\sektion{14}{Stability in the Projective case}
+
+We assume we have a faithful representation $V$ of a reductive group $G\subseteq GL(V)$. Suppose $X\subseteq \PP(V)$ is an invariant subvariety under the action of $G$. Then $X=\proj R$ for some graded ring $R=\bigoplus R_n$. We define $X\quot G = \proj R^G$.
+
+\begin{definition}
+ A point $x\in X$ is \emph{semi-stable} if there exists an invariant homogeneous function $f\in R_{>0}^G$ such that $x\in X_f$ (where $X_f$ is the open set where $f$ does not vanish). We say $x$ is \emph{stable} if it is semi-stable and the action of $G$ on $\PP(V)_f$ is closed.
+ 
+ A point which is not semi-stable is called \emph{unstable}, and the affine cone on $X^\unst$ is sometimes called the \emph{nilpotent cone}.
+\end{definition}
+\begin{remark}
+ Note that the definition of stability depends on the choice of embedding of $X$ into $\PP(V)$. \anton{it has to be that way because there is no equivalence of categories between graded rings and projective varieties, so you can't define a canonical quotient like we did in the affine case. When you choose the graded ring that you're taking invariants of, you're effectively chooseing a line bundle with a linearization.} Note that the notion of semi-stability does not depend on the embedding.
+\end{remark}
+\begin{remark}
+ Note that the invariant function $f$ is constant along $G$-orbits (and hence is constant on closures of $G$-orbits). So as soon as a $G$-orbit is contained in $X_f$, the closure of that $G$-orbit is also contained in $X_f$ (as soon as $f$ is non-zero on the orbit, it is non-zero on the closure).
+\end{remark}
+
+
+% \begin{remark}
+%  Note that if a point is semi-stable (resp.~stable) in $\PP(V)$, then it is semi-stable (resp.~stable) in $X$.
+%  
+%  Moreover, if a point is semi-stable as a point of $X$, then it is semi-stable as a point of $\PP(V)$ (you have to use reductivity of $G$ to lift the invariant homogeneous function $f$ to an invariant homogeneous function on $\PP(V)$). However, it is possible that a point is stable in $X$ but \emph{not} stable as a point in $\PP(V)$. For example, consider the action of $k^\times=\GG_m$ on $\PP^2$ given by $t\cdot [x:y:z]=[tx:y:z]$. Then the action of $\GG_m$ on $\PP^1=\{x=0\}$ is trivial, so all the points are stable. But in $\PP^2$, all these points are in the closures of other orbits.
+% \end{remark}
+
+
+Every point is actually a line in $V$. Let $X_a\subseteq V$ be the affine cone over $X$ (without 0), and let $x_a=kv\setminus \{0\}$ be the line corresponding to $x$ (without $0$). \anton{We don't use this next lemma ... I thought we would need it, so I wrote it up}
+\begin{lemma}
+ Suppose $0\not\in \bbar{G\cdot v}$, then the stabilizers $G_x$ and $G_v$ have the same dimension.
+\end{lemma}
+\begin{proof}
+ It is clear that $G_v\subseteq G_x$. Given and element $g\in G_x$, we have that $g\cdot v=\lambda_g v$ for some $\lambda_g\in k^\times$. So we get an exact sequence
+ \[
+  0\to G_v \to G_x\xrightarrow\lambda \AA^1
+ \]
+ The kernel of $\lambda$ is $G_v$ by definition of $G_v$. The image of $\lambda$ is essentially $G\cdot v \cap kv$, so since $0\not\in \bbar{G\cdot v}$, we must have that the image of $\lambda$ does not contain $0$ in its closure. It follows that the image of $\lambda$ (which is isomorphic to $G_x/G_v$) is finite, so zero-dimensional.
+\end{proof}
+
+\begin{proposition}
+ Let $x_a=kv$. Then $x$ is semi-stable if and only if $0\not\in \overline{G\cdot v}$, and $x$ is stable if and only if $G\cdot v$ is closed and $v$ is regular (i.e.~$v$ is stable with respect to the action of $G$ on $V$).
+\end{proposition}
+\begin{proof}
+ Suppose $0\not\in \bbar{G\cdot v}$. By the Separation Lemma, there is some $f\in R^G$ such that $f(0)=0$ and $f(v)=1$. Then $f=f_1+\cdots +f_n$ for homogeneous $f_i$ (of positive degree). Since the action of $G$ on $V$ is linear, the action of $G$ on $R$ respects the grading, so since $f$ is invariant, each of the $f_i$ must be invariant. At least one of these $f_i$ is non-zero on $v$, so $X_{f_i}$ witnesses semi-stability of $v$.
+ 
+ On the other hand, if $0\in \bbar{G\cdot v}$, then for any homogeneous invariant function $f$ of positive degree, we have $f(v)=f(0)=0$, so $x$ cannot be stable.
+ 
+ Now suppose $x$ is stable, so there is an invariant homogeneous function $f$ such that $X_f$ is a neighborhood of $x$ on which the action is closed. Since all the points $y\in X_f$ are stable (so semi-stable), we have that $0\not\in \bbar{G\cdot v_y}$ for all $y$. By the lemma, we get that  
+ 
+ Now suppose $G\cdot v$ is closed and $v$ is regular. As before, we get a homogeneous invariant function $f$ such that $X_f$ 
+ 
+ If $G\cdot v$ is closed, then $x\in X_f$ for some $f$. In $X_f$, we have a closed orbit, but $X_f$ is already affine. Using the remark, we can check stability on $X_f$. We already proved this equivalence when we talked about the affine case. \anton{I don't see why $v$ is regular. Where did we prove that if the action on an open neighborhood is closed, then the points in that neighborhood are regular? It must use that $G$ is reductive.}
+\end{proof}
+From the point of view of invariants, unstable points are invisible. If you want to construct $\proj R^G$, you can take some homogeneous $f\in R^G_n$, then you have $R^G_f=\{h/f^n|\deg h=n\cdot \deg f\}$. We can make the quotient $\specm R^G_f$, and glue all these affine pieces together. The problem is that unstable points are missing in this construction.
+
+So we only get a rational map $X\dashrightarrow X\quot G$, but we get an honest map $X^{ss}\to X\quot G:=X^{ss}\quot G$, and this map is a surjective submersion (topology is induced on the target). In that sense, it is a categorical quotient. However, several orbits are still glued together.
+
+If we consider $X^s\to X^s\quot G$, then the preimage of every point is a single orbit; it is a geometric quotient.
+
+Now let us consider the case where $X$ is a quasi-projective variety. Suppose $X\subseteq \bbar X\subseteq \PP(V)$, with $\bbar X=\proj R$. In this case, we need to change the definitions of stable and semi-stable points. We say $x\in X$ is \emph{semi-stable} if there exists an $f\in R^G_n$ such that $x\in X_f$ and \emph{$X_f$ is affine}. It is stable if furthermore the action on $X_f$ is closed.
+
+We can construct $X^{ss}\quot G$ by gluing together the $X_f\quot G$. In this situation, we always get a separable scheme \anton{}. In this way, I can recover the definition of the affine quotient.
+
+Suppose we have an affine variety $X$, then we can find an equivariant closed immersion $X\subseteq V$. Let $W=V\oplus ku$, where the action of $G$ on $u$ is trivial, then $X\subseteq \bbar X\subseteq \PP(W)$. We see immediately from the definition that $X^{ss}\quot G$ is the affine quotient.
+
+\begin{example}
+ All this works for any reductive Lie group and reductive Lie algebra.
+
+ Consider that adjoint representation $\Ad\colon G=GL(n)\to \aut(\gl(n))$. So $GL(n)$ acts on the set of all matrices by conjugation. $\PP(\g)/G$. We have $\det(A-\lambda I)=(-1)^n \lambda^n + \sigma_1(A)\lambda^{n-1}+\cdots +\sigma_n(A)$. The nilpotent cone is indeed the cone of all nilpotent elements (when all the $\sigma_i(A)=0$).
+ 
+ What are the stable points. They are exactly the matrices with distinct eigenvalues. In other words, the discriminant of the characteristic polynomial should be non-zero.
+ 
+ So the projective quotient in this case is going to be $\proj k[\sigma_1,\dots, \sigma_n]$. This is usually called weighted projective space. \anton{is this isomorphic to usual projective space?}
+\end{example}
+\begin{example}
+ $G=SL(2)$ and $V=V_4=\{\xi_0x^4+4\xi_1 x^3y+6\xi_2x^2y^2+4\xi_3 xy^3+\xi_4y^4\}$. In this case, we computed the invariants, $f_2$ and $f_3$, last time.
+ 
+ We already proved that the smooth points are stable, but perhaps we can have more stable points. We'd also like to compute the nilpotent cone.
+ 
+ Each element of $V$ gives me four points in $\PP^1$. If these are distinct, then we're in the smooth case. So suppose we're in the situation where two of the points coincide. Since the form must be invariant under $SL(2)$, we can assume the form is of the form $x^2(ax^2+bxy+xy^2)$, so $\xi_3=\xi_4=0$. The form is unstable if and only if $f_2=f_3=0$, which only happens if $\xi_2=0$ (i.e.~when $c=0$). Thus, the unstable points are those which have one point with multiplicity three (i.e.~either 3 and 1, or all 4 points together).
+ 
+ To see that the form $x^2(ax^2+bxy+xy^2)$ is unstable, apply the element $\matx{t&0\\ 0&t^{-1}}$ to get $at^2x^4+btx^3y+cx^2y^2$. As $t\to 0$, we get $cx^2y^2$ in the closure, which is where the points are broken up as 2 and 2. So in this case, stable is equivalent to smooth. But in general, this will not be the case.
+\end{example}
+Remember that a point is \emph{properly stable}, which means stable with finite stabilizer.
+
+Suppose an algebraic torus $T$ of dimension $n$ acts on a vector space $V$ of dimension $N$. Suppose further that there are properly stable points. The action of $T$ can be diagonalized, so in some set of coordinates, $t\cdot (x_1,\dots, x_N)=(\chi_1(t)x_1,\dots, \chi_N(t)x_N)$ for some characters $\chi_i\in T^\vee$ with $\bigcap_i \ker \chi_i$ finite.
+
+We have $\ZZ^n\cong T^\vee\subseteq\QQ^n\subseteq \RR^n$. Each torus has two lattices associated to it. One is the lattice of characters. The other lattice is the lattice of 1-parameter subgroups $P=\{\lambda\colon k^\times\to T\}$. By composition ($k^\times\xrightarrow\lambda T\xrightarrow{\chi} k^\times$) we get a natural pairing $P\times T^\vee\to \ZZ$, which is a non-degenerate pairing.
+
+Consider our set of $N$ characters as a set of vectors in $\ZZ^n\subseteq \RR^n$. For $x\in V$, let the support (with respect to the given set of characters) be $\supp(x)=\{\chi_i|x_i\neq 0\}$. Given $\mu_1,\dots, \mu_k\in \RR^n$, we let $C(\mu_1,\dots, \mu_k)=\{\sum a_i\mu_i|$not all $a_i=0$ and $a_i\ge 0\}$.
+\begin{proposition}
+ Under all the assumptions we have in place. Given $x\in V$ with $\supp(x)=\{\chi_1,\dots, \chi_k\}$. Then $x$ is semi-stable if and only if $0\in C(\chi_1,\dots, \chi_k)$. $x$ is properly stable if
+ \begin{enumerate}
+  \item $\dim \<\chi_1,\dots, \chi_n\>=n$,
+  \item $0$ is an interior point of $C(\chi_1,\dots, \chi_k)$.
+ \end{enumerate}
+\end{proposition}
+If $x$ is unstable, then $0$ is not in $C$, so all the $\chi_i$ must be in some open half-space. But if $x$ is semi-stable, then the $\chi_i$ must all be in some closed subspace. If $x$ is stable, then there is no closed half-space which contains all the $\chi_i$.
+
+Next time, we'll prove the proposition. Then we'll start proving the Hilbert-Mumford criterion for stability.
+
+
